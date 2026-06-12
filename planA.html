@@ -31,12 +31,13 @@
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION
+         * ① HERO SECTION (案Bの画像設計・数値へ統一)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
             width: 100%;
-            height: 100vh; 
+            /* 修正①：高さを100vhから85vhに変更 */
+            height: 85vh; 
             overflow: hidden;
             border-bottom: 1px solid var(--border);
         }
@@ -49,7 +50,8 @@
             top: 0;
             left: 0;
             z-index: 1;
-            object-position: center 15%; /* PCでの顔見切れ防止 */
+            /* 修正②：object-positionをcenter 15%からcenter 10%に変更 */
+            object-position: center 10%; 
         }
 
         .hero-overlay-content {
@@ -59,10 +61,12 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            background: linear-gradient(to bottom, rgba(7, 8, 10, 0.1) 0%, rgba(7, 8, 10, 0.85) 100%);
+            /* 修正③：グラデーションを案Bの階調設計へ変更 */
+            background: linear-gradient(to bottom, rgba(7, 8, 10, 0.1) 0%, rgba(7, 8, 10, 0.5) 50%, rgba(7, 8, 10, 0.9) 100%);
             display: flex;
             align-items: flex-end; 
-            padding-bottom: 8vh;
+            /* 修正④：下部余白を8vhから6vhに変更 */
+            padding-bottom: 6vh; 
         }
 
         /* スマホ表示時に髪に被らないよう左寄せを維持 */
@@ -127,11 +131,11 @@
             color: var(--sub-text);
             max-width: 700px;
             line-height: 1.5;
-            margin-bottom: 0; /* 実績文言削除にともない下部マージンをゼロにして引き締め */
+            margin-bottom: 0; 
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (余白をさらに最適に圧縮)
+         * ② CONTENTS SECTION
          * ----------------------------------------- */
         .container {
             max-width: 1200px;
@@ -139,7 +143,6 @@
             padding: 0 40px;
         }
         
-        /* 修正：TOPの文章削除に合わせて大項目間の縦スペースをさらに圧縮・上に引き上げ */
         .sec-padding {
             padding: 30px 0; 
         }
@@ -321,7 +324,7 @@
             .hero-name-en { font-size: 20px; }
             .sec-title-mini { font-size: 20px; margin-bottom: 16px; }
             .sec-title-mini span { font-size: 16px; }
-            .sec-padding { padding: 24px 0; } /* スクロールを極限まで短くするために余白をさらにタイトに */
+            .sec-padding { padding: 24px 0; } 
         }
     </style>
 </head>
@@ -365,7 +368,7 @@
             <div class="exp-card">
                 <span class="exp-num">02</span>
                 <h4>事業グロース</h4>
-                <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模 of 経済圏における爆発的成長支援. 実戦的なマーケティングや組織変革を含む支援。</p>
+                <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模の経済圏における爆発的成長支援. 実戦的なマーケティングや組織変革を含む支援。</p>
             </div>
             <div class="exp-card">
                 <span class="exp-num">03</span>

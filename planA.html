@@ -31,7 +31,7 @@
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (PC見切れ防止・顔被り回避)
+         * ① HERO SECTION
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
@@ -49,8 +49,7 @@
             top: 0;
             left: 0;
             z-index: 1;
-            /* PCでの顔見切れを完全に防ぐ */
-            object-position: center 15%;
+            object-position: center 15%; /* PCでの顔見切れ防止 */
         }
 
         .hero-overlay-content {
@@ -66,10 +65,11 @@
             padding-bottom: 8vh;
         }
 
+        /* 修正：スマホ表示時に髪に被らないよう、左側のマージンを最適に左寄せ */
         .hero-certified-badge {
             position: absolute;
-            top: 40px;
-            left: 40px;
+            top: 30px;
+            left: 16px; /* スマホ最優先で髪を避ける位置へ左寄せ */
             font-size: 8.5px;
             color: var(--accent);
             border: 1px solid var(--border);
@@ -80,6 +80,13 @@
             backdrop-filter: blur(10px);
             font-weight: 500;
             z-index: 3;
+        }
+
+        @media (min-width: 851px) {
+            .hero-certified-badge {
+                top: 40px;
+                left: 40px; /* PC大画面時は元のバランスの良い位置へ戻す */
+            }
         }
 
         .hero-overlay-meta {
@@ -133,25 +140,26 @@
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (見出しサイズアップ・新構成)
+         * ② CONTENTS SECTION
          * ----------------------------------------- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 40px;
         }
+        
+        /* 修正：大項目間のスペースが空きすぎないよう、縦余白を最適に圧縮 */
         .sec-padding {
-            padding: 60px 0; /* 余白を広げて視認性を向上 */
+            padding: 35px 0; 
         }
 
-        /* 修正：見出しを20-40%大きくし、雑誌的な強弱を表現 */
         .sec-title-mini {
             font-family: var(--font-eng);
-            font-size: 22px; /* 15pxから大幅拡大 */
+            font-size: 22px; 
             letter-spacing: 0.2em;
             color: var(--accent);
             text-transform: uppercase;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border-bottom: 1px solid var(--border);
             padding-bottom: 12px;
             display: flex;
@@ -160,23 +168,23 @@
         }
         .sec-title-mini span {
             font-family: var(--font-sans);
-            font-size: 18px; /* 13.5pxから拡大 */
+            font-size: 18px; 
             color: var(--sub-text);
             font-weight: 400;
         }
 
-        /* 01 Biography */
+        /* 略歴 */
         .essay-body {
             font-size: 15px;
             color: var(--sub-text);
             text-align: justify;
         }
         .essay-body p {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         .essay-body p:last-child { margin-bottom: 0; }
 
-        /* 02 Expertise */
+        /* 専門領域 */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -207,7 +215,7 @@
             line-height: 1.6;
         }
 
-        /* 03著書 (Books) */
+        /* 著書 */
         .books-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -216,7 +224,7 @@
         .book-card {
             background: var(--card);
             border: 1px solid var(--border);
-            padding: 30px;
+            padding: 25px 30px;
             border-radius: 4px;
         }
         .book-label {
@@ -235,7 +243,7 @@
         .book-meta {
             font-size: 12px;
             color: var(--accent);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: block;
         }
         .book-card p {
@@ -244,7 +252,7 @@
             line-height: 1.6;
         }
 
-        /* 04活動実績 (Achievements) */
+        /* 掲載・活動実績 */
         .achievements-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -256,7 +264,7 @@
             color: var(--accent);
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             padding-left: 10px;
             border-left: 2px solid var(--accent);
         }
@@ -266,10 +274,19 @@
             line-height: 1.7;
         }
 
-        /* CTA */
+        /* CTAエリア */
         .contact-area {
             text-align: center;
-            padding: 40px 0 80px;
+            padding: 50px 0 80px;
+        }
+        /* 修正：CTAボタンの上に案内文言を美しく格納 */
+        .cta-notice-text {
+            font-size: 13px;
+            color: var(--sub-text);
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+            padding: 0 20px;
+            line-height: 1.6;
         }
         .cta-btn {
             display: inline-flex;
@@ -303,16 +320,18 @@
          * RESPONSIVE
          * ----------------------------------------- */
         @media (max-width: 1024px) {
-            .grid-3 { grid-template-columns: 1fr; }
-            .books-grid, .achievements-grid { grid-template-columns: 1fr; }
+            .grid-3 { grid-template-columns: 1fr; gap: 24px; }
+            .books-grid, .achievements-grid { grid-template-columns: 1fr; gap: 24px; }
         }
         @media (max-width: 850px) {
-            .container { padding: 0 24px; }
-            .hero-certified-badge { top: 20px; left: 24px; }
+            .container { padding: 0 20px; }
+            .hero-certified-badge { top: 24px; left: 16px; } /* スマホでの髪被りを完全回避するパディング */
+            .hero-overlay-meta { padding: 0 20px; }
             .hero-name-ja { font-size: 42px; }
             .hero-name-en { font-size: 20px; }
-            .sec-title-mini { font-size: 20px; }
+            .sec-title-mini { font-size: 20px; margin-bottom: 16px; }
             .sec-title-mini span { font-size: 16px; }
+            .sec-padding { padding: 28px 0; } /* スマホ時はさらに余白を適正に引き締め */
         }
     </style>
 </head>
@@ -333,7 +352,7 @@
                     連続起業家 / プレイングエンジェル / 元ヤフー代表取締役社長CEO / Boost Capital 代表取締役
                 </p>
                 <div class="hero-brand-records">
-                    東北楽天ゴールデンイーグルスの創設を主導、Yahoo!ショッピング大改革（無料化コマース革命）を牽引。決済社会インフラPayPayの立ち立ち上げ指揮、ヤフー代表取締役社長CEOを歴任。エンジェル投資家・VCとして数多くのIPO支援・投資成長活動を実行。
+                    東北楽天ゴールデンイーグルスの創設を主導、Yahoo!ショッピング大改革（無料化コマース革命）を牽引。決済社会インフラPayPayの立ち上げ指揮、ヤフー代表取締役社長CEOを歴任。エンジェル投資家・VCとして数多くのIPO支援・投資成長活動を実行。
                 </div>
             </div>
         </div>
@@ -399,9 +418,10 @@
                 <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画。</p>
             </div>
         </div>
-    </div></section>
+    </section>
 
     <section class="contact-area"><div class="container">
+        <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
         <a href="https://docs.google.com/forms/d/e/XXXXXX/viewform" class="cta-btn" target="_blank">
             面談・相談を申し込む
         </a>

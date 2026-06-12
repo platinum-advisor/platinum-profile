@@ -6,7 +6,7 @@
     <title>Takao Ozawa | Plan C</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@100;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* -----------------------------------------
@@ -36,12 +36,12 @@
         .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
 
         /* -----------------------------------------
-         * ① HERO SECTION (最重要ルール：画像の上に position: absolute で完全重ね合わせ)
+         * ① HERO SECTION (重複削除・高さを圧縮して最適化)
          * ----------------------------------------- */
         .hero-magazine {
             position: relative;
             width: 100vw;
-            height: 75vh; /* 誌面のように贅沢に余白を残す高さ設計 */
+            height: 65vh; /* 重複文言の削除に伴い、高さを75vhから65vhへ圧縮 */
             overflow: hidden;
             border-bottom: 1px solid var(--border);
         }
@@ -55,6 +55,7 @@
             top: 0;
             left: 0;
             z-index: 1;
+            object-position: center 15%; /* PC・スマホで見切れにくいよう縦位置を微調整 */
         }
 
         /* 画像の上に完全に重ねるオーバーレイ・コンテンツコンテナ */
@@ -66,10 +67,10 @@
             height: 100%;
             z-index: 2;
             /* 贅沢なエディトリアルグラデーション */
-            background: linear-gradient(to top, rgba(250, 249, 246, 0.95) 0%, rgba(250, 249, 246, 0.25) 50%, rgba(250, 249, 246, 0.45) 100%);
+            background: linear-gradient(to top, rgba(250, 249, 246, 0.98) 0%, rgba(250, 249, 246, 0.3) 60%, rgba(250, 249, 246, 0.45) 100%);
             display: flex;
             align-items: flex-end; /* テキストを下部にオーバーレイ */
-            padding-bottom: 5vh;
+            padding-bottom: 4vh;
         }
 
         /* 顧問バンク認定バッジ（最上層に絶対配置） */
@@ -129,24 +130,13 @@
             line-height: 1.5;
             font-family: var(--font-serif);
             max-width: 650px;
-            margin-bottom: 12px;
-        }
-        .hero-brand-records {
-            font-size: 12px;
-            color: var(--text-dark);
-            line-height: 1.6;
-            border-top: 1px dashed var(--border);
-            padding-top: 12px;
-            max-width: 700px;
-            text-align: justify;
-            font-family: var(--font-serif);
         }
 
         /* -----------------------------------------
-         * CONTENTS SECTION (スクロールを最小に抑えた高密度誌面構造)
+         * CONTENTS SECTION (余白を更に圧縮したスクロール最小設計)
          * ----------------------------------------- */
         .sec-padding {
-            padding: 25px 0;
+            padding: 18px 0; /* 余白を25pxから18pxへ詰めて上にずらす */
         }
         .sec-title-mini {
             font-family: var(--font-eng);
@@ -171,22 +161,23 @@
         /* 01 Biography */
         .essay-body {
             font-size: 13.5px;
-            color: var(--sub-text);
+            color: var(--text-dark);
             text-align: justify;
             font-family: var(--font-serif);
+            line-height: 1.75;
         }
         .essay-body p {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .essay-body p:last-child {
             margin-bottom: 0;
         }
 
-        /* 02 Expertise & 03 Scope of Work */
+        /* 02 Expertise */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 20px;
         }
         .exp-s-card {
             border-left: 2px solid var(--accent);
@@ -195,18 +186,18 @@
         .exp-s-card h4 {
             font-size: 14px;
             color: var(--text-dark);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             font-weight: 700;
             font-family: var(--font-serif);
         }
         .exp-s-card p {
             font-size: 12.5px;
             color: var(--sub-text);
-            line-height: 1.4;
+            line-height: 1.5;
             font-family: var(--font-serif);
         }
 
-        /* 04 Publications */
+        /* 03 Publications */
         .books-dashboard-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -216,37 +207,37 @@
             background: rgba(255, 255, 255, 0.4);
             border: 1px solid var(--border);
             border-radius: 4px;
-            padding: 12px 15px;
+            padding: 14px 18px;
             transition: var(--transition);
         }
         .book-product-card:hover {
             border-color: var(--accent);
         }
         .book-product-info h4 {
-            font-size: 13.5px;
+            font-size: 14px;
             color: var(--text-dark);
             font-weight: 700;
             margin-bottom: 2px;
             font-family: var(--font-serif);
         }
         .book-product-info .publisher {
-            font-size: 9px;
+            font-size: 10px;
             color: var(--accent);
             text-transform: uppercase;
             font-weight: 500;
             letter-spacing: 0.05em;
         }
 
-        /* 05 Media & Stage */
+        /* 04 Achievements */
         .media-column-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
         .media-text-box h4 {
-            font-size: 12.5px;
+            font-size: 13px;
             color: var(--accent);
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             font-weight: 700;
             letter-spacing: 0.05em;
             font-family: var(--font-serif);
@@ -258,27 +249,36 @@
             font-family: var(--font-serif);
         }
 
-        /* 06 Contact */
+        /* 05 Contact & CTA Area */
         .contact-trigger-area {
             text-align: center;
-            padding: 15px 0;
+            padding: 25px 0 10px;
+        }
+        .cta-notice-text {
+            font-size: 13px;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-family: var(--font-serif);
+            letter-spacing: 0.02em;
         }
         .sig-action-btn {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             background: var(--accent);
             color: #fff;
-            padding: 14px;
+            padding: 14px 60px;
             border-radius: 4px;
-            font-size: 13px;
+            font-size: 13.5px;
             font-weight: 700;
             text-decoration: none;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(130, 77, 77, 0.1);
         }
         .sig-action-btn:hover {
             opacity: 0.9;
+            transform: translateY(-1px);
         }
 
         /* FOOTER */
@@ -292,25 +292,25 @@
         }
 
         @media (max-width: 850px) {
-            .container { padding: 0 20px; } .sec-padding { padding: 20px 0; }
-            .hero-magazine { height: 60vh; padding-bottom: 3vh; }
+            .container { padding: 0 20px; } 
+            .sec-padding { padding: 15px 0; }
+            .hero-magazine { height: 55vh; } /* スマホ時はさらにコンパクトに調整 */
+            .hero-text-overlay { padding: 0 20px; }
             .sig-certified-meta { top: 20px; left: 20px; }
-            .hero-name-ja { font-size: 32px; }
-            .grid-2, .books-dashboard-grid { grid-template-columns: 1fr; gap: 12px; }
+            .hero-name-ja { font-size: 34px; }
+            .hero-name-en { font-size: 18px; }
+            .grid-2, .books-dashboard-grid, .media-column-stack { grid-template-columns: 1fr; gap: 15px; }
+            .sig-action-btn { width: 100%; padding: 14px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ① Hero: 画面全幅(100vw)誌面額縁型写真背景オーバーレイ仕様（画像の上に position: absolute でテキストを重ねる構造に変更） -->
     <section class="hero-magazine">
-        <!-- 実画像 ozawa.jpg を最下層に配置（絶対禁止UIや仮設アップローダーは100%完全排除） -->
         <img src="ozawa.jpg" alt="小澤隆生 氏" class="hero-bg-img">
 
-        <!-- 顧問バンク公認バッジ（最上層に絶対配置） -->
         <span class="sig-certified-meta">顧問バンク認定 プラチナ顧問</span>
         
-        <!-- 画像の上に完全に重ねるオーバーレイ・コンテンツコンテナ -->
         <div class="hero-overlay-container">
             <div class="hero-text-overlay">
                 <div class="hero-meta-title">Signature Editorial Feature</div>
@@ -321,57 +321,37 @@
                 <p class="hero-brand-desc">
                     連続起業家 / プレイングエンジェル / 元ヤフー代表取締役社長CEO / Boost Capital 代表取締役
                 </p>
-                <div class="hero-brand-records">
-                    東北楽天ゴールデンイーグルスの創設を主導、Yahoo!ショッピング大改革（無料化コマース革命）を牽引。決済社会インフラPayPayの立ち上げ指揮、ヤフー代表取締役社長CEOを歴任。エンジェル投資家・VCとして数多くのIPO支援・投資成長活動を実行。
-                </div>
             </div>
         </div>
     </section>
 
-    <div class="wrapper" style="max-width: 900px; margin: 0 auto; padding: 20px 0;">
-        <!-- 01 Biography -->
+    <div class="wrapper" style="max-width: 900px; margin: 0 auto; padding: 10px 0;">
+        
         <section class="sec-padding"><div class="container">
             <h3 class="sec-title-mini">01 Biography <span>略歴</span></h3>
             <div class="essay-body">
-                <p>1999年にビズシークを創業し楽天へ売却. 楽天ではオークション事業、楽天野球団の立ち上げに従事.</p>
-                <p>2012年にヤフーへ参画. ヤフーショッピング、金融, トラベル事業を統括し、2022年には代表取締役社長 CEOに就任.</p>
-                <p>2024年にBoost Capitalを創業. 現在は連続起業家・投資家として成長企業支援を行う.</p>
+                <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを創業し楽天へ売却。楽天ではオークション事業や楽天野球団の立ち上げを担う。</p>
+                <p>2012年にヤフーへ参画し、Yahoo!ショッピング、金融、トラベル事業を統括。取締役専務執行役員COOを経て、2022年に代表取締役社長CEOに就任。</p>
+                <p>2024年にBoost Capitalを創業. 現在は連続起業家・投資家として、スタートアップ投資および成長企業の経営支援を行う。</p>
             </div>
         </div></section>
 
-        <!-- 02 Expertise -->
         <section class="sec-padding"><div class="container">
             <h3 class="sec-title-mini">02 Expertise <span>専門領域</span></h3>
             <div class="grid-2">
                 <div class="exp-s-card">
                     <h4>新規事業開発・グロース</h4>
-                    <p>巨大市場への参入戦略、0→1の垂直立ち上げ、上場規模における爆発的なグロース設計を強みとします.</p>
+                    <p>巨大市場への参入戦略、0→1の垂直立ち上げ、上場規模における爆発的なグロース設計を強みとします。</p>
                 </div>
                 <div class="exp-s-card">
                     <h4>M&A・PMI統合</h4>
-                    <p>買い手・売り手両面の豊富な経験、PMI（買収後統合）の高精度アラインメント支援.</p>
+                    <p>買い手・売り手両面の豊富な経験、PMI（買収後統合）の高精度アラインメント支援。</p>
                 </div>
             </div>
         </div></section>
 
-        <!-- 03 Scope of Work -->
         <section class="sec-padding"><div class="container">
-            <h3 class="sec-title-mini">03 Scope of Work <span>業務内容</span></h3>
-            <div class="grid-2">
-                <div class="exp-s-card">
-                    <h4>経営監修・会議参画</h4>
-                    <p>社外取締役、経営特別顧問として、経営計画や意思決定の推進アラインメント支援を行います.</p>
-                </div>
-                <div class="exp-s-card">
-                    <h4>講演・実戦勉強会</h4>
-                    <p>社内での事業創出マインド醸成や次世代経営人材を育む特別講義の実施.</p>
-                </div>
-            </div>
-        </div></section>
-
-        <!-- 04 Publications -->
-        <section class="sec-padding"><div class="container">
-            <h3 class="sec-title-mini">04 Publications <span>著書</span></h3>
+            <h3 class="sec-title-mini">03 Publications <span>著書</span></h3>
             <div class="books-dashboard-grid">
                 <div class="book-product-card">
                     <div class="book-product-info">
@@ -388,24 +368,25 @@
             </div>
         </div></section>
 
-        <!-- 05 Media & Stage -->
         <section class="sec-padding"><div class="container">
-            <h3 class="sec-title-mini">05 Media & Stage <span>メディア出演・講演</span></h3>
+            <h3 class="sec-title-mini">04 Achievements <span>掲載・活動実績</span></h3>
             <div class="media-column-stack">
                 <div class="media-text-box">
                     <h4>インタビュー・特集</h4>
-                    <p>日経ビジネス / NewsPicks / 東洋経済 / PIVOT / ReHacQ 等、経済主要メディアでの巻頭特集・独占インタビュー多数.</p>
+                    <p>日経ビジネス / NewsPicks / 東洋経済 / PIVOT / ReHacQ 等、経済主要メディアでの巻頭特集・独占インタビュー多数。</p>
                 </div>
                 <div class="media-text-box">
                     <h4>登壇・イベント</h4>
-                    <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画.</p>
+                    <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任。次世代起業家の教育活動にも参画。</p>
                 </div>
             </div>
-        </section>
+        </div></section>
 
-        <!-- 06 Contact -->
         <section class="sec-padding"><div class="container contact-trigger-area">
-            <a href="https://docs.google.com/forms/d/e/XXXXXX/viewform" class="mag-btn" target="_blank">面談・相談を申し込む</a>
+            <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
+            <a href="https://docs.google.com/forms/d/e/XXXXXX/viewform" class="sig-action-btn" target="_blank">
+                面談・相談を申し込む
+            </a>
         </div></section>
 
         <footer><div class="container">© Takao Ozawa Portfolio | Editorial Journal Hub</div></footer>

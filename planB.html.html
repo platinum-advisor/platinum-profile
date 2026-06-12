@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takao Ozawa | Plan B</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* -----------------------------------------
+         * DESIGN TOKENS (Kinfolk & Snellenberg調：重厚スレートと淡いブロンズ)
+         * ----------------------------------------- */
+        :root {
+            --bg: #0c0e12; 
+            --card: #141822; 
+            --accent: #bca374; /* 知的で落ち着いた真鍮・ブロンズゴールド */
+            --border: rgba(188, 163, 116, 0.2); 
+            --main-text: #f3f4f6;
+            --sub-text: #9ca3af;
+            --font-serif: 'Shippori Mincho', serif;
+            --font-eng: 'Playfair Display', serif;
+            --font-sans: 'Noto Sans JP', sans-serif;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background: var(--bg); 
+            color: var(--main-text); 
+            font-family: var(--font-sans); 
+            line-height: 1.6; 
+            -webkit-font-smoothing: antialiased; 
+            padding-bottom: 25px;
+        }
+
+        /* -----------------------------------------
+         * ① HERO SECTION (最重要ルール：画像の上に position: absolute で完全重ね合わせ)
+         * ----------------------------------------- */
+        .hero-fullwidth {
+            position: relative;
+            width: 100vw;
+            height: 85vh; /* 画面高の85%を占有する全幅ヒーロー */
+            overflow: hidden;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* 実画像 ozawa.jpg を最下層に配置 */
+        .hero-bg-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* 画像の上に完全に重ねるオーバーレイ・コンテンツコンテナ */
+        .hero-content-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            /* 左右グラデーションを施しテキストの視認性を極限まで担保 */
+            background: linear-gradient(to right, rgba(12, 14, 18, 0.85) 0%, rgba(12, 14, 18, 0.4) 50%, rgba(12, 14, 18, 0.95) 100%);
+            display: flex;
+            align-items: center;
+        }
+
+        /* 顧問バンクバッジ（最上層に絶対配置） */
+        .certified-badge-sig {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            font-size: 8px;
+            color: var(--accent);
+            border: 1px solid var(--border);
+            padding: 2px 10px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background: rgba(12, 14, 18, 0.85);
+            font-weight: 500;
+            z-index: 3;
+        }
+
+        .hero-text-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+        .hero-eng-title {
+            font-family: var(--font-eng);
+            font-size: 13px;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+        .hero-name-container {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .hero-name-ja {
+            font-family: var(--font-serif);
+            font-size: 46px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.1;
+        }
+        .hero-name-en {
+            font-family: var(--font-eng);
+            font-size: 20px;
+            color: var(--sub-text);
+        }
+        .hero-tagline {
+            font-size: 12.5px;
+            color: var(--sub-text);
+            line-height: 1.4;
+            max-width: 550px;
+        }
+
+        /* -----------------------------------------
+         * CONTENTS SECTION (スクロールを最小に抑えた高密度誌面構造)
+         * ----------------------------------------- */
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        
+        .sig-section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 12px;
+        }
+        .sig-sec-title {
+            font-family: var(--font-eng);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 6px;
+        }
+        .sig-sec-title span {
+            font-family: var(--font-sans);
+            font-size: 10.5px;
+            color: var(--sub-text);
+            font-weight: 300;
+        }
+
+        /* 01 Biography */
+        .bio-compressed-text {
+            font-size: 13px;
+            color: var(--main-text);
+            line-height: 1.6;
+            text-align: justify;
+            font-family: var(--font-serif);
+        }
+        .bio-compressed-text p {
+            margin-bottom: 8px;
+        }
+        .bio-compressed-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 02 Expertise & 03 Scope */
+        .exp-row-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .exp-s-box {
+            border-left: 2px solid var(--accent);
+            padding-left: 12px;
+        }
+        .exp-s-box h4 {
+            font-size: 13.5px;
+            color: #fff;
+            margin-bottom: 4px;
+            font-weight: 700;
+            font-family: var(--font-serif);
+        }
+        .exp-s-box p {
+            font-size: 11.5px;
+            color: var(--sub-text);
+            line-height: 1.4;
+            font-family: var(--font-serif);
+        }
+
+        /* 04 Publications */
+        .books-dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .book-product-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 8px;
+            padding: 12px 15px;
+            transition: var(--transition);
+        }
+        .book-product-info h4 {
+            font-size: 13px;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 2px;
+            font-family: var(--font-serif);
+        }
+        .book-product-info .publisher {
+            font-size: 9px;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        /* 05 Media & Activities */
+        .media-column-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .media-text-box h4 {
+            font-size: 12px;
+            color: var(--accent);
+            margin-bottom: 4px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            font-family: var(--font-serif);
+        }
+        .media-text-box p {
+            font-size: 12px;
+            color: var(--sub-text);
+            line-height: 1.5;
+            font-family: var(--font-serif);
+        }
+
+        /* 06 Contact */
+        .contact-trigger-area {
+            text-align: center;
+            padding: 4px 0;
+        }
+        .sig-action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent);
+            color: #000;
+            padding: 13px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            transition: var(--transition);
+        }
+        .sig-action-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+
+        /* FOOTER */
+        .sig-footer {
+            text-align: center;
+            font-size: 9.5px;
+            color: var(--sub-text);
+            margin-top: 20px;
+            letter-spacing: 0.05em;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            padding-top: 15px;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 850px) {
+            .wrapper { padding: 10px; }
+            .hero-fullwidth { height: 60vh; }
+            .hero-name-ja { font-size: 32px; }
+            .exp-row-layout, .books-dashboard-grid { grid-template-columns: 1fr; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ① Hero: 100vw 画面全幅お写真背景オーバーレイ仕様（画像の上に position: absolute でテキストを完全に重ねる構造） -->
+    <section class="hero-fullwidth">
+        <!-- 実画像 ozawa.jpg を最下層に配置（絶対禁止UIや仮設アップローダーは100%完全排除） -->
+        <img src="ozawa.jpg" alt="小澤隆生 氏" class="hero-bg-img">
+
+        <!-- 顧問バンクバッジ（最上層に絶対配置） -->
+        <span class="certified-badge-sig">顧問バンク認定 プラチナ顧問</span>
+        
+        <!-- 画像の上に完全に重ねるオーバーレイ・コンテンツコンテナ -->
+        <div class="hero-content-overlay">
+            <div class="hero-text-container">
+                <div class="hero-eng-title">Professional Signature</div>
+                <div class="hero-name-container">
+                    <h1 class="hero-name-ja">小澤 隆生</h1>
+                    <span class="hero-name-en">Takao Ozawa</span>
+                </div>
+                <p class="hero-tagline">
+                    連続起業家、プレイングエンジェル、元ヤフー代表取締役社長CEO、Boost Capital代表取締役. 東北楽天イーグルス創設、Yahoo!ショッピング大改革、PayPay立ち上げ、IPO支援多数を主導したエグゼクティブ.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="wrapper">
+        <!-- 01 Biography -->
+        <section class="sig-section">
+            <h3 class="sig-sec-title">01 Biography <span>略歴</span></h3>
+            <div class="bio-compressed-text">
+                <p>1999年にビズシークを創業し楽天へ売却. 楽天ではオークション事業、楽天野球団の立ち上げに従事.</p>
+                <p>2012年にヤフーへ参画. ヤフーショッピング、金融, トラベル事業を統括し、2022年には代表取締役社長 CEOに就任.</p>
+                <p>2024年にBoost Capitalを創業. 現在は連続起業家・投資家として成長企業支援を行う.</p>
+            </div>
+        </section>
+
+        <!-- 02 Expertise -->
+        <section class="sig-section">
+            <h3 class="sig-sec-title">02 Expertise <span>専門領域</span></h3>
+            <div class="exp-row-layout">
+                <div class="exp-s-box">
+                    <h4>新規事業開発・グロース</h4>
+                    <p>巨大市場への参入戦略、0→1の垂直立ち上げ、経済圏の構造設計を強みとします.</p>
+                </div>
+                <div class="exp-s-box">
+                    <h4>M&A・PMI統合</h4>
+                    <p>買い手・売り手両面の豊富な経験、PMI（買収後統合）の高精度アラインメント支援.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03 Scope of Work -->
+        <section class="sig-section">
+            <h3 class="sig-sec-title">03 Scope of Work <span>業務内容</span></h3>
+            <div class="exp-row-layout">
+                <div class="exp-s-box">
+                    <h4>経営監修・会議参画</h4>
+                    <p>社外取締役、経営特別顧問として、経営計画や意思決定の推進アラインメント支援を行います.</p>
+                </div>
+                <div class="exp-s-box">
+                    <h4>講演・実戦勉強会</h4>
+                    <p>社内での事業創出マインド醸成や次世代経営人材を育む特別講義の実施.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 Publications -->
+        <section class="sig-section">
+            <h3 class="sig-sec-title">04 Publications <span>著書</span></h3>
+            <div class="books-dashboard-grid">
+                <div class="book-product-card">
+                    <div class="book-product-info">
+                        <div class="publisher">日経BP</div>
+                        <h4>凡人の起業論</h4>
+                    </div>
+                </div>
+                <div class="book-product-card">
+                    <div class="book-product-info">
+                        <div class="publisher">ダイヤモンド社</div>
+                        <h4>起業の地図</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 05 Media & Stage -->
+        <section class="sig-section">
+            <h3 class="sig-sec-title">05 Media & Stage <span>メディア出演・講演</span></h3>
+            <div class="media-column-stack">
+                <div class="media-text-box">
+                    <h4>インタビュー・特集</h4>
+                    <p>日経ビジネス / NewsPicks / 東洋経済 / PIVOT / ReHacQ 等、経済主要メディアでの巻頭特集・独占インタビュー多数.</p>
+                </div>
+                <div class="media-text-box">
+                    <h4>登壇・イベント</h4>
+                    <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 Contact -->
+        <div class="contact-trigger-area">
+            <a href="https://docs.google.com/forms/d/e/XXXXXX/viewform" class="sig-action-btn" target="_blank">
+                面談・相談を申し込む
+            </a>
+        </div>
+
+        <!-- フッター -->
+        <footer class="sig-footer">
+            © TAKAO OZAWA | SIGNATURE PORTFOLIO HUB
+        </footer>
+    </div>
+
+</body>
+</html>

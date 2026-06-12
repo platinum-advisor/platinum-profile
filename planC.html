@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* -----------------------------------------
-         * DESIGN TOKENS (Kinfolk流：最高級ウォームアイボリーと深い墨炭、贅沢な余白)
+         * DESIGN TOKENS (【修正】最高級ウォームアイボリーとバーガンディの色彩設計へ統一)
          * ----------------------------------------- */
         :root {
-            --bg: #faf9f6; /* 紙の温かみを感じる高級オフホワイト */
-            --text-dark: #111315; /* 漆黒 */
-            --sub-text: #5c646c;
+            --bg: #faf9f6; /* 高級オフホワイト */
+            --text-dark: #111315; /* 深い墨黒 */
+            --sub-text: #5c646c; /* サブテキスト */
             --border: rgba(17, 19, 21, 0.12); /* 繊細な細いスリット境界 */
-            --accent: #824d4d; /* 落ち着いたアンティークバーガンディ */
+            --accent: #824d4d; /* アンティークバーガンディ */
             --font-serif: 'Shippori Mincho', serif;
             --font-eng: 'Playfair Display', serif;
             --font-sans: 'Noto Sans JP', sans-serif;
@@ -36,17 +36,16 @@
         .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
 
         /* -----------------------------------------
-         * ① HERO SECTION (重複削除・高さを圧縮して最適化)
+         * ① HERO SECTION (レイアウト不変・色彩のみウォームアイボリー調へ)
          * ----------------------------------------- */
         .hero-magazine {
             position: relative;
             width: 100vw;
-            height: 65vh; /* 重複文言の削除に伴い、高さを75vhから65vhへ圧縮 */
+            height: 65vh; 
             overflow: hidden;
             border-bottom: 1px solid var(--border);
         }
 
-        /* 実画像 ozawa.jpg を最下層に配置 */
         .hero-bg-img {
             width: 100%;
             height: 100%;
@@ -55,10 +54,9 @@
             top: 0;
             left: 0;
             z-index: 1;
-            object-position: center 15%; /* PC・スマホで見切れにくいよう縦位置を微調整 */
+            object-position: center 15%; 
         }
 
-        /* 画像の上に完全に重ねるオーバーレイ・コンテンツコンテナ */
         .hero-overlay-container {
             position: absolute;
             top: 0;
@@ -66,14 +64,13 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            /* 贅沢なエディトリアルグラデーション */
+            /* ウォームアイボリーをベースとした、顔を避けるエディトリアルグラデーション */
             background: linear-gradient(to top, rgba(250, 249, 246, 0.98) 0%, rgba(250, 249, 246, 0.3) 60%, rgba(250, 249, 246, 0.45) 100%);
             display: flex;
-            align-items: flex-end; /* テキストを下部にオーバーレイ */
+            align-items: flex-end; 
             padding-bottom: 4vh;
         }
 
-        /* 顧問バンク認定バッジ（最上層に絶対配置） */
         .sig-certified-meta {
             position: absolute;
             top: 40px;
@@ -133,11 +130,13 @@
         }
 
         /* -----------------------------------------
-         * CONTENTS SECTION (余白を更に圧縮したスクロール最小設計)
+         * CONTENTS SECTION (現行案Cのまま余白維持・カラーのみ刷新)
          * ----------------------------------------- */
         .sec-padding {
-            padding: 18px 0; /* 余白を25pxから18pxへ詰めて上にずらす */
+            padding: 18px 0; 
         }
+        
+        /* 修正：大項目見出しにアクセントカラー（アンティークバーガンディ）を使用 */
         .sec-title-mini {
             font-family: var(--font-eng);
             font-size: 12px;
@@ -161,7 +160,7 @@
         /* 01 Biography */
         .essay-body {
             font-size: 13.5px;
-            color: var(--text-dark);
+            color: var(--text-dark); /* メインテキストカラーへ変更 */
             text-align: justify;
             font-family: var(--font-serif);
             line-height: 1.75;
@@ -203,8 +202,9 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
+        /* 修正：アイボリー背景（透明度ありのトーン調和）＋繊細なボーダー */
         .book-product-card {
-            background: rgba(255, 255, 255, 0.4);
+            background: var(--bg); 
             border: 1px solid var(--border);
             border-radius: 4px;
             padding: 14px 18px;
@@ -261,12 +261,13 @@
             font-family: var(--font-serif);
             letter-spacing: 0.02em;
         }
+        /* 修正：背景#824d4d / 文字#ffffff のCTAボタンカラーへ統一 */
         .sig-action-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: var(--accent);
-            color: #fff;
+            background: var(--accent); /* #824d4d */
+            color: #ffffff; /* ピュアホワイト */
             padding: 14px 60px;
             border-radius: 4px;
             font-size: 13.5px;
@@ -274,10 +275,10 @@
             text-decoration: none;
             letter-spacing: 0.15em;
             transition: var(--transition);
-            box-shadow: 0 2px 10px rgba(130, 77, 77, 0.1);
+            box-shadow: 0 2px 10px rgba(130, 77, 77, 0.15);
         }
         .sig-action-btn:hover {
-            opacity: 0.9;
+            opacity: 0.95;
             transform: translateY(-1px);
         }
 
@@ -294,7 +295,7 @@
         @media (max-width: 850px) {
             .container { padding: 0 20px; } 
             .sec-padding { padding: 15px 0; }
-            .hero-magazine { height: 55vh; } /* スマホ時はさらにコンパクトに調整 */
+            .hero-magazine { height: 55vh; } 
             .hero-text-overlay { padding: 0 20px; }
             .sig-certified-meta { top: 20px; left: 20px; }
             .hero-name-ja { font-size: 34px; }
@@ -313,6 +314,7 @@
         
         <div class="hero-overlay-container">
             <div class="hero-text-overlay">
+                <div class="hero-magazine-title"></div>
                 <div class="hero-meta-title">Signature Editorial Feature</div>
                 <div class="hero-name-row">
                     <h1 class="hero-name-ja">小澤 隆生</h1>
@@ -332,7 +334,7 @@
             <div class="essay-body">
                 <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを創業し楽天へ売却。楽天ではオークション事業や楽天野球団の立ち上げを担う。</p>
                 <p>2012年にヤフーへ参画し、Yahoo!ショッピング、金融、トラベル事業を統括。取締役専務執行役員COOを経て、2022年に代表取締役社長CEOに就任。</p>
-                <p>2024年にBoost Capitalを創業. 現在は連続起業家・投資家として、スタートアップ投資および成長企業の経営支援を行う。</p>
+                <p>2024年にBoost Capitalを創業。現在は連続起業家・投資家として、スタートアップ投資および成長企業の経営支援を行う。</p>
             </div>
         </div></section>
 

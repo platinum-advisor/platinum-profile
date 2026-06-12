@@ -59,17 +59,17 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            background: linear-gradient(to bottom, rgba(7, 8, 10, 0.2) 0%, rgba(7, 8, 10, 0.85) 100%);
+            background: linear-gradient(to bottom, rgba(7, 8, 10, 0.1) 0%, rgba(7, 8, 10, 0.85) 100%);
             display: flex;
             align-items: flex-end; 
             padding-bottom: 8vh;
         }
 
-        /* 修正：スマホ表示時に髪に被らないよう、左側のマージンを最適に左寄せ */
+        /* スマホ表示時に髪に被らないよう左寄せを維持 */
         .hero-certified-badge {
             position: absolute;
             top: 30px;
-            left: 16px; /* スマホ最優先で髪を避ける位置へ左寄せ */
+            left: 16px; 
             font-size: 8.5px;
             color: var(--accent);
             border: 1px solid var(--border);
@@ -85,7 +85,7 @@
         @media (min-width: 851px) {
             .hero-certified-badge {
                 top: 40px;
-                left: 40px; /* PC大画面時は元のバランスの良い位置へ戻す */
+                left: 40px; 
             }
         }
 
@@ -127,20 +127,11 @@
             color: var(--sub-text);
             max-width: 700px;
             line-height: 1.5;
-            margin-bottom: 15px;
-        }
-        .hero-brand-records {
-            font-size: 12.5px;
-            color: var(--main-text);
-            line-height: 1.6;
-            border-top: 1px dashed var(--border);
-            padding-top: 15px;
-            max-width: 750px;
-            text-align: justify;
+            margin-bottom: 0; /* 実績文言削除にともない下部マージンをゼロにして引き締め */
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION
+         * ② CONTENTS SECTION (余白をさらに最適に圧縮)
          * ----------------------------------------- */
         .container {
             max-width: 1200px;
@@ -148,9 +139,9 @@
             padding: 0 40px;
         }
         
-        /* 修正：大項目間のスペースが空きすぎないよう、縦余白を最適に圧縮 */
+        /* 修正：TOPの文章削除に合わせて大項目間の縦スペースをさらに圧縮・上に引き上げ */
         .sec-padding {
-            padding: 35px 0; 
+            padding: 30px 0; 
         }
 
         .sec-title-mini {
@@ -277,9 +268,8 @@
         /* CTAエリア */
         .contact-area {
             text-align: center;
-            padding: 50px 0 80px;
+            padding: 40px 0 70px;
         }
-        /* 修正：CTAボタンの上に案内文言を美しく格納 */
         .cta-notice-text {
             font-size: 13px;
             color: var(--sub-text);
@@ -325,13 +315,13 @@
         }
         @media (max-width: 850px) {
             .container { padding: 0 20px; }
-            .hero-certified-badge { top: 24px; left: 16px; } /* スマホでの髪被りを完全回避するパディング */
+            .hero-certified-badge { top: 24px; left: 16px; } 
             .hero-overlay-meta { padding: 0 20px; }
             .hero-name-ja { font-size: 42px; }
             .hero-name-en { font-size: 20px; }
             .sec-title-mini { font-size: 20px; margin-bottom: 16px; }
             .sec-title-mini span { font-size: 16px; }
-            .sec-padding { padding: 28px 0; } /* スマホ時はさらに余白を適正に引き締め */
+            .sec-padding { padding: 24px 0; } /* スクロールを極限まで短くするために余白をさらにタイトに */
         }
     </style>
 </head>
@@ -351,9 +341,6 @@
                 <p class="hero-desc-text">
                     連続起業家 / プレイングエンジェル / 元ヤフー代表取締役社長CEO / Boost Capital 代表取締役
                 </p>
-                <div class="hero-brand-records">
-                    東北楽天ゴールデンイーグルスの創設を主導、Yahoo!ショッピング大改革（無料化コマース革命）を牽引。決済社会インフラPayPayの立ち上げ指揮、ヤフー代表取締役社長CEOを歴任。エンジェル投資家・VCとして数多くのIPO支援・投資成長活動を実行。
-                </div>
             </div>
         </div>
     </section>
@@ -361,9 +348,9 @@
     <section class="sec-padding"><div class="container">
         <h3 class="sec-title-mini">Biography <span>略歴</span></h3>
         <div class="essay-body">
-            <p>1999年にビズシークを創業し楽天へ売却. 楽天ではオークション事業、楽天野球団の立ち上げに従事。</p>
-            <p>2012年にヤフーへ参画. ヤフーショッピング、金融、トラベル事業を統括し、2022年には代表取締役社長 CEOに就任。</p>
-            <p>2024年にBoost Capitalを創業. 現在は連続起業家・投資家として成長企業支援を行う。</p>
+            <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを創業し楽天へ売却。楽天ではオークション事業や楽天野球団の立ち上げを担う。</p>
+            <p>2012年にヤフーへ参画し、Yahoo!ショッピング、金融、トラベル事業を統括。取締役専務執行役員COOを経て、2022年に代表取締役社長CEOに就任。</p>
+            <p>2024年にBoost Capitalを創業。現在は連続起業家・投資家として、スタートアップ投資および成長企業の経営支援を行う。</p>
         </div>
     </div></section>
 
@@ -378,7 +365,7 @@
             <div class="exp-card">
                 <span class="exp-num">02</span>
                 <h4>事業グロース</h4>
-                <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模の経済圏における爆発的成長支援. 実戦的なマーケティングや組織変革を含む支援。</p>
+                <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模 of 経済圏における爆発的成長支援. 実戦的なマーケティングや組織変革を含む支援。</p>
             </div>
             <div class="exp-card">
                 <span class="exp-num">03</span>

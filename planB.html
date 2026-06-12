@@ -36,7 +36,7 @@
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (PC見切れ防止・顔被り完全回避)
+         * ① HERO SECTION (顔被り完全回避 & PC見切れ防止)
          * ----------------------------------------- */
         .hero-fullwidth {
             position: relative;
@@ -54,8 +54,7 @@
             top: 0;
             left: 0;
             z-index: 1;
-            /* PC表示時でも人物が見切れにくいよう位置調整 */
-            object-position: center 10%;
+            object-position: center 10%; /* PC表示時でも人物が見切れにくいよう位置ホールド */
         }
 
         .hero-content-overlay {
@@ -65,17 +64,19 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            /* 左右グラデーションを施しテキストの視認性を極限まで担保 */
-            background: linear-gradient(to right, rgba(12, 14, 18, 0.85) 0%, rgba(12, 14, 18, 0.4) 50%, rgba(12, 14, 18, 0.95) 100%);
+            /* 修正：スマホ表示でのテキスト視認性と顔被り回避のため、下部へのグラデーションを強化 */
+            background: linear-gradient(to bottom, rgba(12, 14, 18, 0.1) 0%, rgba(12, 14, 18, 0.5) 50%, rgba(12, 14, 18, 0.9) 100%);
             display: flex;
-            align-items: center;
+            /* 修正：スマホで顔に100%重ならないよう、コンテンツ全体を下部（flex-end）へ厳格配置 */
+            align-items: flex-end; 
+            padding-bottom: 6vh;
         }
 
-        /* 顧問バンクバッジ：スマホ最優先で左寄せを調整 */
+        /* 顧問バンクバッジ：スマホでの髪被り回避位置をホールド */
         .certified-badge-sig {
             position: absolute;
             top: 25px;
-            left: 16px; /* スマホで髪に被りにくいよう最適化 */
+            left: 16px; 
             font-size: 8px;
             color: var(--accent);
             border: 1px solid var(--border);
@@ -91,6 +92,11 @@
             .certified-badge-sig {
                 top: 30px;
                 left: 30px;
+            }
+            .hero-content-overlay {
+                /* PC時は左右グラデーションを適応させて中央〜右に余白を抜く */
+                background: linear-gradient(to right, rgba(12, 14, 18, 0.85) 0%, rgba(12, 14, 18, 0.4) 50%, rgba(12, 14, 18, 0.95) 100%);
+                align-items: center; /* PC大画面時は縦中央揃えでバランスを確保 */
             }
         }
 
@@ -135,28 +141,27 @@
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (新構成・見出し拡大・余白圧縮)
+         * ② CONTENTS SECTION
          * ----------------------------------------- */
         .wrapper {
             max-width: 900px;
             margin: 0 auto;
             padding: 15px;
-            /* 修正：TOPの文章削除に伴い、コンテンツ全体を上にずらし余白を圧縮 */
-            margin-top: -15px; 
+            margin-top: -15px; /* ファーストビュー直後の余白をタイトに圧縮 */
         }
         
         .sig-section {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 24px; /* 見出し拡大に伴い内側余白を微調整 */
+            padding: 24px; 
             margin-bottom: 16px;
         }
 
-        /* 修正：大項目見出しを高級感を維持したまま約35%大きく拡大 */
+        /* 大項目見出し：約35%大きく拡大した比率をホールド */
         .sig-sec-title {
             font-family: var(--font-eng);
-            font-size: 15px; /* 11pxから拡大 */
+            font-size: 15px; 
             letter-spacing: 0.2em;
             color: var(--accent);
             text-transform: uppercase;
@@ -169,7 +174,7 @@
         }
         .sig-sec-title span {
             font-family: var(--font-serif);
-            font-size: 14px; /* 10.5pxから拡大 */
+            font-size: 14px; 
             color: var(--main-text);
             font-weight: 400;
         }
@@ -192,7 +197,7 @@
         /* 専門領域 */
         .exp-row-layout {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 2カラムから3カラムに最適化 */
+            grid-template-columns: repeat(3, 1fr); 
             gap: 20px;
         }
         .exp-s-box {
@@ -289,7 +294,6 @@
             text-align: center;
             padding: 25px 0 15px;
         }
-        /* 修正：CTA直上の案内文言 */
         .cta-notice-text {
             font-size: 12.5px;
             color: var(--sub-text);
@@ -331,7 +335,8 @@
         /* RESPONSIVE DESIGN */
         @media (max-width: 850px) {
             .wrapper { padding: 12px; margin-top: 0; }
-            .hero-fullwidth { height: 70vh; } /* スマホ時も写真を主役にする適正高さ */
+            .hero-fullwidth { height: 75vh; } /* スマホ時、最下部テキスト格納に最適な高さに調整 */
+            .hero-text-container { padding: 0 20px; }
             .hero-name-ja { font-size: 38px; }
             .hero-name-en { font-size: 18px; }
             .sig-sec-title { font-size: 14px; }

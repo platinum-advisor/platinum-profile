@@ -64,10 +64,8 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            /* 修正：スマホ表示でのテキスト視認性と顔被り回避のため、下部へのグラデーションを強化 */
             background: linear-gradient(to bottom, rgba(12, 14, 18, 0.1) 0%, rgba(12, 14, 18, 0.5) 50%, rgba(12, 14, 18, 0.9) 100%);
             display: flex;
-            /* 修正：スマホで顔に100%重ならないよう、コンテンツ全体を下部（flex-end）へ厳格配置 */
             align-items: flex-end; 
             padding-bottom: 6vh;
         }
@@ -94,9 +92,8 @@
                 left: 30px;
             }
             .hero-content-overlay {
-                /* PC時は左右グラデーションを適応させて中央〜右に余白を抜く */
                 background: linear-gradient(to right, rgba(12, 14, 18, 0.85) 0%, rgba(12, 14, 18, 0.4) 50%, rgba(12, 14, 18, 0.95) 100%);
-                align-items: center; /* PC大画面時は縦中央揃えでバランスを確保 */
+                align-items: center; 
             }
         }
 
@@ -147,7 +144,7 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 15px;
-            margin-top: -15px; /* ファーストビュー直後の余白をタイトに圧縮 */
+            margin-top: -15px; 
         }
         
         .sig-section {
@@ -158,23 +155,24 @@
             margin-bottom: 16px;
         }
 
-        /* 大項目見出し：約35%大きく拡大した比率をホールド */
+        /* 【修正①③】見出しサイズをご指定の数値へ微増。高級感を保ち視認性を底上げ */
         .sig-sec-title {
             font-family: var(--font-eng);
-            font-size: 15px; 
-            letter-spacing: 0.2em;
+            font-size: 17px; /* 15px → +2pxだけ拡大 */
+            letter-spacing: 0.22em; /* 0.2em → 0.22emへ微増させ文字詰まりを解消 */
             color: var(--accent);
             text-transform: uppercase;
-            margin-bottom: 16px;
+            /* 【修正②】余白（margin / padding）は絶対に変更せず完全維持 */
+            margin-bottom: 16px; 
             display: flex;
             align-items: baseline;
             gap: 12px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 8px;
+            padding-bottom: 8px; 
         }
         .sig-sec-title span {
             font-family: var(--font-serif);
-            font-size: 14px; 
+            font-size: 15px; /* 14px → +1px微増 */
             color: var(--main-text);
             font-weight: 400;
         }
@@ -335,12 +333,13 @@
         /* RESPONSIVE DESIGN */
         @media (max-width: 850px) {
             .wrapper { padding: 12px; margin-top: 0; }
-            .hero-fullwidth { height: 75vh; } /* スマホ時、最下部テキスト格納に最適な高さに調整 */
+            .hero-fullwidth { height: 75vh; } 
             .hero-text-container { padding: 0 20px; }
             .hero-name-ja { font-size: 38px; }
             .hero-name-en { font-size: 18px; }
-            .sig-sec-title { font-size: 14px; }
-            .sig-sec-title span { font-size: 13px; }
+            /* スマホ時も大見出し比率を美しく維持 */
+            .sig-sec-title { font-size: 16px; }
+            .sig-sec-title span { font-size: 14px; }
             .exp-row-layout, .books-dashboard-grid, .media-column-stack { grid-template-columns: 1fr; gap: 20px; }
             .contact-trigger-area { padding: 15px 0 5px; }
         }
@@ -430,7 +429,7 @@
                 </div>
                 <div class="media-text-box">
                     <h4>Conferences & Events</h4>
-                    <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画。</p>
+                    <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画.</p>
                 </div>
             </div>
         </section>

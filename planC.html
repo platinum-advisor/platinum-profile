@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* -----------------------------------------
-         * DESIGN TOKENS (【修正】最高級ウォームアイボリーとバーガンディの色彩設計へ統一)
+         * DESIGN TOKENS (ウォームアイボリー×バーガンディの色彩設計)
          * ----------------------------------------- */
         :root {
-            --bg: #faf9f6; /* 高級オフホワイト */
-            --text-dark: #111315; /* 深い墨黒 */
-            --sub-text: #5c646c; /* サブテキスト */
-            --border: rgba(17, 19, 21, 0.12); /* 繊細な細いスリット境界 */
+            --bg: #faf9f6; 
+            --text-dark: #111315; 
+            --sub-text: #5c646c; 
+            --border: rgba(17, 19, 21, 0.12); 
             --accent: #824d4d; /* アンティークバーガンディ */
             --font-serif: 'Shippori Mincho', serif;
             --font-eng: 'Playfair Display', serif;
@@ -36,7 +36,7 @@
         .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
 
         /* -----------------------------------------
-         * ① HERO SECTION (レイアウト不変・色彩のみウォームアイボリー調へ)
+         * ① HERO SECTION (カラー維持・人物の存在感を強化)
          * ----------------------------------------- */
         .hero-magazine {
             position: relative;
@@ -55,6 +55,8 @@
             left: 0;
             z-index: 1;
             object-position: center 15%; 
+            /* 修正①：明るさとコントラストを上げ、人物の存在感を力強く引き出す（白飛びは防止） */
+            filter: brightness(1.05) contrast(1.1) saturate(1.05);
         }
 
         .hero-overlay-container {
@@ -64,8 +66,13 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            /* ウォームアイボリーをベースとした、顔を避けるエディトリアルグラデーション */
-            background: linear-gradient(to top, rgba(250, 249, 246, 0.98) 0%, rgba(250, 249, 246, 0.3) 60%, rgba(250, 249, 246, 0.45) 100%);
+            /* 修正②：白被せオーバーレイを弱め、より透明度を高めた極上のグラデーションへ変更 */
+            background: linear-gradient(
+                to top,
+                rgba(250, 249, 246, 0.85) 0%,
+                rgba(250, 249, 246, 0.2) 60%,
+                rgba(250, 249, 246, 0.35) 100%
+            );
             display: flex;
             align-items: flex-end; 
             padding-bottom: 4vh;
@@ -114,6 +121,8 @@
             font-weight: 700;
             color: var(--text-dark);
             line-height: 1.1;
+            /* 修正③：背景透過に伴い、文字が浮かび上がるよう軽微なシャドウを適用し可読性を絶対維持 */
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
         }
         .hero-name-en {
             font-family: var(--font-eng);
@@ -127,16 +136,17 @@
             line-height: 1.5;
             font-family: var(--font-serif);
             max-width: 650px;
+            /* 修正③：視認性維持のためのシャドウを追加 */
+            text-shadow: 0 1px 4px rgba(250, 249, 246, 0.8);
         }
 
         /* -----------------------------------------
-         * CONTENTS SECTION (現行案Cのまま余白維持・カラーのみ刷新)
+         * ② CONTENTS SECTION (レイアウト・余白・構成は完全固定)
          * ----------------------------------------- */
         .sec-padding {
             padding: 18px 0; 
         }
         
-        /* 修正：大項目見出しにアクセントカラー（アンティークバーガンディ）を使用 */
         .sec-title-mini {
             font-family: var(--font-eng);
             font-size: 12px;
@@ -160,7 +170,7 @@
         /* 01 Biography */
         .essay-body {
             font-size: 13.5px;
-            color: var(--text-dark); /* メインテキストカラーへ変更 */
+            color: var(--text-dark); 
             text-align: justify;
             font-family: var(--font-serif);
             line-height: 1.75;
@@ -202,7 +212,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
-        /* 修正：アイボリー背景（透明度ありのトーン調和）＋繊細なボーダー */
         .book-product-card {
             background: var(--bg); 
             border: 1px solid var(--border);
@@ -261,13 +270,12 @@
             font-family: var(--font-serif);
             letter-spacing: 0.02em;
         }
-        /* 修正：背景#824d4d / 文字#ffffff のCTAボタンカラーへ統一 */
         .sig-action-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: var(--accent); /* #824d4d */
-            color: #ffffff; /* ピュアホワイト */
+            background: var(--accent); 
+            color: #ffffff; 
             padding: 14px 60px;
             border-radius: 4px;
             font-size: 13.5px;
@@ -314,7 +322,6 @@
         
         <div class="hero-overlay-container">
             <div class="hero-text-overlay">
-                <div class="hero-magazine-title"></div>
                 <div class="hero-meta-title">Signature Editorial Feature</div>
                 <div class="hero-name-row">
                     <h1 class="hero-name-ja">小澤 隆生</h1>

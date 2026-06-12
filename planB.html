@@ -36,7 +36,7 @@
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (最重要ルール：画像の上に position: absolute で完全重ね合わせ)
+         * ① HERO SECTION (PC見切れ防止・顔被り完全回避)
          * ----------------------------------------- */
         .hero-fullwidth {
             position: relative;
@@ -46,7 +46,6 @@
             border-bottom: 1px solid var(--border);
         }
 
-        /* 実画像 ozawa.jpg を最下層に配置 */
         .hero-bg-img {
             width: 100%;
             height: 100%;
@@ -55,9 +54,10 @@
             top: 0;
             left: 0;
             z-index: 1;
+            /* PC表示時でも人物が見切れにくいよう位置調整 */
+            object-position: center 10%;
         }
 
-        /* 画像の上に完全に重ねるオーバーレイ・コンテンツコンテナ */
         .hero-content-overlay {
             position: absolute;
             top: 0;
@@ -71,20 +71,27 @@
             align-items: center;
         }
 
-        /* 顧問バンクバッジ（最上層に絶対配置） */
+        /* 顧問バンクバッジ：スマホ最優先で左寄せを調整 */
         .certified-badge-sig {
             position: absolute;
-            top: 30px;
-            left: 30px;
+            top: 25px;
+            left: 16px; /* スマホで髪に被りにくいよう最適化 */
             font-size: 8px;
             color: var(--accent);
             border: 1px solid var(--border);
-            padding: 2px 10px;
+            padding: 3px 12px;
             letter-spacing: 0.2em;
             text-transform: uppercase;
             background: rgba(12, 14, 18, 0.85);
             font-weight: 500;
             z-index: 3;
+        }
+
+        @media (min-width: 851px) {
+            .certified-badge-sig {
+                top: 30px;
+                left: 30px;
+            }
         }
 
         .hero-text-container {
@@ -121,158 +128,193 @@
             color: var(--sub-text);
         }
         .hero-tagline {
-            font-size: 12.5px;
+            font-size: 13px;
             color: var(--sub-text);
-            line-height: 1.4;
+            line-height: 1.5;
             max-width: 550px;
         }
 
         /* -----------------------------------------
-         * CONTENTS SECTION (スクロールを最小に抑えた高密度誌面構造)
+         * ② CONTENTS SECTION (新構成・見出し拡大・余白圧縮)
          * ----------------------------------------- */
         .wrapper {
             max-width: 900px;
             margin: 0 auto;
             padding: 15px;
+            /* 修正：TOPの文章削除に伴い、コンテンツ全体を上にずらし余白を圧縮 */
+            margin-top: -15px; 
         }
         
         .sig-section {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 18px;
-            margin-bottom: 12px;
+            padding: 24px; /* 見出し拡大に伴い内側余白を微調整 */
+            margin-bottom: 16px;
         }
+
+        /* 修正：大項目見出しを高級感を維持したまま約35%大きく拡大 */
         .sig-sec-title {
             font-family: var(--font-eng);
-            font-size: 11px;
+            font-size: 15px; /* 11pxから拡大 */
             letter-spacing: 0.2em;
             color: var(--accent);
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
             display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            padding-bottom: 6px;
+            align-items: baseline;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 8px;
         }
         .sig-sec-title span {
-            font-family: var(--font-sans);
-            font-size: 10.5px;
-            color: var(--sub-text);
-            font-weight: 300;
+            font-family: var(--font-serif);
+            font-size: 14px; /* 10.5pxから拡大 */
+            color: var(--main-text);
+            font-weight: 400;
         }
 
-        /* 01 Biography */
+        /* 略歴 */
         .bio-compressed-text {
-            font-size: 13px;
+            font-size: 14px;
             color: var(--main-text);
-            line-height: 1.6;
+            line-height: 1.7;
             text-align: justify;
             font-family: var(--font-serif);
         }
         .bio-compressed-text p {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .bio-compressed-text p:last-child {
             margin-bottom: 0;
         }
 
-        /* 02 Expertise & 03 Scope */
+        /* 専門領域 */
         .exp-row-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            grid-template-columns: repeat(3, 1fr); /* 2カラムから3カラムに最適化 */
+            gap: 20px;
         }
         .exp-s-box {
             border-left: 2px solid var(--accent);
-            padding-left: 12px;
+            padding-left: 14px;
+        }
+        .exp-s-box span {
+            font-family: var(--font-eng);
+            font-size: 11px;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 2px;
         }
         .exp-s-box h4 {
-            font-size: 13.5px;
+            font-size: 14.5px;
             color: #fff;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             font-weight: 700;
             font-family: var(--font-serif);
         }
         .exp-s-box p {
-            font-size: 11.5px;
-            color: var(--sub-text);
-            line-height: 1.4;
-            font-family: var(--font-serif);
-        }
-
-        /* 04 Publications */
-        .books-dashboard-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        .book-product-card {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255,255,255,0.03);
-            border-radius: 8px;
-            padding: 12px 15px;
-            transition: var(--transition);
-        }
-        .book-product-info h4 {
-            font-size: 13px;
-            color: #fff;
-            font-weight: 700;
-            margin-bottom: 2px;
-            font-family: var(--font-serif);
-        }
-        .book-product-info .publisher {
-            font-size: 9px;
-            color: var(--accent);
-            text-transform: uppercase;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-        }
-
-        /* 05 Media & Activities */
-        .media-column-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .media-text-box h4 {
-            font-size: 12px;
-            color: var(--accent);
-            margin-bottom: 4px;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            font-family: var(--font-serif);
-        }
-        .media-text-box p {
-            font-size: 12px;
+            font-size: 12.5px;
             color: var(--sub-text);
             line-height: 1.5;
             font-family: var(--font-serif);
         }
 
-        /* 06 Contact */
+        /* 著書 */
+        .books-dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .book-product-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255,255,255,0.03);
+            border-radius: 8px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+        .book-product-info .book-label {
+            font-family: var(--font-eng);
+            font-size: 10px;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 2px;
+        }
+        .book-product-info h4 {
+            font-size: 15px;
+            color: #fff;
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-family: var(--font-serif);
+        }
+        .book-product-info .publisher {
+            font-size: 11px;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .book-product-info p {
+            font-size: 12.5px;
+            color: var(--sub-text);
+            line-height: 1.5;
+            font-family: var(--font-serif);
+        }
+
+        /* 掲載・活動実績 */
+        .media-column-stack {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .media-text-box h4 {
+            font-size: 13.5px;
+            color: var(--accent);
+            margin-bottom: 6px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            font-family: var(--font-serif);
+            border-left: 2px solid var(--accent);
+            padding-left: 10px;
+        }
+        .media-text-box p {
+            font-size: 13px;
+            color: var(--sub-text);
+            line-height: 1.6;
+            font-family: var(--font-serif);
+        }
+
+        /* Contact & CTA */
         .contact-trigger-area {
             text-align: center;
-            padding: 4px 0;
+            padding: 25px 0 15px;
+        }
+        /* 修正：CTA直上の案内文言 */
+        .cta-notice-text {
+            font-size: 12.5px;
+            color: var(--sub-text);
+            margin-bottom: 18px;
+            font-family: var(--font-serif);
+            letter-spacing: 0.03em;
         }
         .sig-action-btn {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             background: var(--accent);
             color: #000;
-            padding: 13px;
-            border-radius: 8px;
-            font-size: 13px;
+            padding: 14px 60px;
+            border-radius: 4px;
+            font-size: 13.5px;
             font-weight: 700;
             text-decoration: none;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             transition: var(--transition);
         }
         .sig-action-btn:hover {
-            opacity: 0.95;
-            transform: translateY(-1px);
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(188, 163, 116, 0.15);
         }
 
         /* FOOTER */
@@ -280,32 +322,32 @@
             text-align: center;
             font-size: 9.5px;
             color: var(--sub-text);
-            margin-top: 20px;
+            margin-top: 25px;
             letter-spacing: 0.05em;
             border-top: 1px solid rgba(255,255,255,0.03);
-            padding-top: 15px;
+            padding-top: 20px;
         }
 
         /* RESPONSIVE DESIGN */
         @media (max-width: 850px) {
-            .wrapper { padding: 10px; }
-            .hero-fullwidth { height: 60vh; }
-            .hero-name-ja { font-size: 32px; }
-            .exp-row-layout, .books-dashboard-grid { grid-template-columns: 1fr; gap: 12px; }
+            .wrapper { padding: 12px; margin-top: 0; }
+            .hero-fullwidth { height: 70vh; } /* スマホ時も写真を主役にする適正高さ */
+            .hero-name-ja { font-size: 38px; }
+            .hero-name-en { font-size: 18px; }
+            .sig-sec-title { font-size: 14px; }
+            .sig-sec-title span { font-size: 13px; }
+            .exp-row-layout, .books-dashboard-grid, .media-column-stack { grid-template-columns: 1fr; gap: 20px; }
+            .contact-trigger-area { padding: 15px 0 5px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ① Hero: 100vw 画面全幅お写真背景オーバーレイ仕様（画像の上に position: absolute でテキストを完全に重ねる構造） -->
     <section class="hero-fullwidth">
-        <!-- 実画像 ozawa.jpg を最下層に配置（絶対禁止UIや仮設アップローダーは100%完全排除） -->
         <img src="ozawa.jpg" alt="小澤隆生 氏" class="hero-bg-img">
 
-        <!-- 顧問バンクバッジ（最上層に絶対配置） -->
         <span class="certified-badge-sig">顧問バンク認定 プラチナ顧問</span>
         
-        <!-- 画像の上に完全に重ねるオーバーレイ・コンテンツコンテナ -->
         <div class="hero-content-overlay">
             <div class="hero-text-container">
                 <div class="hero-eng-title">Professional Signature</div>
@@ -314,95 +356,87 @@
                     <span class="hero-name-en">Takao Ozawa</span>
                 </div>
                 <p class="hero-tagline">
-                    連続起業家、プレイングエンジェル、元ヤフー代表取締役社長CEO、Boost Capital代表取締役. 東北楽天イーグルス創設、Yahoo!ショッピング大改革、PayPay立ち上げ、IPO支援多数を主導したエグゼクティブ.
+                    連続起業家 / プレイングエンジェル / 元ヤフー代表取締役社長CEO / Boost Capital 代表取締役
                 </p>
             </div>
         </div>
     </section>
 
     <div class="wrapper">
-        <!-- 01 Biography -->
+        
         <section class="sig-section">
-            <h3 class="sig-sec-title">01 Biography <span>略歴</span></h3>
+            <h3 class="sig-sec-title">Biography <span>略歴</span></h3>
             <div class="bio-compressed-text">
-                <p>1999年にビズシークを創業し楽天へ売却. 楽天ではオークション事業、楽天野球団の立ち上げに従事.</p>
-                <p>2012年にヤフーへ参画. ヤフーショッピング、金融, トラベル事業を統括し、2022年には代表取締役社長 CEOに就任.</p>
-                <p>2024年にBoost Capitalを創業. 現在は連続起業家・投資家として成長企業支援を行う.</p>
+                <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを創業し楽天へ売却。楽天ではオークション事業や楽天野球団の立ち上げを担う。</p>
+                <p>2012年にヤフーへ参画し、Yahoo!ショッピング、金融、トラベル事業を統括。取締役専務執行役員COOを経て、2022年に代表取締役社長CEOに就任。</p>
+                <p>2024年にBoost Capitalを創業。現在は連続起業家・投資家として、スタートアップ投資および成長企業の経営支援を行う。</p>
             </div>
         </section>
 
-        <!-- 02 Expertise -->
         <section class="sig-section">
-            <h3 class="sig-sec-title">02 Expertise <span>専門領域</span></h3>
+            <h3 class="sig-sec-title">Expertise <span>専門領域</span></h3>
             <div class="exp-row-layout">
                 <div class="exp-s-box">
-                    <h4>新規事業開発・グロース</h4>
-                    <p>巨大市場への参入戦略、0→1の垂直立ち上げ、経済圏の構造設計を強みとします.</p>
+                    <span>01</span>
+                    <h4>新規事業開発</h4>
+                    <p>巨大市場への参入戦略、0→1の垂直立ち上げ、上場企業における新規経済圏の構造設計を強みとします。</p>
                 </div>
                 <div class="exp-s-box">
-                    <h4>M&A・PMI統合</h4>
-                    <p>買い手・売り手両面の豊富な経験、PMI（買収後統合）の高精度アラインメント支援.</p>
+                    <span>02</span>
+                    <h4>事業グロース</h4>
+                    <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模の経済圏における爆発的成長支援. 実戦的なマーケティングや組織変革を含む支援。</p>
+                </div>
+                <div class="exp-s-box">
+                    <span>03</span>
+                    <h4>M&A・事業買収</h4>
+                    <p>買い手・売り手両面の豊富な実戦経験に基づき、PMIまで含めた高精度なアライアンスおよび事業再設計支援。</p>
                 </div>
             </div>
         </section>
 
-        <!-- 03 Scope of Work -->
         <section class="sig-section">
-            <h3 class="sig-sec-title">03 Scope of Work <span>業務内容</span></h3>
-            <div class="exp-row-layout">
-                <div class="exp-s-box">
-                    <h4>経営監修・会議参画</h4>
-                    <p>社外取締役、経営特別顧問として、経営計画や意思決定の推進アラインメント支援を行います.</p>
-                </div>
-                <div class="exp-s-box">
-                    <h4>講演・実戦勉強会</h4>
-                    <p>社内での事業創出マインド醸成や次世代経営人材を育む特別講義の実施.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 04 Publications -->
-        <section class="sig-section">
-            <h3 class="sig-sec-title">04 Publications <span>著書</span></h3>
+            <h3 class="sig-sec-title">Publications <span>著書</span></h3>
             <div class="books-dashboard-grid">
                 <div class="book-product-card">
                     <div class="book-product-info">
-                        <div class="publisher">日経BP</div>
-                        <h4>凡人の起業論</h4>
+                        <span class="book-label">Book 01</span>
+                        <h4>『凡人の起業論』</h4>
+                        <span class="publisher">日経BP / 単行本</span>
+                        <p>「凡人」がいかにして市場で勝利を収め、組織をスケールさせるかを体系化した実戦書。Amazonベストセラー獲得の話題作。</p>
                     </div>
                 </div>
                 <div class="book-product-card">
                     <div class="book-product-info">
-                        <div class="publisher">ダイヤモンド社</div>
-                        <h4>起業の地図</h4>
+                        <span class="book-label">Book 02</span>
+                        <h4>『起業の地図』</h4>
+                        <span class="publisher">ダイヤモンド社 / 単行本</span>
+                        <p>起業から事業スケール, M&A売却, および上場に至るまでの各成長フェーズにおける罠と解決アプローチを可視化したロードマップ。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 05 Media & Stage -->
         <section class="sig-section">
-            <h3 class="sig-sec-title">05 Media & Stage <span>メディア出演・講演</span></h3>
+            <h3 class="sig-sec-title">Achievements <span>掲載・活動実績</span></h3>
             <div class="media-column-stack">
                 <div class="media-text-box">
-                    <h4>インタビュー・特集</h4>
-                    <p>日経ビジネス / NewsPicks / 東洋経済 / PIVOT / ReHacQ 等、経済主要メディアでの巻頭特集・独占インタビュー多数.</p>
+                    <h4>Interview & Feature</h4>
+                    <p>日経ビジネス / NewsPicks / 東洋経済 / PIVOT / ReHacQ 等、主要経済メディアにて、日本のインターネット産業を牽引するフロントランナーとしてインタビュー・特集が多数掲載。</p>
                 </div>
                 <div class="media-text-box">
-                    <h4>登壇・イベント</h4>
-                    <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画.</p>
+                    <h4>Conferences & Events</h4>
+                    <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画。</p>
                 </div>
             </div>
         </section>
 
-        <!-- 06 Contact -->
         <div class="contact-trigger-area">
+            <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
             <a href="https://docs.google.com/forms/d/e/XXXXXX/viewform" class="sig-action-btn" target="_blank">
                 面談・相談を申し込む
             </a>
         </div>
 
-        <!-- フッター -->
         <footer class="sig-footer">
             © TAKAO OZAWA | SIGNATURE PORTFOLIO HUB
         </footer>

@@ -15,6 +15,7 @@
         :root {
             --bg: #faf9f6; /* 高級オフホワイト */
             --text-dark: #111315; /* 深い墨黒 */
+            --text-readable: #222529; /* 【修正①】コントラストを高めた、ほぼ黒のダークトーン */
             --sub-text: #5c646c; 
             --border: rgba(17, 19, 21, 0.12); 
             --accent: #824d4d; /* アンティークバーガンディ */
@@ -28,7 +29,6 @@
         body { 
             background: var(--bg); 
             color: var(--text-dark); 
-            /* 【修正④】日本語本文・全体をShippori Minchoに完全統一 */
             font-family: var(--font-serif); 
             line-height: 1.75; 
             -webkit-font-smoothing: antialiased; 
@@ -37,7 +37,7 @@
         .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
 
         /* -----------------------------------------
-         * ① HERO SECTION (修正①⑤：自然なポートレート・顔被り＆見切れの完全解消)
+         * ① HERO SECTION (顔被り＆見切れの完全解消・報道写真ポートレート)
          * ----------------------------------------- */
         .hero-magazine {
             position: relative;
@@ -55,10 +55,8 @@
             top: 0;
             left: 0;
             z-index: 1;
-            /* 【修正①】PC表示時でも小澤氏の鼻〜口〜顎が絶対に切れず、構図が安定する上寄せ調整 */
-            object-position: center 18%; 
-            /* 【修正⑤】肌の質感を損なう不自然なフィルター・エフェクトを完全排除し、報道写真のリアルさを優先 */
-            filter: none; 
+            object-position: center 18%; /* PC表示時の顔トリミング最適化 */
+            filter: none; /* 自然なポートレート感を優先 */
         }
 
         .hero-overlay-container {
@@ -68,7 +66,6 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            /* 【修正①③】文字が顔に被らないよう安全領域を再設計した、グラデーションの最適レイヤー */
             background: linear-gradient(
                 to top,
                 rgba(250, 249, 246, 0.95) 0%,
@@ -78,14 +75,13 @@
             );
             display: flex;
             align-items: flex-end; 
-            padding-bottom: 3.5vh; /* テキスト開始位置を少し上に逃がして被りを完全に回避 */
+            padding-bottom: 3.5vh; 
         }
 
         .sig-certified-meta {
             position: absolute;
             top: 40px;
             left: 40px;
-            /* 【修正④】補助UIのみNoto Sansを使用し、他は完全排除 */
             font-family: var(--font-sans);
             font-size: 8.5px;
             color: var(--accent);
@@ -105,7 +101,6 @@
             padding: 0 40px;
         }
         .hero-meta-title {
-            /* 【修正④】英字見出しをPlayfair Displayに完全統一 */
             font-family: var(--font-eng);
             font-size: 13px;
             letter-spacing: 0.25em;
@@ -134,10 +129,9 @@
             color: var(--sub-text);
         }
         
-        /* 【修正①③】文字色を1段階濃く引き締め、極薄シャドウを重ねることで、デザインを崩さず視認性を極大化 */
         .hero-brand-desc {
             font-size: 13.5px;
-            color: #1c1e21; /* 背景と調和しつつ、くっきり見える墨炭色 */
+            color: #1c1e21; 
             line-height: 1.5;
             font-family: var(--font-serif);
             max-width: 650px;
@@ -146,29 +140,28 @@
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (修正②：余白を変えず大項目見出しのみ25%拡大)
+         * ② CONTENTS SECTION (大項目サイズ拡大・現状のタイトな余白を完全維持)
          * ----------------------------------------- */
         .sec-padding {
-            padding: 18px 0; /* 変更禁止：スクロール量を現状維持 */
+            padding: 18px 0; 
         }
         
-        /* 【修正②】章タイトルとしての存在感を20〜30%明確に大きく調整 */
         .sec-title-mini {
             font-family: var(--font-eng);
-            font-size: 20px; /* 16.5px → 20px (確実に目立つサイズアップ) */
+            font-size: 20px; /* 前回の拡大比率を完全ホールド */
             letter-spacing: 0.15em;
             color: var(--accent); 
             text-transform: uppercase;
-            margin-bottom: 12px; /* 変更禁止 */
+            margin-bottom: 12px; 
             border-bottom: 1px solid var(--border);
-            padding-bottom: 4px; /* 変更禁止 */
+            padding-bottom: 4px; 
             display: flex;
             align-items: center;
             gap: 10px;
         }
         .sec-title-mini span {
-            font-family: var(--font-serif); /* 【修正④】Shippori Minchoへ統一 */
-            font-size: 16px; /* 14.5px → 16px へ微調整 */
+            font-family: var(--font-serif); 
+            font-size: 16px; 
             color: var(--sub-text);
             font-weight: 500;
             letter-spacing: 0.05em;
@@ -206,14 +199,15 @@
             font-weight: 700;
             font-family: var(--font-serif);
         }
+        /* 【修正①】専門領域の説明文を背景と同化しない「ほぼ黒」のトーンへ最適化 */
         .exp-s-card p {
             font-size: 12.5px;
-            color: var(--sub-text);
-            line-height: 1.5;
+            color: var(--text-readable);
+            line-height: 1.55;
             font-family: var(--font-serif);
         }
 
-        /* 03 Publications */
+        /* 03 Publications (【修正②】書籍情報と階層設計の完全復元) */
         .books-dashboard-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -229,20 +223,31 @@
         .book-product-card:hover {
             border-color: var(--accent);
         }
+        /* タイトル（h4） */
         .book-product-info h4 {
-            font-size: 14px;
+            font-size: 14.5px;
             color: var(--text-dark);
             font-weight: 700;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
             font-family: var(--font-serif);
         }
+        /* 説明文（.book-description）をタイトルの下に配置 */
+        .book-product-info .book-description {
+            font-size: 12.5px;
+            color: var(--text-readable);
+            line-height: 1.5;
+            margin-bottom: 6px;
+            text-align: justify;
+        }
+        /* 出版社表記（.publisher）を一番下の階層に格納 */
         .book-product-info .publisher {
-            font-family: var(--font-sans); /* 補助UI */
-            font-size: 10px;
+            font-family: var(--font-sans); 
+            font-size: 9.5px;
             color: var(--accent);
             text-transform: uppercase;
             font-weight: 500;
             letter-spacing: 0.05em;
+            display: block;
         }
 
         /* 04 Achievements */
@@ -259,10 +264,11 @@
             letter-spacing: 0.05em;
             font-family: var(--font-serif);
         }
+        /* 【修正①】活動実績の説明文を背景と同化しない「ほぼ黒」のトーンへ最適化 */
         .media-text-box p {
             font-size: 12.5px;
-            color: var(--sub-text);
-            line-height: 1.5;
+            color: var(--text-readable);
+            line-height: 1.55;
             font-family: var(--font-serif);
         }
 
@@ -319,7 +325,6 @@
             .sig-certified-meta { top: 20px; left: 20px; }
             .hero-name-ja { font-size: 34px; }
             .hero-name-en { font-size: 18px; }
-            /* スマホ表示時も拡大した大見出しの美しさをそのままホールド */
             .sec-title-mini { font-size: 17px; }
             .sec-title-mini span { font-size: 14px; }
             .grid-2, .books-dashboard-grid, .media-column-stack { grid-template-columns: 1fr; gap: 15px; }
@@ -378,14 +383,16 @@
             <div class="books-dashboard-grid">
                 <div class="book-product-card">
                     <div class="book-product-info">
-                        <div class="publisher">日経BP</div>
-                        <h4>凡人の起業論</h4>
+                        <h4>『凡人の起業論』</h4>
+                        <p class="book-description">市場の力学を捉え、再現性をもって組織をスケールさせる起業家のための実践的バイブル。</p>
+                        <span class="publisher">日経BP社</span>
                     </div>
                 </div>
                 <div class="book-product-card">
                     <div class="book-product-info">
-                        <div class="publisher">ダイヤモンド社</div>
-                        <h4>起業の地図</h4>
+                        <h4>『起業の地図』</h4>
+                        <p class="book-description">スタートアップの各フェーズにおけるリアルな課題と、ブレイクスルーの論点を網羅。</p>
+                        <span class="publisher">ダイヤモンド社</span>
                     </div>
                 </div>
             </div>

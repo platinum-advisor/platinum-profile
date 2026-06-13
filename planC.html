@@ -15,7 +15,7 @@
         :root {
             --bg: #faf9f6; /* 高級オフホワイト */
             --text-dark: #111315; /* 深い墨黒 */
-            --text-readable: #222529; /* 【修正①】コントラストを高めた、ほぼ黒のダークトーン */
+            --text-readable: #222529; /* コントラストを高めたダークトーン */
             --sub-text: #5c646c; 
             --border: rgba(17, 19, 21, 0.12); 
             --accent: #824d4d; /* アンティークバーガンディ */
@@ -55,8 +55,8 @@
             top: 0;
             left: 0;
             z-index: 1;
-            object-position: center 18%; /* PC表示時の顔トリミング最適化 */
-            filter: none; /* 自然なポートレート感を優先 */
+            object-position: center 18%; 
+            filter: none; 
         }
 
         .hero-overlay-container {
@@ -140,7 +140,7 @@
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (大項目サイズ拡大・現状のタイトな余白を完全維持)
+         * ② CONTENTS SECTION
          * ----------------------------------------- */
         .sec-padding {
             padding: 18px 0; 
@@ -148,7 +148,7 @@
         
         .sec-title-mini {
             font-family: var(--font-eng);
-            font-size: 20px; /* 前回の拡大比率を完全ホールド */
+            font-size: 20px; 
             letter-spacing: 0.15em;
             color: var(--accent); 
             text-transform: uppercase;
@@ -182,32 +182,49 @@
             margin-bottom: 0;
         }
 
-        /* 02 Expertise */
-        .grid-2 {
+        /* 02 Expertise (【修正①②】スクロールを増やさない高密度な3カラム特集記事構造へ整形) */
+        .grid-3 {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
         .exp-s-card {
-            border-left: 2px solid var(--accent);
-            padding-left: 12px;
+            border-left: 1px solid var(--border);
+            padding-left: 14px;
+            transition: var(--transition);
         }
+        .exp-s-card:hover {
+            border-left-color: var(--accent);
+        }
+        /* 階層1：番号ラベル */
+        .exp-s-card .exp-num {
+            font-family: var(--font-eng);
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 2px;
+            letter-spacing: 0.05em;
+        }
+        /* 階層2：タイトル */
         .exp-s-card h4 {
             font-size: 14.5px;
             color: var(--text-dark);
             margin-bottom: 6px;
             font-weight: 700;
             font-family: var(--font-serif);
+            letter-spacing: 0.02em;
         }
-        /* 【修正①】専門領域の説明文を背景と同化しない「ほぼ黒」のトーンへ最適化 */
+        /* 階層3：説明文（ほぼ黒トーンで可読性を担保） */
         .exp-s-card p {
             font-size: 12.5px;
             color: var(--text-readable);
-            line-height: 1.55;
+            line-height: 1.6;
             font-family: var(--font-serif);
+            text-align: justify;
         }
 
-        /* 03 Publications (【修正②】書籍情報と階層設計の完全復元) */
+        /* 03 Publications */
         .books-dashboard-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -223,15 +240,13 @@
         .book-product-card:hover {
             border-color: var(--accent);
         }
-        /* タイトル（h4） */
         .book-product-info h4 {
-            font-size: 14.5px;
+            font-size: 14px;
             color: var(--text-dark);
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             font-family: var(--font-serif);
         }
-        /* 説明文（.book-description）をタイトルの下に配置 */
         .book-product-info .book-description {
             font-size: 12.5px;
             color: var(--text-readable);
@@ -239,10 +254,9 @@
             margin-bottom: 6px;
             text-align: justify;
         }
-        /* 出版社表記（.publisher）を一番下の階層に格納 */
         .book-product-info .publisher {
             font-family: var(--font-sans); 
-            font-size: 9.5px;
+            font-size: 10px;
             color: var(--accent);
             text-transform: uppercase;
             font-weight: 500;
@@ -264,7 +278,6 @@
             letter-spacing: 0.05em;
             font-family: var(--font-serif);
         }
-        /* 【修正①】活動実績の説明文を背景と同化しない「ほぼ黒」のトーンへ最適化 */
         .media-text-box p {
             font-size: 12.5px;
             color: var(--text-readable);
@@ -327,7 +340,8 @@
             .hero-name-en { font-size: 18px; }
             .sec-title-mini { font-size: 17px; }
             .sec-title-mini span { font-size: 14px; }
-            .grid-2, .books-dashboard-grid, .media-column-stack { grid-template-columns: 1fr; gap: 15px; }
+            /* スマホ時は綺麗に縦並び（スタック）に切り替え */
+            .grid-3, .books-dashboard-grid, .media-column-stack { grid-template-columns: 1fr; gap: 15px; }
             .sig-action-btn { width: 100%; padding: 14px 20px; }
         }
     </style>
@@ -359,21 +373,28 @@
             <h3 class="sec-title-mini">01 Biography <span>略歴</span></h3>
             <div class="essay-body">
                 <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを創業し楽天へ売却。楽天ではオークション事業や楽天野球団の立ち上げを担う。</p>
-                <p>2012年にヤフーへ参画し、Yahoo!ショッピング、金融、トラベル事業を統括。取締役専務執行役員COOを経て、2022年に代表取締役社長CEOに就任。</p>
+                <p>2012年にヤフーへ参画し, Yahoo!ショッピング、金融、トラベル事業を統括。取締役専務執行役員COOを経て、2022年に代表取締役社長CEOに就任。</p>
                 <p>2024年にBoost Capitalを創業。現在は連続起業家・投資家として、スタートアップ投資および成長企業の経営支援を行う。</p>
             </div>
         </div></section>
 
         <section class="sec-padding"><div class="container">
             <h3 class="sec-title-mini">02 Expertise <span>専門領域</span></h3>
-            <div class="grid-2">
+            <div class="grid-3">
                 <div class="exp-s-card">
-                    <h4>新規事業開発・グロース</h4>
-                    <p>巨大市場への参入戦略、0→1の垂直立ち上げ、上場規模における爆発的なグロース設計を強みとします。</p>
+                    <span class="exp-num">01</span>
+                    <h4>新規事業開発</h4>
+                    <p>巨大市場への参入戦略、0→1の垂直立ち上げ、上場企業における新規経済圏の構造設計を強みとします。</p>
                 </div>
                 <div class="exp-s-card">
-                    <h4>M&A・PMI統合</h4>
-                    <p>買い手・売り手両面の豊富な経験、PMI（買収後統合）の高精度アラインメント支援。</p>
+                    <span class="exp-num">02</span>
+                    <h4>事業グロース</h4>
+                    <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模の経済圏における爆発的成長支援。実戦的なマーケティングや組織変革を含む支援。</p>
+                </div>
+                <div class="exp-s-card">
+                    <span class="exp-num">03</span>
+                    <h4>M&A・事業買収</h4>
+                    <p>買い手・売り手両面の豊富な実戦経験に基づき、PMIまで含めた高精度なアライアンスおよび事業再設計支援。</p>
                 </div>
             </div>
         </div></section>

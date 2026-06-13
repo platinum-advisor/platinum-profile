@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Takao Ozawa | Plan C</title>
+    <title>Takao Ozawa | Plan C - Chronicle Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@400;500;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* -----------------------------------------
-         * DESIGN TOKENS (ウォームアイボリー×バーガンディの色彩設計)
+         * DESIGN TOKENS (ウォームアイボリー×バーガンディ・フォント統一)
          * ----------------------------------------- */
         :root {
-            --bg: #faf9f6; 
-            --text-dark: #111315; 
+            --bg: #faf9f6; /* 高級オフホワイト */
+            --text-dark: #111315; /* 深い墨黒 */
             --sub-text: #5c646c; 
             --border: rgba(17, 19, 21, 0.12); 
             --accent: #824d4d; /* アンティークバーガンディ */
@@ -28,15 +28,16 @@
         body { 
             background: var(--bg); 
             color: var(--text-dark); 
-            font-family: var(--font-sans); 
-            line-height: 1.7; 
+            /* 【修正④】日本語本文・全体をShippori Minchoに完全統一 */
+            font-family: var(--font-serif); 
+            line-height: 1.75; 
             -webkit-font-smoothing: antialiased; 
             padding-bottom: 30px;
         }
         .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
 
         /* -----------------------------------------
-         * ① HERO SECTION (修正②③：人物をより鮮明に、かつ文字を一発で読める設計へ)
+         * ① HERO SECTION (修正①⑤：自然なポートレート・顔被り＆見切れの完全解消)
          * ----------------------------------------- */
         .hero-magazine {
             position: relative;
@@ -54,9 +55,10 @@
             top: 0;
             left: 0;
             z-index: 1;
-            object-position: center 15%; 
-            /* 修正③：コントラストのバランスを微調整し、人物の存在感をより濃く鮮明に引き出す */
-            filter: brightness(1.08) contrast(1.18) saturate(1.02);
+            /* 【修正①】PC表示時でも小澤氏の鼻〜口〜顎が絶対に切れず、構図が安定する上寄せ調整 */
+            object-position: center 18%; 
+            /* 【修正⑤】肌の質感を損なう不自然なフィルター・エフェクトを完全排除し、報道写真のリアルさを優先 */
+            filter: none; 
         }
 
         .hero-overlay-container {
@@ -66,22 +68,24 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            /* 修正②：タグラインが配置される下部の減光階調を最適化し、白被せによる文字溶けを完全解消 */
+            /* 【修正①③】文字が顔に被らないよう安全領域を再設計した、グラデーションの最適レイヤー */
             background: linear-gradient(
                 to top,
-                rgba(250, 249, 246, 0.88) 0%,
-                rgba(250, 249, 246, 0.18) 55%,
-                rgba(250, 249, 246, 0.3) 100
+                rgba(250, 249, 246, 0.95) 0%,
+                rgba(250, 249, 246, 0.75) 25%,
+                rgba(250, 249, 246, 0.15) 60%,
+                rgba(250, 249, 246, 0.25) 100%
             );
             display: flex;
             align-items: flex-end; 
-            padding-bottom: 4vh;
+            padding-bottom: 3.5vh; /* テキスト開始位置を少し上に逃がして被りを完全に回避 */
         }
 
         .sig-certified-meta {
             position: absolute;
             top: 40px;
             left: 40px;
+            /* 【修正④】補助UIのみNoto Sansを使用し、他は完全排除 */
             font-family: var(--font-sans);
             font-size: 8.5px;
             color: var(--accent);
@@ -101,19 +105,20 @@
             padding: 0 40px;
         }
         .hero-meta-title {
+            /* 【修正④】英字見出しをPlayfair Displayに完全統一 */
             font-family: var(--font-eng);
             font-size: 13px;
             letter-spacing: 0.25em;
             color: var(--accent);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-style: italic;
         }
         .hero-name-row {
             display: flex;
             align-items: baseline;
             gap: 15px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .hero-name-ja {
             font-family: var(--font-serif);
@@ -121,7 +126,6 @@
             font-weight: 700;
             color: var(--text-dark);
             line-height: 1.1;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
         }
         .hero-name-en {
             font-family: var(--font-eng);
@@ -130,52 +134,53 @@
             color: var(--sub-text);
         }
         
-        /* 修正②：最高輝度の白＋確実な境界シャドウを付与し、いかなる実機でも一発で読める状態へ改善 */
+        /* 【修正①③】文字色を1段階濃く引き締め、極薄シャドウを重ねることで、デザインを崩さず視認性を極大化 */
         .hero-brand-desc {
             font-size: 13.5px;
-            color: #ffffff; 
+            color: #1c1e21; /* 背景と調和しつつ、くっきり見える墨炭色 */
             line-height: 1.5;
             font-family: var(--font-serif);
             max-width: 650px;
-            text-shadow: 0 2px 14px rgba(17, 19, 21, 0.6), 0 1px 3px rgba(17, 19, 21, 0.4);
+            text-shadow: 0 1px 4px rgba(250, 249, 246, 0.9), 0 2px 10px rgba(250, 249, 246, 0.6);
             font-weight: 500;
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (修正①：余白を触らず文字サイズのみを明確に大きく拡大)
+         * ② CONTENTS SECTION (修正②：余白を変えず大項目見出しのみ25%拡大)
          * ----------------------------------------- */
         .sec-padding {
-            padding: 18px 0; /* 変更禁止：スクロールを長くしないための完全固定 */
+            padding: 18px 0; /* 変更禁止：スクロール量を現状維持 */
         }
         
-        /* 修正①：見た瞬間に明確な差が分かるレベルで大項目見出しをダイナミックに拡大 */
+        /* 【修正②】章タイトルとしての存在感を20〜30%明確に大きく調整 */
         .sec-title-mini {
             font-family: var(--font-eng);
-            font-size: 16.5px; /* 12px → 16.5px (体感35%以上へ確実なサイズアップ) */
-            letter-spacing: 0.2em;
-            color: var(--accent); /* アンティークバーガンディを使用 */
+            font-size: 20px; /* 16.5px → 20px (確実に目立つサイズアップ) */
+            letter-spacing: 0.15em;
+            color: var(--accent); 
             text-transform: uppercase;
             margin-bottom: 12px; /* 変更禁止 */
             border-bottom: 1px solid var(--border);
             padding-bottom: 4px; /* 変更禁止 */
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .sec-title-mini span {
-            font-family: var(--font-sans);
-            font-size: 14.5px; /* 11px → 14.5px へ拡大 */
+            font-family: var(--font-serif); /* 【修正④】Shippori Minchoへ統一 */
+            font-size: 16px; /* 14.5px → 16px へ微調整 */
             color: var(--sub-text);
             font-weight: 500;
+            letter-spacing: 0.05em;
         }
 
         /* 01 Biography */
         .essay-body {
-            font-size: 13.5px;
+            font-size: 14px;
             color: var(--text-dark); 
             text-align: justify;
             font-family: var(--font-serif);
-            line-height: 1.75;
+            line-height: 1.8;
         }
         .essay-body p {
             margin-bottom: 10px;
@@ -195,7 +200,7 @@
             padding-left: 12px;
         }
         .exp-s-card h4 {
-            font-size: 14px;
+            font-size: 14.5px;
             color: var(--text-dark);
             margin-bottom: 6px;
             font-weight: 700;
@@ -232,6 +237,7 @@
             font-family: var(--font-serif);
         }
         .book-product-info .publisher {
+            font-family: var(--font-sans); /* 補助UI */
             font-size: 10px;
             color: var(--accent);
             text-transform: uppercase;
@@ -246,7 +252,7 @@
             gap: 20px;
         }
         .media-text-box h4 {
-            font-size: 13px;
+            font-size: 13.5px;
             color: var(--accent);
             margin-bottom: 6px;
             font-weight: 700;
@@ -284,6 +290,7 @@
             font-weight: 700;
             text-decoration: none;
             letter-spacing: 0.15em;
+            font-family: var(--font-serif);
             transition: var(--transition);
             box-shadow: 0 2px 10px rgba(130, 77, 77, 0.15);
         }
@@ -295,11 +302,13 @@
         /* FOOTER */
         footer {
             text-align: center;
+            font-family: var(--font-eng);
             font-size: 10px;
             color: var(--sub-text);
             padding-top: 20px;
             border-top: 1px solid var(--border);
             margin-top: 20px;
+            letter-spacing: 0.05em;
         }
 
         @media (max-width: 850px) {
@@ -310,9 +319,9 @@
             .sig-certified-meta { top: 20px; left: 20px; }
             .hero-name-ja { font-size: 34px; }
             .hero-name-en { font-size: 18px; }
-            /* スマホ表示時も大見出しの確実な拡大サイズ比率を綺麗に維持 */
-            .sec-title-mini { font-size: 15px; }
-            .sec-title-mini span { font-size: 13.5px; }
+            /* スマホ表示時も拡大した大見出しの美しさをそのままホールド */
+            .sec-title-mini { font-size: 17px; }
+            .sec-title-mini span { font-size: 14px; }
             .grid-2, .books-dashboard-grid, .media-column-stack { grid-template-columns: 1fr; gap: 15px; }
             .sig-action-btn { width: 100%; padding: 14px 20px; }
         }

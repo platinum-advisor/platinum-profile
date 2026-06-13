@@ -36,7 +36,7 @@
         .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
 
         /* -----------------------------------------
-         * ① HERO SECTION (修正②③：人物を濃く、文字を確実に読みやすく)
+         * ① HERO SECTION (修正②③：人物をより鮮明に、かつ文字を一発で読める設計へ)
          * ----------------------------------------- */
         .hero-magazine {
             position: relative;
@@ -55,8 +55,8 @@
             left: 0;
             z-index: 1;
             object-position: center 15%; 
-            /* 修正②：写真の明るさとコントラストを上げ、人物の存在感を力強く主役級にする */
-            filter: brightness(1.08) contrast(1.15) saturate(1.05);
+            /* 修正③：コントラストのバランスを微調整し、人物の存在感をより濃く鮮明に引き出す */
+            filter: brightness(1.08) contrast(1.18) saturate(1.02);
         }
 
         .hero-overlay-container {
@@ -66,12 +66,12 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            /* 修正②：白被せの不透明度を最大0.85→0.82へ少しだけ下げ、顔や存在感をしっかり引き出す */
+            /* 修正②：タグラインが配置される下部の減光階調を最適化し、白被せによる文字溶けを完全解消 */
             background: linear-gradient(
                 to top,
-                rgba(250, 249, 246, 0.82) 0%,
-                rgba(250, 249, 246, 0.2) 60%,
-                rgba(250, 249, 246, 0.35) 100%
+                rgba(250, 249, 246, 0.88) 0%,
+                rgba(250, 249, 246, 0.18) 55%,
+                rgba(250, 249, 246, 0.3) 100
             );
             display: flex;
             align-items: flex-end; 
@@ -130,30 +130,30 @@
             color: var(--sub-text);
         }
         
-        /* 修正③：フォントサイズを+0.5px微増、カラーを高輝度白にし、極薄シャドウで埋もれを完全解消 */
+        /* 修正②：最高輝度の白＋確実な境界シャドウを付与し、いかなる実機でも一発で読める状態へ改善 */
         .hero-brand-desc {
             font-size: 13.5px;
             color: #ffffff; 
             line-height: 1.5;
             font-family: var(--font-serif);
             max-width: 650px;
-            text-shadow: 0 1px 3px rgba(17, 19, 21, 0.25), 0 2px 8px rgba(17, 19, 21, 0.15);
-            font-weight: 400;
+            text-shadow: 0 2px 14px rgba(17, 19, 21, 0.6), 0 1px 3px rgba(17, 19, 21, 0.4);
+            font-weight: 500;
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (修正①：余白は変えず文字サイズのみ10-15%拡大)
+         * ② CONTENTS SECTION (修正①：余白を触らず文字サイズのみを明確に大きく拡大)
          * ----------------------------------------- */
         .sec-padding {
-            padding: 18px 0; /* 余白・paddingは一切増やさず完全固定 */
+            padding: 18px 0; /* 変更禁止：スクロールを長くしないための完全固定 */
         }
         
-        /* 修正①：大項目見出しを高級感を維持したまま約15%大きく調整 */
+        /* 修正①：見た瞬間に明確な差が分かるレベルで大項目見出しをダイナミックに拡大 */
         .sec-title-mini {
             font-family: var(--font-eng);
-            font-size: 14px; /* 12px → 14px (約15%アップ) */
+            font-size: 16.5px; /* 12px → 16.5px (体感35%以上へ確実なサイズアップ) */
             letter-spacing: 0.2em;
-            color: var(--accent);
+            color: var(--accent); /* アンティークバーガンディを使用 */
             text-transform: uppercase;
             margin-bottom: 12px; /* 変更禁止 */
             border-bottom: 1px solid var(--border);
@@ -164,9 +164,9 @@
         }
         .sec-title-mini span {
             font-family: var(--font-sans);
-            font-size: 12.5px; /* 11px → 12.5px */
+            font-size: 14.5px; /* 11px → 14.5px へ拡大 */
             color: var(--sub-text);
-            font-weight: 400;
+            font-weight: 500;
         }
 
         /* 01 Biography */
@@ -310,9 +310,9 @@
             .sig-certified-meta { top: 20px; left: 20px; }
             .hero-name-ja { font-size: 34px; }
             .hero-name-en { font-size: 18px; }
-            /* スマホ表示時も見出しサイズ比率を美しく維持 */
-            .sec-title-mini { font-size: 13px; }
-            .sec-title-mini span { font-size: 11.5px; }
+            /* スマホ表示時も大見出しの確実な拡大サイズ比率を綺麗に維持 */
+            .sec-title-mini { font-size: 15px; }
+            .sec-title-mini span { font-size: 13.5px; }
             .grid-2, .books-dashboard-grid, .media-column-stack { grid-template-columns: 1fr; gap: 15px; }
             .sig-action-btn { width: 100%; padding: 14px 20px; }
         }
@@ -345,7 +345,7 @@
             <h3 class="sec-title-mini">01 Biography <span>略歴</span></h3>
             <div class="essay-body">
                 <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを創業し楽天へ売却。楽天ではオークション事業や楽天野球団の立ち上げを担う。</p>
-                <p>2012年にヤフーへ参画し、Yahoo!ショッピング、金融、トラベル事業を統括。取締役専務執行役員COOを経て、2022年に代表取締役社長CEOに就进入。 </p>
+                <p>2012年にヤフーへ参画し、Yahoo!ショッピング、金融、トラベル事業を統括。取締役専務執行役員COOを経て、2022年に代表取締役社長CEOに就任。</p>
                 <p>2024年にBoost Capitalを創業。現在は連続起業家・投資家として、スタートアップ投資および成長企業の経営支援を行う。</p>
             </div>
         </div></section>

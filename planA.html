@@ -31,26 +31,41 @@
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (PCでの見切れをobject-positionで修正)
+         * ① HERO SECTION (最適化)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
             width: 100%;
-            height: 100vh; /* PCは全画面 */
+            height: 100vh;
             overflow: hidden;
             border-bottom: 1px solid var(--border);
         }
 
-        .hero-bg-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        /* 画像コンテナを作成 */
+        .hero-bg-container {
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
-            /* 【修正① 最重要】PC表示時に顔全体（頭から顎）が自然に収まるトリミング位置へ再調整 */
-            object-position: center 15%; 
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-bg-img {
+            /* PC表示：画像を少し縮小し、object-fit: containとpositionで構図を調整 */
+            max-width: 90%; /* 必要に応じて調整。 scaleの代わり。 */
+            max-height: 90%; /* 必要に応じて調整。 scaleの代わり。 */
+            object-fit: contain; /* アスペクト比を維持して全体を収める */
+            position: absolute;
+            top: 10%; /* 縮小により生じた上部余白。object-positionの代わり。 */
+            left: 5%; /* 縮小により生じた左部余白。object-positionの代わり。 */
+            transform-origin: center center;
+            /* object-fit: contain の場合、object-position は効果が薄い場合があるため、
+               position属性とscale (max-width/height) で調整 */
         }
 
         .hero-overlay-content {
@@ -310,13 +325,18 @@
             .container { padding: 0 20px; }
             .sec-padding { padding: 40px 0; }
             
-            /* 【修正②③】スマホでの圧迫感解消、かつレイアウト維持（object-position調整） */
+            /* 【修正：スマホ表示】現在の理想の状態（案A相当）を維持 */
             .hero-fullscreen {
-                height: 90vh; /* スマホでは高さを少し抑えることで圧迫感解消 */
+                height: 100vh; /* スマホも全画面に */
             }
             .hero-bg-img {
-                /* スマホでは人物が少し遠く、引いた構図（案B程度）に見えるようトリミング位置調整 */
-                object-position: center 20%; 
+                /* スマホはobject-fit: coverとobject-positionで制御（案B相当） */
+                object-fit: cover;
+                max-width: 100%;
+                max-height: 100%;
+                top: 0;
+                left: 0;
+                object-position: center 20%; /* スマホ側の人物位置調整 */
             }
             .hero-certified-badge { top: 20px; left: 20px; }
             
@@ -334,7 +354,9 @@
 <body>
 
     <section class="hero-fullscreen">
-        <img src="ozawa.jpg" alt="小澤隆生 氏" class="hero-bg-img">
+        <div class="hero-bg-container">
+            <img src="ozawa.jpg" alt="小澤隆生 氏" class="hero-bg-img">
+        </div>
         <span class="hero-certified-badge">顧問バンク認定 プラチナ顧問</span>
         
         <div class="hero-overlay-content">

@@ -35,12 +35,12 @@
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (【修正】案Bの引きのサイズ感ロジックをPC版に完全移植)
+         * ① HERO SECTION (PC表示：案Bのカバーロジック×見切れ完全解消配置)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
             width: 100%;
-            /* 【修正①】PC版のヒーロー高さを100vhから、案B基準の「85vh」へ変更して引きを作る */
+            /* 案B基準の引きを作るため「85vh」高さを維持 */
             height: 85vh; 
             overflow: hidden;
             border-bottom: 1px solid var(--border);
@@ -53,14 +53,15 @@
         }
 
         .hero-bg-img {
+            /* 案Bの画像表示ロジック（cover）をそのまま100%引用 */
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* 【修正②】不自然なscale表現を完全撤廃し、案Bと同じ「center 10%」の適正トリミング位置へ統合 */
-            object-position: center 10%; 
             position: absolute;
             top: 0;
             left: 0;
+            /* 【最重要修正】上に寄りすぎていたのを解消し、PC大画面で頭頂部〜顎・胸元まで美しく収まる「center 25%」へ最適化 */
+            object-position: center 25%; 
         }
 
         .hero-overlay-content {
@@ -319,7 +320,7 @@
         }
 
         /* -----------------------------------------
-         * RESPONSIVE (【変更禁止】スマホ版の表示設定を完全ホールド)
+         * RESPONSIVE (【変更禁止】スマホ版の理想的な状態を完全維持)
          * ----------------------------------------- */
         @media (max-width: 1024px) {
             .grid-3 { grid-template-columns: 1fr; gap: 24px; }

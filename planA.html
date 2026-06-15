@@ -6,7 +6,7 @@
     <title>Takao Ozawa | Plan A - Signature Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -16,7 +16,8 @@
             --border: rgba(90, 137, 168, 0.2); 
             --main-text: #f1f5f9;
             --sub-text: #94a3b8;
-            --font-eng: 'Cormorant Garamond', serif;
+            /* 【修正】英字部分も含めてすべてNoto Sans JPを使用するように統一 */
+            --font-eng: 'Noto Sans JP', sans-serif;
             --font-sans: 'Noto Sans JP', sans-serif;
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -117,7 +118,6 @@
             font-family: var(--font-eng);
             font-size: 24px;
             color: var(--sub-text);
-            font-style: italic;
         }
         .hero-desc-text {
             font-size: 13.5px;
@@ -128,7 +128,7 @@
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (【修正②】PC版の上下余白を圧縮)
+         * ② CONTENTS SECTION (上下余白は圧縮版を完全維持)
          * ----------------------------------------- */
         .container {
             max-width: 1200px;
@@ -137,7 +137,7 @@
         }
         
         .sec-padding {
-            padding: 40px 0; /* 60px から 40px へ圧縮 */
+            padding: 40px 0; 
         }
 
         .sec-title-mini {
@@ -303,7 +303,7 @@
         }
 
         /* -----------------------------------------
-         * RESPONSIVE (【修正②】スマホ版の上下余白を圧縮・画像比率は完全維持)
+         * RESPONSIVE (スマホ版の理想的な余白・カバー・20%配置を完全ホールド)
          * ----------------------------------------- */
         @media (max-width: 1024px) {
             .grid-3 { grid-template-columns: 1fr; gap: 24px; }
@@ -311,13 +311,10 @@
         }
         @media (max-width: 850px) {
             .container { padding: 0 20px; }
-            
-            /* 【修正②】スマホ版セクション余白を 40px から 28px へ引き締め */
             .sec-padding { 
                 padding: 28px 0; 
             }
             
-            /* スマホ版の理想的な画像カバー表示、およびトリミング位置（20%）は完全ホールド */
             .hero-fullscreen {
                 height: 100vh; 
             }

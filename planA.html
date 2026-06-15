@@ -35,12 +35,13 @@
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (【修正】案Bと同等の引き・スケール感へ最適化)
+         * ① HERO SECTION (【修正】案Bの引きのサイズ感ロジックをPC版に完全移植)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
             width: 100%;
-            height: 100vh;
+            /* 【修正①】PC版のヒーロー高さを100vhから、案B基準の「85vh」へ変更して引きを作る */
+            height: 85vh; 
             overflow: hidden;
             border-bottom: 1px solid var(--border);
         }
@@ -49,21 +50,17 @@
             position: absolute;
             inset: 0;
             overflow: hidden;
-            background: var(--bg); /* スケール縮小時の背面を背景色と馴染ませる */
         }
 
         .hero-bg-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* 縦位置は顔から胸元が美しく映える位置に固定 */
-            object-position: center 12%; 
+            /* 【修正②】不自然なscale表現を完全撤廃し、案Bと同じ「center 10%」の適正トリミング位置へ統合 */
+            object-position: center 10%; 
             position: absolute;
             top: 0;
             left: 0;
-            /* 【修正】PC版のみ表示倍率を適度に下げ、案Bレベルの引きのある美しい上半身構図を実現 */
-            transform: scale(0.85);
-            transform-origin: center 15%; /* 顔を中心に据えたまま綺麗に引く */
         }
 
         .hero-overlay-content {
@@ -141,7 +138,7 @@
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION
+         * ② CONTENTS SECTION (変更禁止：余白・レイアウト維持)
          * ----------------------------------------- */
         .container {
             max-width: 1200px;
@@ -321,18 +318,8 @@
             transform: translateY(-2px);
         }
 
-        footer {
-            text-align: center;
-            font-family: var(--font-eng);
-            font-size: 10px;
-            color: var(--sub-text);
-            padding: 40px 0;
-            border-top: 1px solid rgba(255,255,255,0.03);
-            letter-spacing: 0.1em;
-        }
-
         /* -----------------------------------------
-         * RESPONSIVE
+         * RESPONSIVE (【変更禁止】スマホ版の表示設定を完全ホールド)
          * ----------------------------------------- */
         @media (max-width: 1024px) {
             .grid-3 { grid-template-columns: 1fr; gap: 24px; }
@@ -344,14 +331,13 @@
                 padding: 28px 0; 
             }
             
-            /* 【重要】スマホ版は完成形としての理想的なカバー表示・20%配置・サイズ感を100%維持 */
+            /* スマホ版：完成形としての理想的な100vh高さ、および「トリミング位置（center 20%）」を完全維持 */
             .hero-fullscreen {
                 height: 100vh; 
             }
             .hero-bg-img {
                 object-fit: cover;
                 object-position: center 20%; 
-                transform: none; /* スマホ時はPC版の縮小scaleをリセット解除 */
             }
             .hero-certified-badge { top: 20px; left: 20px; }
             

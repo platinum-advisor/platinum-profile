@@ -35,12 +35,11 @@
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (PC表示：案Bのカバーロジック×見切れ完全解消配置)
+         * ① HERO SECTION (PC表示：変更禁止)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
             width: 100%;
-            /* 案B基準の引きを作るため「85vh」高さを維持 */
             height: 85vh; 
             overflow: hidden;
             border-bottom: 1px solid var(--border);
@@ -53,14 +52,12 @@
         }
 
         .hero-bg-img {
-            /* 案Bの画像表示ロジック（cover）をそのまま100%引用 */
             width: 100%;
             height: 100%;
             object-fit: cover;
             position: absolute;
             top: 0;
             left: 0;
-            /* 【最重要修正】上に寄りすぎていたのを解消し、PC大画面で頭頂部〜顎・胸元まで美しく収まる「center 25%」へ最適化 */
             object-position: center 25%; 
         }
 
@@ -320,7 +317,7 @@
         }
 
         /* -----------------------------------------
-         * RESPONSIVE (【変更禁止】スマホ版の理想的な状態を完全維持)
+         * RESPONSIVE (【修正】スマホ版の表示設定を案B基準へ完全統合)
          * ----------------------------------------- */
         @media (max-width: 1024px) {
             .grid-3 { grid-template-columns: 1fr; gap: 24px; }
@@ -332,13 +329,13 @@
                 padding: 28px 0; 
             }
             
-            /* スマホ版：完成形としての理想的な100vh高さ、および「トリミング位置（center 20%）」を完全維持 */
+            /* 【修正】スマホ表示時のサイズ感・余白感を案B（75vh / center 10%）へと完全統一 */
             .hero-fullscreen {
-                height: 100vh; 
+                height: 75vh; 
             }
             .hero-bg-img {
                 object-fit: cover;
-                object-position: center 20%; 
+                object-position: center 10%; 
             }
             .hero-certified-badge { top: 20px; left: 20px; }
             

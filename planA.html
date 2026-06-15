@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* -----------------------------------------
-         * DESIGN TOKENS (【フォント定義】案Bの高級タイポグラフィを移植)
+         * DESIGN TOKENS
          * ----------------------------------------- */
         :root {
             --bg: #07080a; 
@@ -19,7 +19,6 @@
             --border: rgba(90, 137, 168, 0.2); 
             --main-text: #f1f5f9;
             --sub-text: #94a3b8;
-            /* 指定の3つのフォントルールへ変更 */
             --font-serif: 'Shippori Mincho', serif;
             --font-eng: 'Playfair Display', serif;
             --font-sans: 'Noto Sans JP', sans-serif;
@@ -30,14 +29,13 @@
         body { 
             background: var(--bg); 
             color: var(--main-text); 
-            /* 【本文】しっぽり明朝に統一 */
             font-family: var(--font-serif); 
             line-height: 1.7; 
             -webkit-font-smoothing: antialiased; 
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (既存の迫力あるカバー表示・分離設定を完全維持)
+         * ① HERO SECTION (【修正】案Bと同等の引き・スケール感へ最適化)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
@@ -51,16 +49,21 @@
             position: absolute;
             inset: 0;
             overflow: hidden;
+            background: var(--bg); /* スケール縮小時の背面を背景色と馴染ませる */
         }
 
         .hero-bg-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 12%; /* PC版トリミング位置を維持 */
+            /* 縦位置は顔から胸元が美しく映える位置に固定 */
+            object-position: center 12%; 
             position: absolute;
             top: 0;
             left: 0;
+            /* 【修正】PC版のみ表示倍率を適度に下げ、案Bレベルの引きのある美しい上半身構図を実現 */
+            transform: scale(0.85);
+            transform-origin: center 15%; /* 顔を中心に据えたまま綺麗に引く */
         }
 
         .hero-overlay-content {
@@ -76,7 +79,6 @@
             padding-bottom: 8vh;
         }
 
-        /* 【バッジ】Noto Sans JP（--font-sans）を適用 */
         .hero-certified-badge {
             position: absolute;
             top: 40px;
@@ -100,7 +102,6 @@
             margin: 0 auto;
             padding: 0 40px;
         }
-        /* 【英字見出し】Playfair Display（--font-eng）を適用 */
         .hero-eng-title {
             font-family: var(--font-eng);
             font-size: 13px;
@@ -116,7 +117,6 @@
             gap: 15px;
             margin-bottom: 12px;
         }
-        /* 【日本語見出し】小澤 隆生 に Shippori Mincho（--font-serif）を適用 */
         .hero-name-ja {
             font-family: var(--font-serif);
             font-size: 52px;
@@ -125,14 +125,12 @@
             line-height: 1.1;
             letter-spacing: 0.05em;
         }
-        /* 【英字見出し】Takao Ozawa に Playfair Display（--font-eng）を適用 */
         .hero-name-en {
             font-family: var(--font-eng);
             font-size: 24px;
             color: var(--sub-text);
             font-style: italic;
         }
-        /* 【本文】略歴（タグライン）に Shippori Mincho（--font-serif）を適用 */
         .hero-desc-text {
             font-family: var(--font-serif);
             font-size: 13.5px;
@@ -143,7 +141,7 @@
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (上下余白は圧縮版40pxを完全維持)
+         * ② CONTENTS SECTION
          * ----------------------------------------- */
         .container {
             max-width: 1200px;
@@ -155,7 +153,6 @@
             padding: 40px 0; 
         }
 
-        /* 【英字見出し】大項目英字に Playfair Display（--font-eng）を適用 */
         .sec-title-mini {
             font-family: var(--font-eng);
             font-size: 22px; 
@@ -169,7 +166,6 @@
             align-items: baseline;
             gap: 15px;
         }
-        /* 【日本語見出し】大項目日本語に Shippori Mincho（--font-serif）を適用 */
         .sec-title-mini span {
             font-family: var(--font-serif);
             font-size: 18px; 
@@ -178,7 +174,7 @@
             letter-spacing: 0.05em;
         }
 
-        /* 【本文】略歴本文に Shippori Mincho（--font-serif）を適用 */
+        /* 略歴 */
         .essay-body {
             font-family: var(--font-serif);
             font-size: 15px;
@@ -202,7 +198,6 @@
             transition: var(--transition);
         }
         .exp-card:hover { border-left-color: var(--accent); }
-        /* 【英字表記】数字（01,02..）に Playfair Display（--font-eng）を適用 */
         .exp-num {
             font-family: var(--font-eng);
             color: var(--accent);
@@ -211,7 +206,6 @@
             margin-bottom: 8px;
             font-weight: 700;
         }
-        /* 【日本語見出し】専門領域名に Shippori Mincho（--font-serif）を適用 */
         .exp-card h4 {
             font-family: var(--font-serif);
             font-size: 16px;
@@ -219,7 +213,6 @@
             margin-bottom: 10px;
             font-weight: 700;
         }
-        /* 【本文】専門領域説明文に Shippori Mincho（--font-serif）を適用 */
         .exp-card p {
             font-family: var(--font-serif);
             font-size: 13.5px;
@@ -239,7 +232,6 @@
             padding: 25px 30px;
             border-radius: 4px;
         }
-        /* 【英字表記】Book 01に Playfair Display（--font-eng）を適用 */
         .book-label {
             font-family: var(--font-eng);
             font-size: 11px;
@@ -250,7 +242,6 @@
             font-weight: 700;
             letter-spacing: 0.05em;
         }
-        /* 【日本語見出し】著書名に Shippori Mincho（--font-serif）を適用 */
         .book-card h4 {
             font-family: var(--font-serif);
             font-size: 18px;
@@ -258,7 +249,6 @@
             margin-bottom: 5px;
             font-weight: 700;
         }
-        /* 【日本語見出し】出版社・メディア情報に Shippori Mincho（--font-serif）を適用 */
         .book-meta {
             font-family: var(--font-serif);
             font-size: 12px;
@@ -266,7 +256,6 @@
             margin-bottom: 12px;
             display: block;
         }
-        /* 【本文】著書説明文に Shippori Mincho（--font-serif）を適用 */
         .book-card p {
             font-family: var(--font-serif);
             font-size: 13.5px;
@@ -280,7 +269,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 40px;
         }
-        /* 【英字表記】Interview & Featureなどに Playfair Display（--font-eng）を適用 */
         .ach-category h4 {
             font-family: var(--font-eng);
             font-size: 14px;
@@ -292,7 +280,6 @@
             border-left: 2px solid var(--accent);
             font-weight: 700;
         }
-        /* 【本文】掲載実績説明文に Shippori Mincho（--font-serif）を適用 */
         .ach-category p {
             font-family: var(--font-serif);
             font-size: 14px;
@@ -305,7 +292,6 @@
             text-align: center;
             padding: 40px 0 70px;
         }
-        /* 【本文】CTA説明文に Shippori Mincho（--font-serif）を適用 */
         .cta-notice-text {
             font-family: var(--font-serif);
             font-size: 13px;
@@ -315,7 +301,6 @@
             padding: 0 20px;
             line-height: 1.6;
         }
-        /* 【ボタン】CTAボタンに Noto Sans JP（--font-sans）を適用 */
         .cta-btn {
             display: inline-flex;
             align-items: center;
@@ -347,7 +332,7 @@
         }
 
         /* -----------------------------------------
-         * RESPONSIVE (スマホ版の理想的な余白28px・カバー表示・20%配置を完全ホールド)
+         * RESPONSIVE
          * ----------------------------------------- */
         @media (max-width: 1024px) {
             .grid-3 { grid-template-columns: 1fr; gap: 24px; }
@@ -355,19 +340,18 @@
         }
         @media (max-width: 850px) {
             .container { padding: 0 20px; }
-            
-            /* スマホ版セクション余白（圧縮版） */
             .sec-padding { 
                 padding: 28px 0; 
             }
             
-            /* スマホ版の理想的な画像カバー表示、およびトリミング位置（20%）は完全ホールド */
+            /* 【重要】スマホ版は完成形としての理想的なカバー表示・20%配置・サイズ感を100%維持 */
             .hero-fullscreen {
                 height: 100vh; 
             }
             .hero-bg-img {
                 object-fit: cover;
                 object-position: center 20%; 
+                transform: none; /* スマホ時はPC版の縮小scaleをリセット解除 */
             }
             .hero-certified-badge { top: 20px; left: 20px; }
             
@@ -423,7 +407,7 @@
             <div class="exp-card">
                 <span class="exp-num">02</span>
                 <h4>事業グロース</h4>
-                <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模 of 経済圏における爆発的成長支援. 実戦的なマーケティングや組織変革を含む支援。</p>
+                <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模の経済圏における爆発的成長支援. 実戦的なマーケティングや組織変革を含む支援。</p>
             </div>
             <div class="exp-card">
                 <span class="exp-num">03</span>

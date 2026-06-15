@@ -31,7 +31,7 @@
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (最適化)
+         * ① HERO SECTION (PC表示時：上半身×完全左右中央配置)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
@@ -41,7 +41,7 @@
             border-bottom: 1px solid var(--border);
         }
 
-        /* 画像コンテナを作成 */
+        /* 画像コンテナ：Flexboxによる中央集約を完全有効化 */
         .hero-bg-container {
             position: absolute;
             top: 0;
@@ -51,21 +51,21 @@
             z-index: 1;
             overflow: hidden;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: center; /* 左右中央揃え */
+            align-items: center;     /* 上下中央揃え */
         }
 
         .hero-bg-img {
-            /* PC表示：画像を少し縮小し、object-fit: containとpositionで構図を調整 */
-            max-width: 90%; /* 必要に応じて調整。 scaleの代わり。 */
-            max-height: 90%; /* 必要に応じて調整。 scaleの代わり。 */
-            object-fit: contain; /* アスペクト比を維持して全体を収める */
+            /* 【修正：PC表示】上半身全体のサイズ感を維持したまま、左右中央に配置 */
+            max-width: 90%; 
+            max-height: 90%; 
+            object-fit: contain; 
             position: absolute;
-            top: 10%; /* 縮小により生じた上部余白。object-positionの代わり。 */
-            left: 5%; /* 縮小により生じた左部余白。object-positionの代わり。 */
+            /* 左寄りを作っていた固定数値を排除し、中央基準の配置に最適化 */
+            top: 10%; 
+            left: 50%;
+            transform: translateX(-50%); /* 完全に左右中央へホールド */
             transform-origin: center center;
-            /* object-fit: contain の場合、object-position は効果が薄い場合があるため、
-               position属性とscale (max-width/height) で調整 */
         }
 
         .hero-overlay-content {
@@ -286,6 +286,14 @@
             text-align: center;
             padding: 50px 0 80px;
         }
+        .cta-notice-text {
+            font-size: 13px;
+            color: var(--sub-text);
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
         .cta-btn {
             display: inline-flex;
             align-items: center;
@@ -325,18 +333,18 @@
             .container { padding: 0 20px; }
             .sec-padding { padding: 40px 0; }
             
-            /* 【修正：スマホ表示】現在の理想の状態（案A相当）を維持 */
+            /* 【最重要：スマホ表示】理想とされている「引いた構図（案B相当）」を完全維持 */
             .hero-fullscreen {
-                height: 100vh; /* スマホも全画面に */
+                height: 100vh; 
             }
             .hero-bg-img {
-                /* スマホはobject-fit: coverとobject-positionで制御（案B相当） */
                 object-fit: cover;
                 max-width: 100%;
                 max-height: 100%;
                 top: 0;
                 left: 0;
-                object-position: center 20%; /* スマホ側の人物位置調整 */
+                transform: none; /* スマホ時は中央トランスフォームを解除 */
+                object-position: center 20%; /* 理想的なスマホ側人物ホールド位置 */
             }
             .hero-certified-badge { top: 20px; left: 20px; }
             
@@ -379,9 +387,9 @@
     <section class="sec-padding"><div class="container">
         <h3 class="sec-title-mini">Biography <span>略歴</span></h3>
         <div class="essay-body">
-            <p>1999年にビズシークを創業し楽天へ売却. 楽天ではオークション事業、楽天野球団の立ち上げに従事.</p>
-            <p>2012年にヤフーへ参画. ヤフーショッピング、金融, トラベル事業を統括し、2022年には代表取締役社長 CEOに就任.</p>
-            <p>2024年にBoost Capitalを創業. 現在は連続起業家・投資家として成長企業支援を行う.</p>
+            <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを創業し楽天へ売却。楽天ではオークション事業や楽天野球団の立ち上げを担う。</p>
+            <p>2012年にヤフーへ参画し、Yahoo!ショッピング、金融、トラベル事業を統括。取締役専務執行役員COOを経て、2022年に代表取締役社長CEOに就任。</p>
+            <p>2024年にBoost Capitalを創業。現在は連続起業家・投資家として、スタートアップ投資および成長企業の経営支援を行う。</p>
         </div>
     </div></section>
 
@@ -391,17 +399,17 @@
             <div class="exp-card">
                 <span class="exp-num">01</span>
                 <h4>新規事業開発</h4>
-                <p>巨大市場への参入戦略、0→1の垂直立ち上げ、上場企業における新規経済圏の構造設計を強みとします.</p>
+                <p>巨大市場への参入戦略、0→1の垂直立ち上げ、上場企業における新規経済圏の構造設計を強みとします。</p>
             </div>
             <div class="exp-card">
                 <span class="exp-num">02</span>
                 <h4>事業グロース</h4>
-                <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模の経済圏における爆発的成長支援. 実戦的なマーケティングや組織変革を含む支援.</p>
+                <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模の経済圏における爆発的成長支援. 実戦的なマーケティングや組織変革を含む支援。</p>
             </div>
             <div class="exp-card">
                 <span class="exp-num">03</span>
                 <h4>M&A・事業買収</h4>
-                <p>買い手・売り手両面の豊富な実戦経験に基づき、PMIまで含めた高精度なアライアンスおよび事業再設計支援.</p>
+                <p>買い手・売り手両面の豊富な実戦経験に基づき、PMIまで含めた高精度なアライアンスおよび事業再設計支援。</p>
             </div>
         </div>
     </div></section>
@@ -413,13 +421,13 @@
                 <span class="book-label">Book 01</span>
                 <h4>『凡人の起業論』</h4>
                 <span class="book-meta">日経BP / 単行本</span>
-                <p>「凡人」がいかにして市場で勝利を収め、組織をスケールさせるかを体系化した実戦書。Amazonベストセラー獲得の話題作.</p>
+                <p>「凡人」がいかにして市場で勝利を収め、組織をスケールさせるかを体系化した実戦書。Amazonベストセラー獲得の話題作。</p>
             </div>
             <div class="book-card">
                 <span class="book-label">Book 02</span>
                 <h4>『起業の地図』</h4>
                 <span class="book-meta">ダイヤモンド社 / 単行本</span>
-                <p>起業から事業スケール, M&A売却, および上場に至るまでの各成長フェーズにおける罠と解決アプローチを可視化したロードマップ.</p>
+                <p>起業から事業スケール, M&A売却, および上場に至るまでの各成長フェーズにおける罠と解決アプローチを可視化したロードマップ。</p>
             </div>
         </div>
     </div></section>
@@ -429,17 +437,17 @@
         <div class="achievements-grid">
             <div class="ach-category">
                 <h4>Interview & Feature</h4>
-                <p>日経ビジネス / NewsPicks / 東洋経済 / PIVOT / ReHacQ 等、主要経済メディアにて、日本のインターネット産業を牽引するフロントランナーとしてインタビュー・特集が多数掲載.</p>
+                <p>日経ビジネス / NewsPicks / 東洋経済 / PIVOT / ReHacQ 等、主要経済メディアにて、日本のインターネット産業を牽引するフロントランナーとしてインタビュー・特集が多数掲載。</p>
             </div>
             <div class="ach-category">
                 <h4>Conferences & Events</h4>
-                <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画.</p>
+                <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画。</p>
             </div>
         </div>
     </section>
 
     <section class="contact-area"><div class="container">
-        <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております.</p>
+        <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
         <a href="https://docs.google.com/forms/d/e/XXXXXX/viewform" class="cta-btn" target="_blank">
             面談・相談を申し込む
         </a>

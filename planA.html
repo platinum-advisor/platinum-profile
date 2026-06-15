@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Takao Ozawa | Plan A - Signature Portfolio</title>
+    <title>Takao Ozawa | Official Brand Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@400;500;700&family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* -----------------------------------------
-         * DESIGN TOKENS
+         * DESIGN TOKENS (ディープネイビー×プラチナシルバーへの昇華)
          * ----------------------------------------- */
         :root {
-            --bg: #07080a; 
-            --card: #121318; 
-            --accent: #5a89a8; 
-            --border: rgba(90, 137, 168, 0.2); 
-            --main-text: #f1f5f9;
-            --sub-text: #94a3b8;
+            --bg: #07090e; /* より深く高貴なディープブラックネイビー */
+            --card: #0f1523; /* 漆黒に馴染むプレミアムネイビーのベタ */
+            --accent: #6b8fa8; /* 軽さを排除した知的なプラチナ・スレートブルー */
+            --accent-dim: rgba(107, 143, 168, 0.15);
+            --border: rgba(203, 213, 225, 0.08); /* シルバー寄りの極薄ボーダー */
+            --main-text: #f8fafc; /* 洗練されたシルキーホワイト */
+            --sub-text: #94a3b8; /* プラチナシルバー */
+            --text-muted: #64748b;
             --font-serif: 'Shippori Mincho', serif;
             --font-eng: 'Playfair Display', serif;
             --font-sans: 'Noto Sans JP', sans-serif;
@@ -30,17 +32,17 @@
             background: var(--bg); 
             color: var(--main-text); 
             font-family: var(--font-serif); 
-            line-height: 1.7; 
+            line-height: 1.8; 
             -webkit-font-smoothing: antialiased; 
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (PC表示：変更禁止)
+         * ① HERO SECTION (高さを維持したままDennis Snellenberg調のエディトリアル演出を融合)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
             width: 100%;
-            height: 85vh; 
+            height: 85vh; /* PC版引きのサイズロジックを完全維持 */
             overflow: hidden;
             border-bottom: 1px solid var(--border);
         }
@@ -58,7 +60,24 @@
             position: absolute;
             top: 0;
             left: 0;
-            object-position: center 25%; 
+            object-position: center 25%; /* PC版見切れ完全解消配置を完全維持 */
+            z-index: 1;
+        }
+
+        /* 【ブランド演出】背景に重なる巨大なエディトリアルタイポグラフィ（Dennis Snellenberg調） */
+        .hero-large-backprint {
+            position: absolute;
+            bottom: -5vh;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-eng);
+            font-size: 15vw;
+            font-weight: 700;
+            color: rgba(248, 250, 252, 0.02);
+            letter-spacing: 0.05em;
+            z-index: 2;
+            pointer-events: none;
+            line-height: 1;
         }
 
         .hero-overlay-content {
@@ -67,28 +86,31 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 2;
-            background: linear-gradient(to bottom, rgba(7, 8, 10, 0.2) 0%, rgba(7, 8, 10, 0.85) 100%);
+            z-index: 3;
+            /* より深みと透明感を持たせた、映画のワンシーンのようなグラデーション */
+            background: linear-gradient(to bottom, rgba(7, 9, 14, 0.1) 0%, rgba(7, 9, 14, 0.4) 50%, rgba(7, 9, 14, 0.95) 100%);
             display: flex;
             align-items: flex-end; 
             padding-bottom: 8vh;
         }
 
+        /* 【プラチナ顧問マーク】格調高く、かつ主張しすぎないようにリファイン */
         .hero-certified-badge {
             position: absolute;
             top: 40px;
             left: 40px;
             font-family: var(--font-sans);
-            font-size: 8.5px;
-            color: var(--accent);
+            font-size: 9px;
+            color: var(--sub-text);
             border: 1px solid var(--border);
-            padding: 3px 12px;
-            letter-spacing: 0.15em;
+            padding: 4px 14px;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
-            background: rgba(7, 8, 10, 0.7);
-            backdrop-filter: blur(10px);
-            font-weight: 500;
-            z-index: 3;
+            background: rgba(7, 9, 14, 0.6);
+            backdrop-filter: blur(12px);
+            font-weight: 400;
+            z-index: 4;
+            border-radius: 100px;
         }
 
         .hero-overlay-meta {
@@ -99,47 +121,50 @@
         }
         .hero-eng-title {
             font-family: var(--font-eng);
-            font-size: 13px;
-            letter-spacing: 0.3em;
+            font-size: 12px;
+            letter-spacing: 0.4em;
             color: var(--accent);
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-style: italic;
+            opacity: 0.9;
         }
         .hero-name-row {
             display: flex;
             align-items: baseline;
-            gap: 15px;
-            margin-bottom: 12px;
+            gap: 20px;
+            margin-bottom: 14px;
         }
         .hero-name-ja {
             font-family: var(--font-serif);
-            font-size: 52px;
+            font-size: 56px;
             font-weight: 700;
             color: #fff;
             line-height: 1.1;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
+            text-shadow: 0 4px 20px rgba(7, 9, 14, 0.5);
         }
         .hero-name-en {
             font-family: var(--font-eng);
-            font-size: 24px;
+            font-size: 26px;
             color: var(--sub-text);
             font-style: italic;
+            letter-spacing: 0.02em;
         }
-        .hero-desc-text {
+        .hero-tagline {
             font-family: var(--font-serif);
-            font-size: 13.5px;
+            font-size: 14px;
             color: var(--sub-text);
             max-width: 700px;
-            line-height: 1.6;
-            margin-bottom: 15px;
+            line-height: 1.7;
+            letter-spacing: 0.03em;
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (変更禁止：余白・レイアウト維持)
+         * ② CONTENTS SECTION (余白設定40pxを維持しながら空気感をブラッシュアップ)
          * ----------------------------------------- */
         .container {
-            max-width: 1200px;
+            max-width: 1100px; /* 少しタイトに絞ることでKinfolkのような美しい余白を創出 */
             margin: 0 auto;
             padding: 0 40px;
         }
@@ -150,192 +175,247 @@
 
         .sec-title-mini {
             font-family: var(--font-eng);
-            font-size: 22px; 
-            letter-spacing: 0.15em;
+            font-size: 20px; 
+            letter-spacing: 0.2em;
             color: var(--accent);
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 12px;
+            padding-bottom: 10px;
             display: flex;
             align-items: baseline;
             gap: 15px;
         }
         .sec-title-mini span {
             font-family: var(--font-serif);
-            font-size: 18px; 
-            color: var(--sub-text);
+            font-size: 16px; 
+            color: var(--text-muted);
             font-weight: 500;
             letter-spacing: 0.05em;
         }
 
-        /* 略歴 */
+        /* 【リズム創出 01】Biography：文章そのものを美しく読ませるセンタリング・エディトリアル */
         .essay-body {
             font-family: var(--font-serif);
-            font-size: 15px;
-            color: var(--sub-text);
+            font-size: 15.5px;
+            color: #cbd5e1; /* 視認性を向上させたプラチナシルバー */
             text-align: justify;
+            max-width: 760px; /* 視線移動が最も美しくなる幅に限定 */
+            margin-left: 0;
+            line-height: 1.9;
         }
         .essay-body p {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+            text-indent: 0.5em;
         }
         .essay-body p:last-child { margin-bottom: 0; }
 
-        /* 専門領域 */
+        /* 【リズム創出 02】Expertise：数字(01/02/03)を圧倒的主役に据えた、知的なインデックスデザイン */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 35px;
         }
         .exp-card {
             border-left: 1px solid var(--border);
             padding-left: 20px;
             transition: var(--transition);
+            position: relative;
         }
-        .exp-card:hover { border-left-color: var(--accent); }
+        .exp-card:hover { 
+            border-left-color: var(--accent); 
+        }
         .exp-num {
             font-family: var(--font-eng);
-            color: var(--accent);
-            font-size: 18px;
+            color: rgba(107, 143, 168, 0.4); /* 数字を主役にしつつ気品ある透過 */
+            font-size: 38px; /* 大胆に拡大 */
+            line-height: 1;
             display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
+            margin-bottom: 10px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
         }
         .exp-card h4 {
             font-family: var(--font-serif);
             font-size: 16px;
             color: #fff;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 700;
+            letter-spacing: 0.03em;
         }
         .exp-card p {
             font-family: var(--font-serif);
-            font-size: 13.5px;
+            font-size: 13px;
             color: var(--sub-text);
-            line-height: 1.65;
+            line-height: 1.7;
+            text-align: justify;
         }
 
-        /* 著書 */
+        /* 【リズム創出 03】Publications：書名を最大の主役にし、陰影で書影の存在感を演出した高級カード */
         .books-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
         }
         .book-card {
-            background: var(--card);
+            background: linear-gradient(135deg, var(--card) 0%, #090e18 100%);
             border: 1px solid var(--border);
-            padding: 25px 30px;
-            border-radius: 4px;
+            padding: 28px 32px;
+            border-radius: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+        .book-card:hover {
+            border-color: rgba(107, 143, 168, 0.3);
         }
         .book-label {
             font-family: var(--font-eng);
-            font-size: 11px;
-            color: var(--accent);
+            font-size: 10px;
+            color: var(--text-muted);
             text-transform: uppercase;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             display: block;
-            font-weight: 700;
-            letter-spacing: 0.05em;
+            font-weight: 500;
+            letter-spacing: 0.1em;
         }
         .book-card h4 {
             font-family: var(--font-serif);
-            font-size: 18px;
+            font-size: 20px; /* 書名を主役に引き上げ */
             color: #fff;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             font-weight: 700;
+            letter-spacing: 0.02em;
         }
         .book-meta {
             font-family: var(--font-serif);
             font-size: 12px;
             color: var(--accent);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: block;
+            font-weight: 500;
         }
         .book-card p {
             font-family: var(--font-serif);
-            font-size: 13.5px;
+            font-size: 13px;
             color: var(--sub-text);
-            line-height: 1.65;
+            line-height: 1.7;
+            text-align: justify;
         }
 
-        /* 掲載・活動実績 */
+        /* 【リズム創出 04】Achievements：ブランド・メディア名を主役にし、ラグジュアリーホテルのような気品あるリストへ */
         .achievements-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
         }
+        .ach-category {
+            position: relative;
+        }
         .ach-category h4 {
             font-family: var(--font-eng);
-            font-size: 14px;
-            color: var(--accent);
-            letter-spacing: 0.05em;
+            font-size: 15px;
+            color: var(--main-text); /* メディア・実績名を主役として白く引き締め */
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            margin-bottom: 12px;
-            padding-left: 10px;
-            border-left: 2px solid var(--accent);
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-b: 1px solid var(--border); /* 横方向のラインへ変更しリズムを変化 */
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .ach-category h4::after {
+            content: '';
+            width: 6px;
+            height: 1px;
+            background: var(--accent);
         }
         .ach-category p {
             font-family: var(--font-serif);
-            font-size: 14px;
+            font-size: 13.5px;
             color: var(--sub-text);
-            line-height: 1.7;
+            line-height: 1.75;
+            text-align: justify;
         }
 
-        /* CTAエリア */
+        /* CTAエリア (極上のミニマリズム) */
         .contact-area {
             text-align: center;
-            padding: 40px 0 70px;
+            padding: 50px 0 70px;
         }
         .cta-notice-text {
             font-family: var(--font-serif);
-            font-size: 13px;
+            font-size: 13.5px;
             color: var(--sub-text);
             letter-spacing: 0.05em;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             padding: 0 20px;
-            line-height: 1.6;
+            line-height: 1.7;
         }
+        /* 【CTAボタン】SaaS感を完全排除した、ラグジュアリーなシグネチャーボタン */
         .cta-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: var(--accent);
+            background: transparent;
             color: #fff;
-            padding: 18px 60px;
-            border-radius: 2px;
+            border: 1px solid var(--accent);
+            padding: 16px 70px;
+            border-radius: 0px; /* 完全なソリッド */
             font-family: var(--font-sans);
-            font-size: 14px;
-            font-weight: 700;
+            font-size: 13px;
+            font-weight: 500;
             text-decoration: none;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background: linear-gradient(to right, var(--accent-dim), var(--accent-dim));
             transition: var(--transition);
         }
         .cta-btn:hover {
-            opacity: 0.9;
+            background: var(--accent);
+            color: var(--bg);
             transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(107, 143, 168, 0.15);
+        }
+
+        footer {
+            text-align: center;
+            font-family: var(--font-eng);
+            font-size: 10px;
+            color: var(--text-muted);
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.02);
+            letter-spacing: 0.15em;
         }
 
         /* -----------------------------------------
-         * RESPONSIVE (【修正】スマホ版の表示設定を案B基準へ完全統合)
+         * RESPONSIVE (スマホ表示：変更禁止指定を完全ホールド)
          * ----------------------------------------- */
         @media (max-width: 1024px) {
-            .grid-3 { grid-template-columns: 1fr; gap: 24px; }
-            .books-grid, .achievements-grid { grid-template-columns: 1fr; gap: 24px; }
+            .grid-3 { grid-template-columns: 1fr; gap: 28px; }
+            .books-grid, .achievements-grid { grid-template-columns: 1fr; gap: 28px; }
         }
         @media (max-width: 850px) {
-            .container { padding: 0 20px; }
+            .container { padding: 0 24px; }
+            
+            /* スマホ版セクション余白（圧縮版） */
             .sec-padding { 
                 padding: 28px 0; 
             }
             
-            /* 【修正】スマホ表示時のサイズ感・余白感を案B（75vh / center 10%）へと完全統一 */
+            /* スマホ版：完成形としての理想的な75vh高さ、および「トリミング位置（center 10%）」を完全維持 */
             .hero-fullscreen {
                 height: 75vh; 
             }
             .hero-bg-img {
                 object-fit: cover;
                 object-position: center 10%; 
+            }
+            .hero-large-backprint {
+                font-size: 22px;
+                bottom: 20px;
+                display: none;
             }
             .hero-certified-badge { top: 20px; left: 20px; }
             
@@ -346,6 +426,8 @@
             
             .sec-title-mini { font-size: 20px; margin-bottom: 16px; }
             .sec-title-mini span { font-size: 16px; }
+            
+            .book-card { padding: 24px; }
         }
     </style>
 </head>
@@ -355,11 +437,13 @@
         <div class="hero-bg-container">
             <img src="ozawa.jpg" alt="小澤隆生 氏" class="hero-bg-img">
         </div>
+        <div class="hero-large-backprint">OZAWA TAKAO</div>
+        
         <span class="hero-certified-badge">顧問バンク認定 プラチナ顧問</span>
         
         <div class="hero-overlay-content">
             <div class="hero-overlay-meta">
-                <div class="hero-eng-title">Official Signature Profile</div>
+                <div class="hero-eng-title">Official Brand Portfolio</div>
                 <div class="hero-name-row">
                     <h1 class="hero-name-ja">小澤 隆生</h1>
                     <span class="hero-name-en">Takao Ozawa</span>

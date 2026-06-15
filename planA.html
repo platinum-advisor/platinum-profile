@@ -31,7 +31,7 @@
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (PC表示：迫力のある全画面カバー＆中央顔〜胸元配置)
+         * ① HERO SECTION (既存の迫力あるカバー表示・分離設定を完全維持)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
@@ -41,7 +41,6 @@
             border-bottom: 1px solid var(--border);
         }
 
-        /* 縮小配置を完全撤廃し、背面に美しく全面展開するコンテナ構造へ固定 */
         .hero-bg-container {
             position: absolute;
             inset: 0;
@@ -51,10 +50,8 @@
         .hero-bg-img {
             width: 100%;
             height: 100%;
-            /* 【修正：PC版】縮小せず、画像の迫力を100%活かしたまま高級感のあるカバー表示 */
             object-fit: cover;
-            /* 左右は中央、縦位置は顔から胸元が最高に美しく映える12%の位置へ最適化 */
-            object-position: center 12%;
+            object-position: center 12%; /* PC版トリミング位置を維持 */
             position: absolute;
             top: 0;
             left: 0;
@@ -129,18 +126,9 @@
             line-height: 1.5;
             margin-bottom: 15px;
         }
-        .hero-brand-records {
-            font-size: 12.5px;
-            color: var(--main-text);
-            line-height: 1.6;
-            border-top: 1px dashed var(--border);
-            padding-top: 15px;
-            max-width: 750px;
-            text-align: justify;
-        }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION
+         * ② CONTENTS SECTION (【修正②】PC版の上下余白を圧縮)
          * ----------------------------------------- */
         .container {
             max-width: 1200px;
@@ -149,7 +137,7 @@
         }
         
         .sec-padding {
-            padding: 60px 0; 
+            padding: 40px 0; /* 60px から 40px へ圧縮 */
         }
 
         .sec-title-mini {
@@ -276,7 +264,7 @@
         /* CTAエリア */
         .contact-area {
             text-align: center;
-            padding: 50px 0 80px;
+            padding: 40px 0 70px;
         }
         .cta-notice-text {
             font-size: 13px;
@@ -315,7 +303,7 @@
         }
 
         /* -----------------------------------------
-         * RESPONSIVE (PCとスマホの設定を美しく完全分離)
+         * RESPONSIVE (【修正②】スマホ版の上下余白を圧縮・画像比率は完全維持)
          * ----------------------------------------- */
         @media (max-width: 1024px) {
             .grid-3 { grid-template-columns: 1fr; gap: 24px; }
@@ -323,15 +311,18 @@
         }
         @media (max-width: 850px) {
             .container { padding: 0 20px; }
-            .sec-padding { padding: 40px 0; }
             
-            /* 【修正：最重要】スマホ版は理想の表示状態（トリミング・サイズ）を100%維持 */
+            /* 【修正②】スマホ版セクション余白を 40px から 28px へ引き締め */
+            .sec-padding { 
+                padding: 28px 0; 
+            }
+            
+            /* スマホ版の理想的な画像カバー表示、およびトリミング位置（20%）は完全ホールド */
             .hero-fullscreen {
                 height: 100vh; 
             }
             .hero-bg-img {
                 object-fit: cover;
-                /* スマホのみ、ご指定の理想的な20%のトリミング位置に固定 */
                 object-position: center 20%; 
             }
             .hero-certified-badge { top: 20px; left: 20px; }
@@ -340,7 +331,6 @@
             .hero-name-ja { font-size: 42px; }
             .hero-name-en { font-size: 20px; }
             .hero-tagline { font-size: 12.5px; }
-            .hero-brand-records { font-size: 11.5px; padding-top: 12px; }
             
             .sec-title-mini { font-size: 20px; margin-bottom: 16px; }
             .sec-title-mini span { font-size: 16px; }
@@ -365,9 +355,6 @@
                 <p class="hero-desc-text hero-tagline">
                     連続起業家 / プレイングエンジェル / 元ヤフー代表取締役社長CEO / Boost Capital 代表取締役
                 </p>
-                <div class="hero-brand-records">
-                    東北楽天ゴールデンイーグルスの創設を主導、Yahoo!ショッピング大改革（無料化コマース革命）を牽引。決済社会インフラPayPayの立ち上げ指揮、ヤフー代表取締役社長CEOを歴任。エンジェル投資家・VCとして数多くのIPO支援・投資成長活動を実行。
-                </div>
             </div>
         </div>
     </section>

@@ -6,7 +6,7 @@
     <title>Takao Ozawa | Plan A - Signature Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@400;500;700&family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
@@ -16,9 +16,8 @@
             --border: rgba(90, 137, 168, 0.2); 
             --main-text: #f1f5f9;
             --sub-text: #94a3b8;
-            --font-eng: 'Playfair Display', serif; /* 【修正】英字をPlayfair Displayに完全統一 */
-            --font-serif: 'Shippori Mincho', serif; /* 【修正】日本語本文をShippori Minchoに完全統一 */
-            --font-sans: 'Noto Sans JP', sans-serif; /* 補助UIのみ最小限使用 */
+            --font-eng: 'Cormorant Garamond', serif;
+            --font-sans: 'Noto Sans JP', sans-serif;
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -26,16 +25,18 @@
         body { 
             background: var(--bg); 
             color: var(--main-text); 
-            font-family: var(--font-serif); /* 【修正】基本フォントをしっぽり明朝に統一 */
+            font-family: var(--font-sans); 
             line-height: 1.6; 
             -webkit-font-smoothing: antialiased; 
         }
 
-        /* ① HERO SECTION */
+        /* -----------------------------------------
+         * ① HERO SECTION (PCでの見切れをobject-positionで修正)
+         * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
             width: 100%;
-            height: 85vh; 
+            height: 100vh; /* PCは全画面 */
             overflow: hidden;
             border-bottom: 1px solid var(--border);
         }
@@ -48,7 +49,8 @@
             top: 0;
             left: 0;
             z-index: 1;
-            object-position: center 10%; 
+            /* 【修正① 最重要】PC表示時に顔全体（頭から顎）が自然に収まるトリミング位置へ再調整 */
+            object-position: center 15%; 
         }
 
         .hero-overlay-content {
@@ -58,18 +60,16 @@
             width: 100%;
             height: 100%;
             z-index: 2;
-            background: linear-gradient(to bottom, rgba(7, 8, 10, 0.1) 0%, rgba(7, 8, 10, 0.5) 50%, rgba(7, 8, 10, 0.9) 100%);
+            background: linear-gradient(to bottom, rgba(7, 8, 10, 0.2) 0%, rgba(7, 8, 10, 0.85) 100%);
             display: flex;
             align-items: flex-end; 
-            padding-bottom: 6vh; 
+            padding-bottom: 8vh;
         }
 
-        /* 補助UIバッジ：Noto Sans JPを最小限使用 */
         .hero-certified-badge {
             position: absolute;
-            top: 30px;
-            left: 16px; 
-            font-family: var(--font-sans);
+            top: 40px;
+            left: 40px;
             font-size: 8.5px;
             color: var(--accent);
             border: 1px solid var(--border);
@@ -80,13 +80,6 @@
             backdrop-filter: blur(10px);
             font-weight: 500;
             z-index: 3;
-        }
-
-        @media (min-width: 851px) {
-            .hero-certified-badge {
-                top: 40px;
-                left: 40px; 
-            }
         }
 
         .hero-overlay-meta {
@@ -102,7 +95,6 @@
             color: var(--accent);
             text-transform: uppercase;
             margin-bottom: 10px;
-            font-style: italic;
         }
         .hero-name-row {
             display: flex;
@@ -111,7 +103,6 @@
             margin-bottom: 12px;
         }
         .hero-name-ja {
-            font-family: var(--font-serif);
             font-size: 52px;
             font-weight: 700;
             color: #fff;
@@ -125,15 +116,25 @@
             font-style: italic;
         }
         .hero-desc-text {
-            font-family: var(--font-serif);
             font-size: 13.5px;
             color: var(--sub-text);
             max-width: 700px;
             line-height: 1.5;
-            margin-bottom: 0; 
+            margin-bottom: 15px;
+        }
+        .hero-brand-records {
+            font-size: 12.5px;
+            color: var(--main-text);
+            line-height: 1.6;
+            border-top: 1px dashed var(--border);
+            padding-top: 15px;
+            max-width: 750px;
+            text-align: justify;
         }
 
-        /* ② CONTENTS SECTION */
+        /* -----------------------------------------
+         * ② CONTENTS SECTION
+         * ----------------------------------------- */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -141,13 +142,13 @@
         }
         
         .sec-padding {
-            padding: 30px 0; 
+            padding: 60px 0; 
         }
 
         .sec-title-mini {
             font-family: var(--font-eng);
             font-size: 22px; 
-            letter-spacing: 0.15em;
+            letter-spacing: 0.2em;
             color: var(--accent);
             text-transform: uppercase;
             margin-bottom: 20px;
@@ -158,7 +159,7 @@
             gap: 15px;
         }
         .sec-title-mini span {
-            font-family: var(--font-serif);
+            font-family: var(--font-sans);
             font-size: 18px; 
             color: var(--sub-text);
             font-weight: 400;
@@ -232,7 +233,6 @@
             margin-bottom: 5px;
         }
         .book-meta {
-            font-family: var(--font-serif);
             font-size: 12px;
             color: var(--accent);
             margin-bottom: 12px;
@@ -251,14 +251,14 @@
             gap: 40px;
         }
         .ach-category h4 {
-            font-family: var(--font-serif);
+            font-family: var(--font-eng);
             font-size: 14px;
             color: var(--accent);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
             margin-bottom: 12px;
             padding-left: 10px;
             border-left: 2px solid var(--accent);
-            font-weight: 700;
         }
         .ach-category p {
             font-size: 14px;
@@ -269,15 +269,7 @@
         /* CTAエリア */
         .contact-area {
             text-align: center;
-            padding: 40px 0 70px;
-        }
-        .cta-notice-text {
-            font-size: 13px;
-            color: var(--sub-text);
-            letter-spacing: 0.05em;
-            margin-bottom: 24px;
-            padding: 0 20px;
-            line-height: 1.6;
+            padding: 50px 0 80px;
         }
         .cta-btn {
             display: inline-flex;
@@ -300,7 +292,6 @@
 
         footer {
             text-align: center;
-            font-family: var(--font-eng);
             font-size: 10px;
             color: var(--sub-text);
             padding: 40px 0;
@@ -317,13 +308,26 @@
         }
         @media (max-width: 850px) {
             .container { padding: 0 20px; }
-            .hero-certified-badge { top: 24px; left: 16px; } 
+            .sec-padding { padding: 40px 0; }
+            
+            /* 【修正②③】スマホでの圧迫感解消、かつレイアウト維持（object-position調整） */
+            .hero-fullscreen {
+                height: 90vh; /* スマホでは高さを少し抑えることで圧迫感解消 */
+            }
+            .hero-bg-img {
+                /* スマホでは人物が少し遠く、引いた構図（案B程度）に見えるようトリミング位置調整 */
+                object-position: center 20%; 
+            }
+            .hero-certified-badge { top: 20px; left: 20px; }
+            
             .hero-overlay-meta { padding: 0 20px; }
             .hero-name-ja { font-size: 42px; }
             .hero-name-en { font-size: 20px; }
+            .hero-tagline { font-size: 12.5px; }
+            .hero-brand-records { font-size: 11.5px; padding-top: 12px; }
+            
             .sec-title-mini { font-size: 20px; margin-bottom: 16px; }
             .sec-title-mini span { font-size: 16px; }
-            .sec-padding { padding: 24px 0; } 
         }
     </style>
 </head>
@@ -340,9 +344,12 @@
                     <h1 class="hero-name-ja">小澤 隆生</h1>
                     <span class="hero-name-en">Takao Ozawa</span>
                 </div>
-                <p class="hero-desc-text">
+                <p class="hero-desc-text hero-tagline">
                     連続起業家 / プレイングエンジェル / 元ヤフー代表取締役社長CEO / Boost Capital 代表取締役
                 </p>
+                <div class="hero-brand-records">
+                    東北楽天ゴールデンイーグルスの創設を主導、Yahoo!ショッピング大改革（無料化コマース革命）を牽引。決済社会インフラPayPayの立ち上げ指揮、ヤフー代表取締役社長CEOを歴任。エンジェル投資家・VCとして数多くのIPO支援・投資成長活動を実行。
+                </div>
             </div>
         </div>
     </section>
@@ -350,9 +357,9 @@
     <section class="sec-padding"><div class="container">
         <h3 class="sec-title-mini">Biography <span>略歴</span></h3>
         <div class="essay-body">
-            <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを創業し楽天へ売却。楽天ではオークション事業や楽天野球団の立ち上げを担う。</p>
-            <p>2012年にヤフーへ参画し、Yahoo!ショッピング、金融、トラベル事業を統括。取締役専務執行役員COOを経て、2022年に代表取締役社長CEOに就任。</p>
-            <p>2024年にBoost Capitalを創業。現在は連続起業家・投資家として、スタートアップ投資および成長企業の経営支援を行う。</p>
+            <p>1999年にビズシークを創業し楽天へ売却. 楽天ではオークション事業、楽天野球団の立ち上げに従事.</p>
+            <p>2012年にヤフーへ参画. ヤフーショッピング、金融, トラベル事業を統括し、2022年には代表取締役社長 CEOに就任.</p>
+            <p>2024年にBoost Capitalを創業. 現在は連続起業家・投資家として成長企業支援を行う.</p>
         </div>
     </div></section>
 
@@ -362,17 +369,17 @@
             <div class="exp-card">
                 <span class="exp-num">01</span>
                 <h4>新規事業開発</h4>
-                <p>巨大市場への参入戦略、0→1の垂直立ち上げ、上場企業における新規経済圏の構造設計を強みとします。</p>
+                <p>巨大市場への参入戦略、0→1の垂直立ち上げ、上場企業における新規経済圏の構造設計を強みとします.</p>
             </div>
             <div class="exp-card">
                 <span class="exp-num">02</span>
                 <h4>事業グロース</h4>
-                <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模の経済圏における爆発的成長支援. 実戦的なマーケティングや組織変革を含む支援。</p>
+                <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模の経済圏における爆発的成長支援. 実戦的なマーケティングや組織変革を含む支援.</p>
             </div>
             <div class="exp-card">
                 <span class="exp-num">03</span>
                 <h4>M&A・事業買収</h4>
-                <p>買い手・売り手両面の豊富な実戦経験に基づき、PMIまで含めた高精度なアライアンスおよび事業再設計支援。</p>
+                <p>買い手・売り手両面の豊富な実戦経験に基づき、PMIまで含めた高精度なアライアンスおよび事業再設計支援.</p>
             </div>
         </div>
     </div></section>
@@ -384,13 +391,13 @@
                 <span class="book-label">Book 01</span>
                 <h4>『凡人の起業論』</h4>
                 <span class="book-meta">日経BP / 単行本</span>
-                <p>「凡人」がいかにして市場で勝利を収め、組織をスケールさせるかを体系化した実戦書。Amazonベストセラー獲得の話題作。</p>
+                <p>「凡人」がいかにして市場で勝利を収め、組織をスケールさせるかを体系化した実戦書。Amazonベストセラー獲得の話題作.</p>
             </div>
             <div class="book-card">
                 <span class="book-label">Book 02</span>
                 <h4>『起業の地図』</h4>
                 <span class="book-meta">ダイヤモンド社 / 単行本</span>
-                <p>起業から事業スケール, M&A売却, および上場に至るまでの各成長フェーズにおける罠と解決アプローチを可視化したロードマップ。</p>
+                <p>起業から事業スケール, M&A売却, および上場に至るまでの各成長フェーズにおける罠と解決アプローチを可視化したロードマップ.</p>
             </div>
         </div>
     </div></section>
@@ -400,17 +407,17 @@
         <div class="achievements-grid">
             <div class="ach-category">
                 <h4>Interview & Feature</h4>
-                <p>日経ビジネス / NewsPicks / 東洋経済 / PIVOT / ReHacQ 等、主要経済メディアにて、日本のインターネット産業を牽引するフロントランナーとしてインタビュー・特集が多数掲載。</p>
+                <p>日経ビジネス / NewsPicks / 東洋経済 / PIVOT / ReHacQ 等、主要経済メディアにて、日本のインターネット産業を牽引するフロントランナーとしてインタビュー・特集が多数掲載.</p>
             </div>
             <div class="ach-category">
                 <h4>Conferences & Events</h4>
-                <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画。</p>
+                <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画.</p>
             </div>
         </div>
     </section>
 
     <section class="contact-area"><div class="container">
-        <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
+        <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております.</p>
         <a href="https://docs.google.com/forms/d/e/XXXXXX/viewform" class="cta-btn" target="_blank">
             面談・相談を申し込む
         </a>

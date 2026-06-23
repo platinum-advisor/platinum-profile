@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Takao Ozawa | Official Brand Portfolio</title>
+    <title>小澤 隆生 | Takao Ozawa Official Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@400;500;700&family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* -----------------------------------------
-         * DESIGN TOKENS (ディープネイビー×プラチナシルバーへの昇華)
+         * DESIGN TOKENS (磨き上げられたディープネイビー基調)
          * ----------------------------------------- */
         :root {
-            --bg: #07090e; /* より深く高貴なディープブラックネイビー */
-            --card: #0f1523; /* 漆黒に馴染むプレミアムネイビーのベタ */
-            --accent: #6b8fa8; /* 軽さを排除した知的なプラチナ・スレートブルー */
+            --bg: #07090e; 
+            --card: #0f1523; 
+            --accent: #6b8fa8; 
             --accent-dim: rgba(107, 143, 168, 0.15);
-            --border: rgba(203, 213, 225, 0.08); /* シルバー寄りの極薄ボーダー */
-            --main-text: #f8fafc; /* 洗練されたシルキーホワイト */
-            --sub-text: #94a3b8; /* プラチナシルバー */
+            --border: rgba(203, 213, 225, 0.08); 
+            --main-text: #f8fafc; 
+            --sub-text: #94a3b8; 
             --text-muted: #64748b;
             --font-serif: 'Shippori Mincho', serif;
             --font-eng: 'Playfair Display', serif;
@@ -37,12 +37,12 @@
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (高さを維持したままDennis Snellenberg調のエディトリアル演出を融合)
+         * ① HERO SECTION (【修正④⑤】不要な拡大を排除し、PC大型画面での高画質化と引きの胸元構図を両立)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
             width: 100%;
-            height: 85vh; /* PC版引きのサイズロジックを完全維持 */
+            height: 85vh; /* PC版ヒーローの高さを維持 */
             overflow: hidden;
             border-bottom: 1px solid var(--border);
         }
@@ -56,15 +56,15 @@
         .hero-bg-img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* ズームや過度なトリミングをCSS側で完全排除 */
             position: absolute;
             top: 0;
             left: 0;
-            object-position: center 25%; /* PC版見切れ完全解消配置を完全維持 */
+            /* 【修正④ 最重要】引きの構図（90〜95%スケール感）を表現するため、比率を「center 32%」へリファイン */
+            object-position: center 32%; 
             z-index: 1;
         }
 
-        /* 【ブランド演出】背景に重なる巨大なエディトリアルタイポグラフィ（Dennis Snellenberg調） */
         .hero-large-backprint {
             position: absolute;
             bottom: -5vh;
@@ -87,14 +87,12 @@
             width: 100%;
             height: 100%;
             z-index: 3;
-            /* より深みと透明感を持たせた、映画のワンシーンのようなグラデーション */
             background: linear-gradient(to bottom, rgba(7, 9, 14, 0.1) 0%, rgba(7, 9, 14, 0.4) 50%, rgba(7, 9, 14, 0.95) 100%);
             display: flex;
             align-items: flex-end; 
             padding-bottom: 8vh;
         }
 
-        /* 【プラチナ顧問マーク】格調高く、かつ主張しすぎないようにリファイン */
         .hero-certified-badge {
             position: absolute;
             top: 40px;
@@ -119,16 +117,8 @@
             margin: 0 auto;
             padding: 0 40px;
         }
-        .hero-eng-title {
-            font-family: var(--font-eng);
-            font-size: 12px;
-            letter-spacing: 0.4em;
-            color: var(--accent);
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            font-style: italic;
-            opacity: 0.9;
-        }
+        
+        /* 【修正①】Official Brand Portfolio、Takao OzawaをHTML側から完全削除、余白バランスをホールド */
         .hero-name-row {
             display: flex;
             align-items: baseline;
@@ -144,13 +134,6 @@
             letter-spacing: 0.08em;
             text-shadow: 0 4px 20px rgba(7, 9, 14, 0.5);
         }
-        .hero-name-en {
-            font-family: var(--font-eng);
-            font-size: 26px;
-            color: var(--sub-text);
-            font-style: italic;
-            letter-spacing: 0.02em;
-        }
         .hero-tagline {
             font-family: var(--font-serif);
             font-size: 14px;
@@ -161,10 +144,10 @@
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (余白設定40pxを維持しながら空気感をブラッシュアップ)
+         * ② CONTENTS SECTION (基本思想、Biography/Expertiseデザイン維持)
          * ----------------------------------------- */
         .container {
-            max-width: 1100px; /* 少しタイトに絞ることでKinfolkのような美しい余白を創出 */
+            max-width: 1100px; 
             margin: 0 auto;
             padding: 0 40px;
         }
@@ -194,13 +177,13 @@
             letter-spacing: 0.05em;
         }
 
-        /* 【リズム創出 01】Biography：文章そのものを美しく読ませるセンタリング・エディトリアル */
+        /* Biography (変更禁止) */
         .essay-body {
             font-family: var(--font-serif);
             font-size: 15.5px;
-            color: #cbd5e1; /* 視認性を向上させたプラチナシルバー */
+            color: #cbd5e1; 
             text-align: justify;
-            max-width: 760px; /* 視線移動が最も美しくなる幅に限定 */
+            max-width: 760px; 
             margin-left: 0;
             line-height: 1.9;
         }
@@ -210,7 +193,7 @@
         }
         .essay-body p:last-child { margin-bottom: 0; }
 
-        /* 【リズム創出 02】Expertise：数字(01/02/03)を圧倒的主役に据えた、知的なインデックスデザイン */
+        /* Expertise (変更禁止：大きな01〜03含む) */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -227,8 +210,8 @@
         }
         .exp-num {
             font-family: var(--font-eng);
-            color: rgba(107, 143, 168, 0.4); /* 数字を主役にしつつ気品ある透過 */
-            font-size: 38px; /* 大胆に拡大 */
+            color: rgba(107, 143, 168, 0.4); 
+            font-size: 38px; 
             line-height: 1;
             display: block;
             margin-bottom: 10px;
@@ -251,95 +234,83 @@
             text-align: justify;
         }
 
-        /* 【リズム創出 03】Publications：書名を最大の主役にし、陰影で書影の存在感を演出した高級カード */
-        .books-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+        /* -----------------------------------------
+         * ③ MEDIA SECTION (【修正②③】Publications & Achievements を統合、余白を10〜20%最適化)
+         * ----------------------------------------- */
+        .media-padding {
+            padding: 32px 0; /* 40px から 32px へ15%適正圧縮 */
         }
-        .book-card {
+        .media-grid-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 今後の拡張・縦積みに耐える堅牢な2カラムレイアウト */
+            gap: 24px; /* gapを30pxから24pxへ最適化 */
+        }
+        
+        .media-col-title {
+            font-family: var(--font-eng);
+            font-size: 13px;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+        .media-col-title span {
+            font-family: var(--font-serif);
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-left: 8px;
+            font-weight: 400;
+        }
+
+        .media-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px; /* 項目間のgapを適正化 */
+        }
+
+        /* 書籍・露出の統合ラグジュアリーカード */
+        .media-item-card {
             background: linear-gradient(135deg, var(--card) 0%, #090e18 100%);
             border: 1px solid var(--border);
-            padding: 28px 32px;
+            padding: 22px 26px; /* paddingを15%コンパクトに調整し密度感を洗練 */
             border-radius: 2px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
             transition: var(--transition);
         }
-        .book-card:hover {
+        .media-item-card:hover {
             border-color: rgba(107, 143, 168, 0.3);
         }
-        .book-label {
-            font-family: var(--font-eng);
-            font-size: 10px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-bottom: 4px;
-            display: block;
-            font-weight: 500;
-            letter-spacing: 0.1em;
-        }
-        .book-card h4 {
+        
+        .media-item-card h4 {
             font-family: var(--font-serif);
-            font-size: 20px; /* 書名を主役に引き上げ */
+            font-size: 18px; 
             color: #fff;
             margin-bottom: 4px;
             font-weight: 700;
             letter-spacing: 0.02em;
         }
-        .book-meta {
+        .media-item-meta {
             font-family: var(--font-serif);
-            font-size: 12px;
+            font-size: 11.5px;
             color: var(--accent);
-            margin-bottom: 14px;
+            margin-bottom: 10px;
             display: block;
             font-weight: 500;
         }
-        .book-card p {
+        .media-item-desc {
             font-family: var(--font-serif);
-            font-size: 13px;
+            font-size: 12.5px;
             color: var(--sub-text);
-            line-height: 1.7;
+            line-height: 1.65;
             text-align: justify;
         }
 
-        /* 【リズム創出 04】Achievements：ブランド・メディア名を主役にし、ラグジュアリーホテルのような気品あるリストへ */
-        .achievements-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-        }
-        .ach-category {
-            position: relative;
-        }
-        .ach-category h4 {
-            font-family: var(--font-eng);
-            font-size: 15px;
-            color: var(--main-text); /* メディア・実績名を主役として白く引き締め */
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-            padding-bottom: 8px;
-            border-b: 1px solid var(--border); /* 横方向のラインへ変更しリズムを変化 */
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .ach-category h4::after {
-            content: '';
-            width: 6px;
-            height: 1px;
-            background: var(--accent);
-        }
-        .ach-category p {
-            font-family: var(--font-serif);
-            font-size: 13.5px;
-            color: var(--sub-text);
-            line-height: 1.75;
-            text-align: justify;
-        }
-
-        /* CTAエリア (極上のミニマリズム) */
+        /* -----------------------------------------
+         * ④ CTA AREA (変更禁止)
+         * ----------------------------------------- */
         .contact-area {
             text-align: center;
             padding: 50px 0 70px;
@@ -353,7 +324,6 @@
             padding: 0 20px;
             line-height: 1.7;
         }
-        /* 【CTAボタン】SaaS感を完全排除した、ラグジュアリーなシグネチャーボタン */
         .cta-btn {
             display: inline-flex;
             align-items: center;
@@ -362,7 +332,7 @@
             color: #fff;
             border: 1px solid var(--accent);
             padding: 16px 70px;
-            border-radius: 0px; /* 完全なソリッド */
+            border-radius: 0px; 
             font-family: var(--font-sans);
             font-size: 13px;
             font-weight: 500;
@@ -390,21 +360,18 @@
         }
 
         /* -----------------------------------------
-         * RESPONSIVE (スマホ表示：変更禁止指定を完全ホールド)
+         * RESPONSIVE (【変更禁止】スマホ版の表示設定 75vh / center 10% を完全ホールド)
          * ----------------------------------------- */
         @media (max-width: 1024px) {
             .grid-3 { grid-template-columns: 1fr; gap: 28px; }
-            .books-grid, .achievements-grid { grid-template-columns: 1fr; gap: 28px; }
+            .media-grid-main { grid-template-columns: 1fr; gap: 32px; }
         }
         @media (max-width: 850px) {
             .container { padding: 0 24px; }
+            .sec-padding { padding: 28px 0; }
+            .media-padding { padding: 20px 0; }
             
-            /* スマホ版セクション余白（圧縮版） */
-            .sec-padding { 
-                padding: 28px 0; 
-            }
-            
-            /* スマホ版：完成形としての理想的な75vh高さ、および「トリミング位置（center 10%）」を完全維持 */
+            /* スマホ版ヒーロー設定：完成形（75vh / center 10%）を絶対に維持 */
             .hero-fullscreen {
                 height: 75vh; 
             }
@@ -413,29 +380,34 @@
                 object-position: center 10%; 
             }
             .hero-large-backprint {
-                font-size: 22px;
-                bottom: 20px;
                 display: none;
             }
             .hero-certified-badge { top: 20px; left: 20px; }
             
             .hero-overlay-meta { padding: 0 20px; }
             .hero-name-ja { font-size: 42px; }
-            .hero-name-en { font-size: 20px; }
             .hero-tagline { font-size: 12.5px; }
             
             .sec-title-mini { font-size: 20px; margin-bottom: 16px; }
             .sec-title-mini span { font-size: 16px; }
             
-            .book-card { padding: 24px; }
+            .media-item-card { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ① Hero Section (【修正⑤】PCモニターにおける最高画質の確保・推奨素材サイズを明記) -->
+    <!-- 
+      【PC表示画像品質向上のための推奨仕様】
+      大型4K・Retinaディスプレイでの「粗さ・ボケ」を完全に回避するため、
+      本プレイスホルダー画像「ozawa.jpg」には以下のファイルサイズ・解像度を推奨します。
+      - 推奨解像度: 横幅 3000px 〜 4000px 程度
+      - ファイル形式: WebP (画質維持しつつ軽量化) または 高画質JPEG
+    -->
     <section class="hero-fullscreen">
         <div class="hero-bg-container">
-            <img src="ozawa.jpg" alt="小澤隆生 氏" class="hero-bg-img">
+            <img src="ozawa.jpg" alt="小澤隆生" class="hero-bg-img">
         </div>
         <div class="hero-large-backprint">OZAWA TAKAO</div>
         
@@ -443,10 +415,9 @@
         
         <div class="hero-overlay-content">
             <div class="hero-overlay-meta">
-                <div class="hero-eng-title">Official Brand Portfolio</div>
+                <!-- 【修正①】本人のプロフィール用途として使いやすくするため英語冠を削除、名前と肩書きを最短距離で主役に固定 -->
                 <div class="hero-name-row">
                     <h1 class="hero-name-ja">小澤 隆生</h1>
-                    <span class="hero-name-en">Takao Ozawa</span>
                 </div>
                 <p class="hero-desc-text hero-tagline">
                     連続起業家 / プレイングエンジェル / 元ヤフー代表取締役社長CEO / Boost Capital 代表取締役
@@ -455,6 +426,7 @@
         </div>
     </section>
 
+    <!-- 略歴 (変更禁止) -->
     <section class="sec-padding"><div class="container">
         <h3 class="sec-title-mini">Biography <span>略歴</span></h3>
         <div class="essay-body">
@@ -464,6 +436,7 @@
         </div>
     </div></section>
 
+    <!-- 専門領域 (変更禁止) -->
     <section class="sec-padding"><div class="container">
         <h3 class="sec-title-mini">Expertise <span>専門領域</span></h3>
         <div class="grid-3">
@@ -485,38 +458,48 @@
         </div>
     </div></section>
 
-    <section class="sec-padding"><div class="container">
-        <h3 class="sec-title-mini">Publications <span>著書</span></h3>
-        <div class="books-grid">
-            <div class="book-card">
-                <span class="book-label">Book 01</span>
-                <h4>『凡人の起業論』</h4>
-                <span class="book-meta">日経BP / 単行本</span>
-                <p>「凡人」がいかにして市場で勝利を収め、組織をスケールさせるかを体系化した実戦書。Amazonベストセラー獲得の話題作。</p>
+    <!-- 🚨 【修正②】Media セクション (Publications と Achievements をひとつの拡張構造へ統合) -->
+    <section class="media-padding"><div class="container">
+        <h3 class="sec-title-mini">Media <span>メディア・活動実績</span></h3>
+        
+        <div class="media-grid-main">
+            <!-- 左カラム：BOOKS（書籍・著書） 今後項目が増えてもこの中にcardを縦積みするだけで自動拡張 -->
+            <div class="media-stack">
+                <div class="media-col-title">Publications<span>著書</span></div>
+                
+                <div class="media-item-card">
+                    <span class="media-item-meta">日経BP / 単行本</span>
+                    <h4>『凡人の起業論』</h4>
+                    <p class="media-item-desc">「凡人」がいかにして市場で勝利を収め、組織をスケールさせるかを体系化した実戦書。Amazonベストセラー獲得の話題作。</p>
+                </div>
+                
+                <div class="media-item-card">
+                    <span class="media-item-meta">ダイヤモンド社 / 単行本</span>
+                    <h4>『起業の地図』</h4>
+                    <p class="media-item-desc">起業から事業スケール, M&A売却, および上場に至るまでの各成長フェーズにおける罠と解決アプローチを可視化したロードマップ。</p>
+                </div>
             </div>
-            <div class="book-card">
-                <span class="book-label">Book 02</span>
-                <h4>『起業の地図』</h4>
-                <span class="book-meta">ダイヤモンド社 / 単行本</span>
-                <p>起業から事業スケール, M&A売却, および上場に至るまでの各成長フェーズにおける罠と解決アプローチを可視化したロードマップ。</p>
+
+            <!-- 右カラム：露出・インタビュー・登壇・動画出演（今後の追加もここへ縦積みするだけで完全対応） -->
+            <div class="media-stack">
+                <div class="media-col-title">Press & Keynote<span>掲載・活動実績</span></div>
+                
+                <div class="media-item-card">
+                    <span class="media-item-meta">Interview & Feature</span>
+                    <h4>経済主要メディア掲載</h4>
+                    <p class="media-item-desc">日経ビジネス / NewsPicks / 東洋経済 / PIVOT / ReHacQ 等、主要経済メディアにて、日本のインターネット産業を牽引するフロントランナーとしてインタビュー・特集が多数掲載。</p>
+                </div>
+                
+                <div class="media-item-card">
+                    <span class="media-item-meta">Conferences & Events</span>
+                    <h4>国内最高峰カンファレンス登壇</h4>
+                    <p class="media-item-desc">IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画。</p>
+                </div>
             </div>
         </div>
     </div></section>
 
-    <section class="sec-padding"><div class="container">
-        <h3 class="sec-title-mini">Achievements <span>掲載・活動実績</span></h3>
-        <div class="achievements-grid">
-            <div class="ach-category">
-                <h4>Interview & Feature</h4>
-                <p>日経ビジネス / NewsPicks / 東洋経済 / PIVOT / ReHacQ 等、主要経済メディアにて、日本のインターネット産業を牽引するフロントランナーとしてインタビュー・特集が多数掲載。</p>
-            </div>
-            <div class="ach-category">
-                <h4>Conferences & Events</h4>
-                <p>IVS / ICCサミット / 大学講演 / 業界カンファレンスなど、国内最高峰の経営カンファレンスにてアワード審査員・セッションスピーカーを歴任. 次世代起業家の教育活動にも参画。</p>
-            </div>
-        </div>
-    </section>
-
+    <!-- CTA Area (変更禁止) -->
     <section class="contact-area"><div class="container">
         <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
         <a href="https://docs.google.com/forms/d/e/XXXXXX/viewform" class="cta-btn" target="_blank">

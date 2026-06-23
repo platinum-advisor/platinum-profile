@@ -44,8 +44,6 @@
             width: 100%;
             height: 85vh; /* PC版引きの上半身・胸元構図を完全ホールド */
             overflow: hidden;
-            /* 🚨【修正⑤】Hero と Biography の間の線を削除 */
-            /* border-bottom: 1px solid var(--border); */
         }
 
         .hero-bg-container {
@@ -236,10 +234,10 @@
         }
 
         /* -----------------------------------------
-         * ③ MEDIA & ACTIVITIES SECTION (【完全刷新】Chip形式を廃止し、更新性の高いミニマルなテキスト2カラム構造へ)
+         * ③ MEDIA & ACTIVITIES SECTION (更新性の高いミニマルなテキスト2カラム構造)
          * ----------------------------------------- */
         .sec-title-mini.nowrap span {
-            white-space: nowrap; /* 🚨【修正④】日本語見出しの不自然な改行を防止 */
+            white-space: nowrap; /* 日本語見出しの不自然な改行を防止 */
         }
 
         .media-segment {
@@ -283,14 +281,14 @@
             letter-spacing: 0.02em;
         }
 
-        /* 横並びタグコンテナ（PC環境で右側スペースを最大限活用） */
+        /* 横並びテキストコンテナ（PC環境で右側スペースを最大限活用） */
         .media-chip-pool {
             display: flex;
             flex-wrap: wrap; /* スマホや項目増加時に自然に美しく折り返す */
-            gap: 10px 12px;  /* タグ間の高級感ある微小な間隔調整 */
+            gap: 10px 12px;  
         }
 
-        /* 高級ホテルやハイエンド誌のサインのようなミニマルテキストデザイン（修正①、③） */
+        /* 高級ホテルやハイエンド誌のサインのようなミニマルテキストデザイン */
         .media-signature-text {
             font-family: var(--font-serif);
             font-size: 13.5px;
@@ -390,11 +388,11 @@
             .sec-title-mini { 
                 font-size: 20px; 
                 margin-bottom: 16px; 
-                flex-wrap: nowrap; /* 🚨【修正④】日本語見出しの不自然な改行を防止 */
+                flex-wrap: nowrap; 
             }
             .sec-title-mini span { font-size: 16px; }
 
-            /* スマホ表示時：3カテゴリを縦並びにスタック、テキスト群は美しく自動折り返し（修正②） */
+            /* スマホ表示時：3カテゴリを縦並びにスタック、テキスト群は美しく自動折り返し */
             .media-row-layout {
                 grid-template-columns: 1fr;
                 gap: 12px;
@@ -414,7 +412,7 @@
 </head>
 <body>
 
-    <!-- ① Hero Section (変更禁止：画像解像度の推奨仕様：横幅 3000px 〜 4000px 程度) -->
+    <!-- ① Hero Section (変更禁止) -->
     <section class="hero-fullscreen">
         <div class="hero-bg-container">
             <img src="ozawa.jpg" alt="小澤隆生" class="hero-bg-img">
@@ -441,7 +439,7 @@
         <div class="essay-body">
             <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを創業し楽天へ売却。楽天ではオークション事業や楽天野球団の立ち上げを担う。</p>
             <p>2012年にヤフーへ参画し、Yahoo!ショッピング、金融、トラベル事業を統括。取締役専務執行役員COOを経て、2022年に代表取締役社長CEOに就任。</p>
-            <p>2024年にBoost Capitalを創業。現在は連続起業家・投資家として、スタートアップ投資および成長企業の経営支援を行う。</p>
+            <p>2024年にBoost Capitalを創業. 現在は連続起業家・投資家として、スタートアップ投資および成長企業の経営支援を行う。</p>
         </div>
     </div></section>
 
@@ -467,40 +465,37 @@
         </div>
     </div></section>
 
-    <!-- ④ 🚨 MEDIA & ACTIVITIES SECTION (【完全刷新】Chip形式を廃止し、更新性の高いミニマルなテキスト2カラム構造へ) -->
+    <!-- ④ MEDIA & ACTIVITIES SECTION (【修正①②③】拡張性と網羅性を高めた最終洗練テキスト2カラム構造) -->
     <section class="sec-padding"><div class="container">
-        <!-- 🚨【修正④】日本語見出しの不自然な改行を防止 -->
         <h3 class="sec-title-mini nowrap">Media & Activities <span>メディア・活動実績</span></h3>
         
         <div class="media-segment">
-            <!-- カテゴリ 01：著書 -->
+            <!-- カテゴリ 01：著書（【修正①】出版社名を削除） -->
             <div class="media-row-layout">
                 <div class="media-label-group">
                     <span class="media-label-eng">Publications</span>
                     <div class="media-label-ja">著書</div>
                 </div>
-                <!-- 今後著書が増えた際も、この中に <span></span> を追加するだけで自動で美しく並びます（修正②、③） -->
                 <div class="media-chip-pool">
-                    <span class="media-signature-text">凡人の起業論（日経BP） ／ 起業の地図（ダイヤモンド社）</span>
+                    <span class="media-signature-text">凡人の起業論 ／ 起業の地図</span>
                 </div>
             </div>
 
-            <!-- カテゴリ 02：メディア掲載 -->
+            <!-- カテゴリ 02：メディア掲載・出演（【修正②】包括表記へアップデート） -->
             <div class="media-row-layout">
                 <div class="media-label-group">
-                    <span class="media-label-eng">Media Press</span>
-                    <div class="media-label-ja">メディア掲載</div>
+                    <span class="media-label-eng">Media</span>
+                    <div class="media-label-ja">メディア掲載・出演</div>
                 </div>
-                <!-- 出演メディアの拡充時もここへテキスト行を追加するだけの超高拡張構造（修正②、③） -->
                 <div class="media-chip-pool">
                     <span class="media-signature-text">NewsPicks ／ PIVOT ／ 日経ビジネス ／ 東洋経済 ／ ReHacQ</span>
                 </div>
             </div>
 
-            <!-- カテゴリ 03：登壇・活動実績 -->
+            <!-- カテゴリ 03：登壇・活動実績（【修正③】英語ラベルを拡張性の高いActivitiesへ変更） -->
             <div class="media-row-layout">
                 <div class="media-label-group">
-                    <span class="media-label-eng">Conferences</span>
+                    <span class="media-label-eng">Activities</span>
                     <div class="media-label-ja">登壇・活動実績</div>
                 </div>
                 <div class="media-chip-pool">

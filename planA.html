@@ -143,7 +143,7 @@
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (余白思想・レイアウト・下線デザイン維持)
+         * ② CONTENTS SECTION (変更禁止：基本構造・余白思想のホールド)
          * ----------------------------------------- */
         .container {
             max-width: 1100px; 
@@ -155,7 +155,6 @@
             padding: 40px 0; 
         }
 
-        /* 【修正②】セクションタイトルを日本語のみへ統一、既存のフォント・下線等のスタイルを継承 */
         .sec-title-mini {
             font-family: var(--font-serif);
             font-size: 20px; 
@@ -170,7 +169,7 @@
             font-weight: 700;
         }
 
-        /* Biography (変更禁止) */
+        /* 🚨【修正対象】略歴セクション：デザイン要件を反映 */
         .essay-body {
             font-family: var(--font-serif);
             font-size: 15.5px;
@@ -180,13 +179,24 @@
             margin-left: 0;
             line-height: 1.9;
         }
+        
+        /* 【デザイン要件】現職の視認性を上品に高め、直後の本文へ自然に誘う空間設計 */
+        .essay-current-title {
+            display: block;
+            font-size: 17px; /* 本文より少しだけサイズアップ（+1.5px） */
+            font-weight: 700; /* 太字 */
+            color: var(--main-text); /* メメインテキストの美しい白 */
+            margin-bottom: 16px; /* 下に適度な余白 */
+            letter-spacing: 0.05em;
+        }
+        
         .essay-body p {
             margin-bottom: 14px;
             text-indent: 0.5em;
         }
         .essay-body p:last-child { margin-bottom: 0; }
 
-        /* Expertise (変更禁止) */
+        /* 専門領域 (変更禁止) */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -228,18 +238,18 @@
         }
 
         /* -----------------------------------------
-         * ③ メディア・活動実績 SECTION (【修正①②③】英語を完全排除、シンプルな日本語2カラムレイアウト)
+         * ③ メディア・活動実績 SECTION (変更禁止)
          * ----------------------------------------- */
         .media-segment {
             display: flex;
             flex-direction: column;
-            gap: 28px; /* カテゴリ間の適度なエディトリアル余白 */
+            gap: 28px; 
             margin-top: 10px;
         }
 
         .media-row-layout {
             display: grid;
-            grid-template-columns: 200px 1fr; /* 左：日本語カテゴリ名、右：実績テキスト */
+            grid-template-columns: 200px 1fr; 
             align-items: flex-start;
             gap: 30px;
         }
@@ -249,7 +259,6 @@
             padding-left: 14px;
         }
 
-        /* 日本語見出し（Biography/Expertiseと完全同期） */
         .media-label-ja {
             font-family: var(--font-serif);
             font-size: 14.5px;
@@ -259,18 +268,16 @@
             line-height: 1.4;
         }
 
-        /* 実績を並べるコンテナ */
         .media-chip-pool {
             display: flex;
-            flex-wrap: wrap; /* スマホや項目増加時に自然に折り返し */
+            flex-wrap: wrap; 
             gap: 10px 12px;  
         }
 
-        /* シンプルで上品なテキスト表示（枠線・背景なし） */
         .media-signature-text {
             font-family: var(--font-serif);
             font-size: 13.5px;
-            color: #cbd5e1; /* 高品位なプラチナ・スレート */
+            color: #cbd5e1; 
             background: transparent;
             border: none;
             padding: 0;
@@ -361,7 +368,6 @@
             .hero-name-ja { font-size: 42px; }
             .hero-tagline { font-size: 12.5px; }
             
-            /* セクションタイトル：スマホ表示時も美しく1行で収まるように制御 */
             .sec-title-mini { 
                 font-size: 20px; 
                 margin-bottom: 16px; 
@@ -369,7 +375,6 @@
                 white-space: nowrap;
             }
 
-            /* スマホ表示時：3カテゴリを自然に縦並び（スタック）に変換 */
             .media-row-layout {
                 grid-template-columns: 1fr;
                 gap: 12px;
@@ -410,20 +415,21 @@
         </div>
     </section>
 
-    <!-- ② 略歴 -->
+    <!-- ② 略歴 (【修正】ご指定のエグゼクティブプロフィール文章・現職強調の構造へ完全差し替え) -->
     <section class="sec-padding"><div class="container">
-        <!-- 【修正②】日本語のみに洗練 -->
         <h3 class="sec-title-mini">略歴</h3>
         <div class="essay-body">
-            <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを創業し楽天へ売却。楽天ではオークション事業や楽天野球団の立ち上げを担う。</p>
-            <p>2012年にヤフーへ参画し, Yahoo!ショッピング、金融、トラベル事業を統括。取締役専務執行役員COOを経て、2022年に代表取締役社長CEOに就任。</p>
-            <p>2024年にBoost Capitalを創業。現在は連続起業家・投資家として、スタートアップ投資および成長企業の経営支援を行う。</p>
+            <!-- 【デザイン要件】過度な装飾を排し、本文と同じ世界観のなかで気品高くアピール -->
+            <span class="essay-current-title">Boost Capital 代表取締役</span>
+            
+            <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを設立、楽天へ売却。その後クロコスを創業しヤフーへ売却するなど、起業家としての道を歩む。</p>
+            <p>楽天では楽天野球団の立ち上げ、ヤフーではEC事業の拡大、PayPayの立ち上げ、ZOZO・一休・ASKUL等の大型案件の統括を経て、2022年にヤフー代表取締役社長CEOに就任。</p>
+            <p>2024年にベンチャーキャピタルとPEのハイブリッド機能を持つBoost Capitalを設立。2025年にはAI特化のBoost Consultingを設立。</p>
         </div>
     </div></section>
 
     <!-- ③ 専門領域 -->
     <section class="sec-padding"><div class="container">
-        <!-- 【修正②】日本語のみに洗練 -->
         <h3 class="sec-title-mini">専門領域</h3>
         <div class="grid-3">
             <div class="exp-card">
@@ -444,12 +450,11 @@
         </div>
     </div></section>
 
-    <!-- ④ メディア・活動実績 (【修正①②③】英語表記を完全排除し、美しい日本語のみに統一した2カラムテキストレイアウト) -->
+    <!-- ④ メディア・活動実績 -->
     <section class="sec-padding"><div class="container">
         <h3 class="sec-title-mini">メディア・活動実績</h3>
         
         <div class="media-segment">
-            <!-- カテゴリ 01：著書 -->
             <div class="media-row-layout">
                 <div class="media-label-group">
                     <div class="media-label-ja">著書</div>
@@ -459,7 +464,6 @@
                 </div>
             </div>
 
-            <!-- カテゴリ 02：メディア掲載・出演 -->
             <div class="media-row-layout">
                 <div class="media-label-group">
                     <div class="media-label-ja">メディア掲載・出演</div>
@@ -469,7 +473,6 @@
                 </div>
             </div>
 
-            <!-- カテゴリ 03：登壇・活動実績 -->
             <div class="media-row-layout">
                 <div class="media-label-group">
                     <div class="media-label-ja">登壇・活動実績</div>
@@ -481,7 +484,7 @@
         </div>
     </div></section>
 
-    <!-- ⑤ CTA Area (変更禁止) -->
+    <!-- ⑤ CTA Area -->
     <section class="contact-area"><div class="container">
         <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
         <a href="https://docs.google.com/forms/d/e/XXXXXX/viewform" class="cta-btn" target="_blank">

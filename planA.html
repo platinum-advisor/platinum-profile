@@ -143,7 +143,7 @@
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (PC表示：変更禁止)
+         * ② CONTENTS SECTION (変更禁止)
          * ----------------------------------------- */
         .container {
             max-width: 1100px; 
@@ -194,7 +194,9 @@
         }
         .essay-body p:last-child { margin-bottom: 0; }
 
-        /* 専門領域 */
+        /* -----------------------------------------
+         * ③ 専門領域 SECTION (2カラム・インデックス設計を完全ホールド)
+         * ----------------------------------------- */
         .expertise-grid-2col {
             display: grid;
             grid-template-columns: repeat(2, 1fr); 
@@ -239,7 +241,9 @@
             text-align: justify;
         }
 
-        /* 対応可能業務 / メディア・活動実績 */
+        /* -----------------------------------------
+         * ④ 対応可能業務 SECTION / ⑤ メディア・活動実績 SECTION
+         * ----------------------------------------- */
         .media-segment {
             display: flex;
             flex-direction: column;
@@ -295,7 +299,7 @@
         }
 
         /* -----------------------------------------
-         * ⑤ CTA AREA (変更禁止)
+         * ⑥ CTA AREA (変更禁止)
          * ----------------------------------------- */
         .contact-area {
             text-align: center;
@@ -346,15 +350,11 @@
         }
 
         /* -----------------------------------------
-         * RESPONSIVE (【主要4セクションすべてのスマホ余白思想・リズムを15〜20%圧縮で完全同期】)
+         * RESPONSIVE (スマホ表示：変更禁止)
          * ----------------------------------------- */
         @media (max-width: 850px) {
             .container { padding: 0 24px; }
-            
-            /* 🚨【主要全セクション同期】上下のセクションパディングを「40px」から「24px」へ、一律で約20%引き締め最適化 */
-            .sec-padding { 
-                padding: 24px 0; 
-            }
+            .sec-padding { padding: 24px 0; }
             
             /* スマホ版ヒーロー設定：完成形（75vh / center 10%）を絶対に維持 */
             .hero-fullscreen {
@@ -373,7 +373,6 @@
             .hero-name-ja { font-size: 42px; }
             .hero-tagline { font-size: 12.5px; }
             
-            /* 🚨【主要全セクション同期】タイトルと本文の間隔を「24px」から「14px」へ一律圧縮し、縦長感をカット */
             .sec-title-mini { 
                 font-size: 20px; 
                 margin-bottom: 14px; 
@@ -381,19 +380,18 @@
                 white-space: nowrap;
             }
 
-            /* 🚨【主要全セクション同期】略歴セクション：現職肩書きの下マージン、および本文行間を最適にチューニング */
             .essay-current-title {
                 margin-bottom: 10px;
             }
             .essay-body {
                 font-size: 14px;
-                line-height: 1.55; /* 可読性を担保した最高値に凝縮 */
+                line-height: 1.55; 
             }
             .essay-body p {
                 margin-bottom: 10px;
             }
 
-            /* 専門領域セクション（前回の最適化バランスをホールド） */
+            /* 専門領域セクション（1カラム化・余白同期のホールド） */
             .expertise-grid-2col {
                 grid-template-columns: 1fr; 
                 gap: 12px 0; 
@@ -408,30 +406,30 @@
                 line-height: 1.45; 
             }
 
-            /* 🚨【主要全セクション同期】対応可能業務 / 実績スレート：各項目間の余白と、折り返し・縦積みリズムをスマートに連動 */
+            /* 対応可能業務 / 実績スレート */
             .media-row-layout {
                 grid-template-columns: 1fr;
-                gap: 10px; /* 12pxから10pxへ圧縮 */
+                gap: 10px;
             }
             .media-row-layout.no-label {
                 grid-template-columns: 1fr;
                 gap: 0;
             }
             .media-label-group {
-                padding-left: 10px; /* 専門領域の10pxと調和 */
+                padding-left: 10px; 
             }
             .media-label-ja {
                 font-size: 13.5px;
             }
             .media-segment {
-                gap: 18px; /* カテゴリ間の隙間を22pxから18pxへ15%凝縮 */
+                gap: 18px; 
             }
             .media-chip-pool {
                 gap: 6px 10px;
             }
             .media-signature-text {
                 font-size: 12.5px;
-                line-height: 1.5; /* 行間を1.8から1.5へスリム化 */
+                line-height: 1.5; 
                 padding: 0;
             }
         }
@@ -550,7 +548,7 @@
         <div class="media-segment">
             <div class="media-row-layout no-label">
                 <div class="media-chip-pool">
-                    <span class="media-signature-text">社外取締役 ／ 顧問・経営アドバイザー ／ 経営戦略 ／ 新規事業立ち上げ ／ 事業グロース ／ M&A・事業提携 ／ スタートアップ投資 ／ 講演・イベント登壇 ／ 経営合宿参加</span>
+                    <span class="media-signature-text">社外取締役 ／ 顧問・経営アドバイザー ／ 講演・イベント登壇 ／ 経営合宿参加</span>
                 </div>
             </div>
         </div>

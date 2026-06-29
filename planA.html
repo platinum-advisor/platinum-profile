@@ -92,7 +92,7 @@
             padding-bottom: 8vh;
         }
 
-        /* 【バッジ】Noto Sans JP（--font-sans）を格調高く、かつ主張しすぎないようにリファイン */
+        /* 【バッジ】Noto Sans JP（--font-sans）を格調高くリファイン */
         .hero-certified-badge {
             position: absolute;
             top: 40px;
@@ -167,9 +167,10 @@
             align-items: baseline;
             gap: 15px;
             font-weight: 700;
+            white-space: nowrap;
         }
 
-        /* 🚨【修正対象】略歴セクション：デザイン要件を反映 */
+        /* 略歴 (変更禁止) */
         .essay-body {
             font-family: var(--font-serif);
             font-size: 15.5px;
@@ -179,77 +180,82 @@
             margin-left: 0;
             line-height: 1.9;
         }
-        
-        /* 【デザイン要件】現職の視認性を上品に高め、直後の本文へ自然に誘う空間設計 */
         .essay-current-title {
             display: block;
-            font-size: 17px; /* 本文より少しだけサイズアップ（+1.5px） */
-            font-weight: 700; /* 太字 */
-            color: var(--main-text); /* メメインテキストの美しい白 */
-            margin-bottom: 16px; /* 下に適度な余白 */
+            font-size: 17px; 
+            font-weight: 700; 
+            color: var(--main-text); 
+            margin-bottom: 16px; 
             letter-spacing: 0.05em;
         }
-        
         .essay-body p {
             margin-bottom: 14px;
             text-indent: 0.5em;
         }
         .essay-body p:last-child { margin-bottom: 0; }
 
-        /* 専門領域 (変更禁止) */
-        .grid-3 {
+        /* -----------------------------------------
+         * 🚨 ③ 専門領域 SECTION (【UI変更①】PC版2カラム、縦スクロールを抑える設計。HTML追加のみで無制限に拡張可能)
+         * ----------------------------------------- */
+        .expertise-grid-2col {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 35px;
+            grid-template-columns: repeat(2, 1fr); /* PC環境：左右5件ずつ程度並ぶ美しい2カラム */
+            gap: 20px 40px; /* 高さをグッと抑えるコンパクトな上下余白設計 */
         }
-        .exp-card {
-            border-left: 1px solid var(--border);
-            padding-left: 20px;
+        
+        .expertise-item {
+            display: grid;
+            grid-template-columns: 45px 1fr; /* ナンバリングと本文テキストの完璧な対比 */
+            align-items: flex-start;
+            border-left: 2px solid var(--accent); /* 美しい左側のアクセントラインを完全に継承 */
+            padding: 2px 0 2px 12px;
             transition: var(--transition);
-            position: relative;
         }
-        .exp-card:hover { 
-            border-left-color: var(--accent); 
+        
+        .expertise-item:hover {
+            border-left-color: #fff;
         }
-        .exp-num {
+
+        /* 01〜 連番アクセント（現在の高品位なデザインを踏襲） */
+        .expertise-num {
             font-family: var(--font-eng);
-            color: rgba(107, 143, 168, 0.4); 
-            font-size: 38px; 
-            line-height: 1;
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 400;
-            letter-spacing: -0.02em;
-        }
-        .exp-card h4 {
-            font-family: var(--font-serif);
-            font-size: 16px;
-            color: #fff;
-            margin-bottom: 8px;
+            color: rgba(107, 143, 168, 0.5);
+            font-size: 18px;
             font-weight: 700;
-            letter-spacing: 0.03em;
+            line-height: 1.2;
         }
-        .exp-card p {
+
+        .expertise-content-block h4 {
             font-family: var(--font-serif);
-            font-size: 13px;
+            font-size: 15px;
+            color: #fff;
+            margin-bottom: 4px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .expertise-content-block p {
+            font-family: var(--font-serif);
+            font-size: 12.5px;
             color: var(--sub-text);
-            line-height: 1.7;
+            line-height: 1.6;
             text-align: justify;
         }
 
         /* -----------------------------------------
-         * ③ メディア・活動実績 SECTION (変更禁止)
+         * 🚨 ④ 可能業務 SECTION / ⑤ メディア・活動実績 SECTION
+         * （更新性が高く、枠のない洗練された横並びテキストスレート形式を流用・同期）
          * ----------------------------------------- */
         .media-segment {
             display: flex;
             flex-direction: column;
-            gap: 28px; 
+            gap: 24px; 
             margin-top: 10px;
         }
 
         .media-row-layout {
             display: grid;
-            grid-template-columns: 200px 1fr; 
+            grid-template-columns: 200px 1fr; /* 左カラム：カテゴリ名、右カラム：テキストスレート */
             align-items: flex-start;
             gap: 30px;
         }
@@ -270,14 +276,15 @@
 
         .media-chip-pool {
             display: flex;
-            flex-wrap: wrap; 
+            flex-wrap: wrap; /* PC・スマホ双方で自然に美しく折り返す自動設計 */
             gap: 10px 12px;  
         }
 
+        /* 高級ホテルやハイエンド誌のサインのようなミニマルテキストデザイン（枠線・背景なし） */
         .media-signature-text {
             font-family: var(--font-serif);
             font-size: 13.5px;
-            color: #cbd5e1; 
+            color: #cbd5e1; /* 馴染みつつもしっかり読める高品位スレート */
             background: transparent;
             border: none;
             padding: 0;
@@ -291,7 +298,7 @@
         }
 
         /* -----------------------------------------
-         * ④ CTA AREA (変更禁止)
+         * ⑥ CTA AREA (変更禁止)
          * ----------------------------------------- */
         .contact-area {
             text-align: center;
@@ -342,11 +349,8 @@
         }
 
         /* -----------------------------------------
-         * RESPONSIVE (【変更禁止】スマホ版の表示設定 75vh / center 10% を完全ホールド)
+         * RESPONSIVE (【変更禁止】スマホ表示設定 75vh / center 10% を完全ホールド)
          * ----------------------------------------- */
-        @media (max-width: 1024px) {
-            .grid-3 { grid-template-columns: 1fr; gap: 28px; }
-        }
         @media (max-width: 850px) {
             .container { padding: 0 24px; }
             .sec-padding { padding: 28px 0; }
@@ -375,6 +379,16 @@
                 white-space: nowrap;
             }
 
+            /* 【修正①要件】スマホ環境では「1カラム表示」へ変更し、徹底的な読みやすさを最優先 */
+            .expertise-grid-2col {
+                grid-template-columns: 1fr; 
+                gap: 20px 0;
+            }
+            .expertise-item {
+                padding-left: 12px;
+            }
+
+            /* 可能業務・実績スレート：スマホ環境における自然な縦積み変換 */
             .media-row-layout {
                 grid-template-columns: 1fr;
                 gap: 12px;
@@ -394,7 +408,6 @@
 </head>
 <body>
 
-    <!-- ① Hero Section (画像解像度の推奨仕様：横幅 3000px 〜 4000px 程度) -->
     <section class="hero-fullscreen">
         <div class="hero-bg-container">
             <img src="ozawa.jpg" alt="小澤隆生" class="hero-bg-img">
@@ -415,42 +428,106 @@
         </div>
     </section>
 
-    <!-- ② 略歴 (【修正】ご指定のエグゼクティブプロフィール文章・現職強調の構造へ完全差し替え) -->
     <section class="sec-padding"><div class="container">
         <h3 class="sec-title-mini">略歴</h3>
         <div class="essay-body">
-            <!-- 【デザイン要件】過度な装飾を排し、本文と同じ世界観のなかで気品高くアピール -->
             <span class="essay-current-title">Boost Capital 代表取締役</span>
-            
             <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを設立、楽天へ売却。その後クロコスを創業しヤフーへ売却するなど、起業家としての道を歩む。</p>
             <p>楽天では楽天野球団の立ち上げ、ヤフーではEC事業の拡大、PayPayの立ち上げ、ZOZO・一休・ASKUL等の大型案件の統括を経て、2022年にヤフー代表取締役社長CEOに就任。</p>
             <p>2024年にベンチャーキャピタルとPEのハイブリッド機能を持つBoost Capitalを設立。2025年にはAI特化のBoost Consultingを設立。</p>
         </div>
     </div></section>
 
-    <!-- ③ 専門領域 -->
     <section class="sec-padding"><div class="container">
         <h3 class="sec-title-mini">専門領域</h3>
-        <div class="grid-3">
-            <div class="exp-card">
-                <span class="exp-num">01</span>
-                <h4>新規事業開発</h4>
-                <p>巨大市場への参入戦略、0→1の垂直立ち上げ、上場企業における新規経済圏の構造設計を強みとします。</p>
+        <div class="expertise-grid-2col">
+            <div class="expertise-item">
+                <div class="expertise-num">01</div>
+                <div class="expertise-content-block">
+                    <h4>新規事業開発</h4>
+                    <p>市場分析から事業立ち上げ、事業化まで一貫して支援。</p>
+                </div>
             </div>
-            <div class="exp-card">
-                <span class="exp-num">02</span>
-                <h4>事業グロース</h4>
-                <p>数千万〜数億ユーザー規模のプラットフォーム、および数兆円規模の経済圏における爆発的成長支援. 実戦的なマーケティングや組織変革を含む支援。</p>
+            <div class="expertise-item">
+                <div class="expertise-num">02</div>
+                <div class="expertise-content-block">
+                    <h4>事業グロース</h4>
+                    <p>大規模サービスの成長戦略、マーケティング、組織拡大を実践ベースで支援。</p>
+                </div>
             </div>
-            <div class="exp-card">
-                <span class="exp-num">03</span>
-                <h4>M&A・事業買収</h4>
-                <p>買い手・売り手両面の豊富な実戦経験に基づき、PMIまで含めた高精度なアライアンスおよび事業再設計支援。</p>
+            <div class="expertise-item">
+                <div class="expertise-num">03</div>
+                <div class="expertise-content-block">
+                    <h4>EC・プラットフォーム戦略</h4>
+                    <p>EC・マーケットプレイス・プラットフォーム事業の成長戦略を支援。</p>
+                </div>
+            </div>
+            <div class="expertise-item">
+                <div class="expertise-num">04</div>
+                <div class="expertise-content-block">
+                    <h4>DX・AI活用</h4>
+                    <p>AI・DXを活用した新規事業や既存事業の変革を支援。</p>
+                </div>
+            </div>
+            <div class="expertise-item">
+                <div class="expertise-num">05</div>
+                <div class="expertise-content-block">
+                    <h4>M&A・PMI</h4>
+                    <p>買収戦略からPMIまで実務経験を踏まえて支援。</p>
+                </div>
+            </div>
+            <div class="expertise-item">
+                <div class="expertise-num">06</div>
+                <div class="expertise-content-block">
+                    <h4>スタートアップ経営</h4>
+                    <p>創業・資金調達・事業成長・EXITまで幅広く対応。</p>
+                </div>
+            </div>
+            <div class="expertise-item">
+                <div class="expertise-num">07</div>
+                <div class="expertise-content-block">
+                    <h4>投資・VC</h4>
+                    <p>スタートアップ投資、事業評価、投資判断を支援。</p>
+                </div>
+            </div>
+            <div class="expertise-item">
+                <div class="expertise-num">08</div>
+                <div class="expertise-content-block">
+                    <h4>経営戦略</h4>
+                    <p>経営戦略・中長期戦略・事業ポートフォリオ設計を支援。</p>
+                </div>
+            </div>
+            <div class="expertise-item">
+                <div class="expertise-num">09</div>
+                <div class="expertise-content-block">
+                    <h4>アライアンス</h4>
+                    <p>企業提携・資本提携・業務提携の推進を支援。</p>
+                </div>
+            </div>
+            <div class="expertise-item">
+                <div class="expertise-num">10</div>
+                <div class="expertise-content-block">
+                    <h4>経営・組織改革</h4>
+                    <p>経営体制・組織づくり・経営チーム構築を支援。</p>
+                </div>
+            </div>
+            </div>
+    </div></section>
+
+    <section class="sec-padding"><div class="container">
+        <h3 class="sec-title-mini">可能業務</h3>
+        <div class="media-segment">
+            <div class="media-row-layout">
+                <div class="media-label-group">
+                    <div class="media-label-ja">可能業務</div>
+                </div>
+                <div class="media-chip-pool">
+                    <span class="media-signature-text">社外取締役 ／ 顧問・経営アドバイザー ／ 新規事業アドバイザー ／ 事業戦略レビュー ／ 経営ディスカッション ／ M&A戦略 ／ 資本政策 ／ IPO ／ 講演 ／ イベント登壇 ／ 経営合宿参加</span>
+                </div>
             </div>
         </div>
     </div></section>
 
-    <!-- ④ メディア・活動実績 -->
     <section class="sec-padding"><div class="container">
         <h3 class="sec-title-mini">メディア・活動実績</h3>
         
@@ -484,7 +561,6 @@
         </div>
     </div></section>
 
-    <!-- ⑤ CTA Area -->
     <section class="contact-area"><div class="container">
         <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
         <a href="https://docs.google.com/forms/d/e/XXXXXX/viewform" class="cta-btn" target="_blank">

@@ -242,7 +242,7 @@
         }
 
         /* -----------------------------------------
-         * ④ 可能業務 SECTION / ⑤ メディア・活動実績 SECTION (変更禁止：構造・レイアウト思想を完全踏襲)
+         * ④ 対応可能業務 SECTION / ⑤ メディア・活動実績 SECTION
          * ----------------------------------------- */
         .media-segment {
             display: flex;
@@ -256,6 +256,11 @@
             grid-template-columns: 200px 1fr; /* 左カラム：カテゴリ名、右カラム：テキストスレート */
             align-items: flex-start;
             gap: 30px;
+        }
+
+        /* 【修正②要件】小項目無しのシンプルなテキストスレート用配置 */
+        .media-row-layout.no-label {
+            grid-template-columns: 1fr;
         }
 
         .media-label-group {
@@ -278,7 +283,7 @@
             gap: 10px 12px;  
         }
 
-        /* 高級ホテルやハイエンド誌のサインのようなミニマルテキストデザイン（ホバーアニメーションもそのまま維持） */
+        /* 高級ホテルやハイエンド誌のサインのようなミニマルテキストデザイン */
         .media-signature-text {
             font-family: var(--font-serif);
             font-size: 13.5px;
@@ -389,6 +394,10 @@
             .media-row-layout {
                 grid-template-columns: 1fr;
                 gap: 12px;
+            }
+            .media-row-layout.no-label {
+                grid-template-columns: 1fr;
+                gap: 0;
             }
             .media-segment {
                 gap: 22px;
@@ -512,18 +521,15 @@
     </div></section>
 
     <section class="sec-padding"><div class="container">
-        <h3 class="sec-title-mini">可能業務</h3>
+        <h3 class="sec-title-mini">対応可能業務</h3>
         <div class="media-segment">
-            <div class="media-row-layout">
-                <div class="media-label-group">
-                    <div class="media-label-ja">可能業務</div>
-                </div>
+            <div class="media-row-layout no-label">
                 <div class="media-chip-pool">
-                    <span class="media-signature-text">社外取締役 ／ 顧問・経営アドバイザー ／ 経営戦略 ／ 新規事業立ち上げ ／ 事業グロース ／ M&A・事業提携 ／ スタートアップ投資 ／ 講演·イベント登壇 ／ 経営合宿参加</span>
+                    <span class="media-signature-text">社外取締役 ／ 顧問・経営アドバイザー ／ 経営戦略 ／ 新規事業立ち上げ ／ 事業グロース ／ M&A・事業提携 ／ スタートアップ投資 ／ 講演・イベント登壇 ／ 経営合宿参加</span>
                 </div>
             </div>
         </div>
-    </div></section>
+    </section>
 
     <section class="sec-padding"><div class="container">
         <h3 class="sec-title-mini">メディア・活動実績</h3>

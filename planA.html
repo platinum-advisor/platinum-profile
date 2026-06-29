@@ -143,7 +143,7 @@
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (変更禁止)
+         * ② CONTENTS SECTION (PC表示：変更禁止)
          * ----------------------------------------- */
         .container {
             max-width: 1100px; 
@@ -195,7 +195,7 @@
         .essay-body p:last-child { margin-bottom: 0; }
 
         /* -----------------------------------------
-         * ③ 専門領域 SECTION (変更禁止：PC2カラム／スマホ1カラム自動スタック設計)
+         * ③ 専門領域 SECTION (PC表示：変更禁止。左右5件の美しい高拡張レイアウト)
          * ----------------------------------------- */
         .expertise-grid-2col {
             display: grid;
@@ -224,7 +224,7 @@
             line-height: 1.2;
         }
 
-        .expertise-content-block h4 {
+        .expertise-title {
             font-family: var(--font-serif);
             font-size: 15px;
             color: #fff;
@@ -233,7 +233,7 @@
             letter-spacing: 0.02em;
         }
 
-        .expertise-content-block p {
+        .expertise-desc {
             font-family: var(--font-serif);
             font-size: 12.5px;
             color: var(--sub-text);
@@ -242,7 +242,7 @@
         }
 
         /* -----------------------------------------
-         * ④ 対応可能業務 SECTION / ⑤ メディア・活動実績 SECTION
+         * ④ 対応可能業務 SECTION / ⑤ メディア・活動実績 SECTION (PC表示：変更禁止)
          * ----------------------------------------- */
         .media-segment {
             display: flex;
@@ -253,12 +253,11 @@
 
         .media-row-layout {
             display: grid;
-            grid-template-columns: 200px 1fr; /* 左カラム：カテゴリ名、右カラム：テキストスレート */
+            grid-template-columns: 200px 1fr; 
             align-items: flex-start;
             gap: 30px;
         }
 
-        /* 【修正②要件】小項目無しのシンプルなテキストスレート用配置 */
         .media-row-layout.no-label {
             grid-template-columns: 1fr;
         }
@@ -279,11 +278,10 @@
 
         .media-chip-pool {
             display: flex;
-            flex-wrap: wrap; /* 横並び＋自動折り返し表示を完全維持 */
+            flex-wrap: wrap; 
             gap: 10px 12px;  
         }
 
-        /* 高級ホテルやハイエンド誌のサインのようなミニマルテキストデザイン */
         .media-signature-text {
             font-family: var(--font-serif);
             font-size: 13.5px;
@@ -352,7 +350,7 @@
         }
 
         /* -----------------------------------------
-         * RESPONSIVE (【変更禁止】スマホ表示設定 75vh / center 10% を完全ホールド)
+         * RESPONSIVE (【スマホ表示のみ調整】可読性を完全維持したままスクロール量を15〜20%削減)
          * ----------------------------------------- */
         @media (max-width: 850px) {
             .container { padding: 0 24px; }
@@ -382,15 +380,22 @@
                 white-space: nowrap;
             }
 
+            /* 🚨【スマホ調整】カード自体の上下の詰まり感（gap・padding）と行間・文字間を極限までチューニング */
             .expertise-grid-2col {
-                grid-template-columns: 1fr; 
-                gap: 20px 0;
+                grid-template-columns: 1fr; /* 1カラム表示のホールド */
+                gap: 12px 0; /* カード同士の間隔を20pxから12pxへ最適化 */
             }
             .expertise-item {
-                padding-left: 12px;
+                padding: 0 0 0 10px; /* 上下paddingを排除し、左余白を12pxから10pxへ微細引き締め */
+            }
+            .expertise-title {
+                margin-bottom: 2px; /* タイトルと説明文の隙間を4pxから2pxへわずかに凝縮 */
+            }
+            .expertise-desc {
+                line-height: 1.45; /* 本文の行間（line-height）を1.6から1.45へスタイリッシュに圧縮 */
             }
 
-            /* スマホ環境における自然な縦積み変換・自動折り返し */
+            /* 各コンテンツのスマートフォン縦積みレイアウト */
             .media-row-layout {
                 grid-template-columns: 1fr;
                 gap: 12px;
@@ -450,71 +455,71 @@
             <div class="expertise-item">
                 <div class="expertise-num">01</div>
                 <div class="expertise-content-block">
-                    <h4>新規事業開発</h4>
-                    <p>市場分析から事業立ち上げ、事業化まで一貫して支援。</p>
+                    <h4 class="expertise-title">新規事業開発</h4>
+                    <p class="expertise-desc">市場分析から事業立ち上げ、事業化まで一貫して支援。</p>
                 </div>
             </div>
             <div class="expertise-item">
                 <div class="expertise-num">02</div>
                 <div class="expertise-content-block">
-                    <h4>事業グロース</h4>
-                    <p>大規模サービスの成長戦略、マーケティング、組織拡大を実践ベースで支援。</p>
+                    <h4 class="expertise-title">事業グロース</h4>
+                    <p class="expertise-desc">大規模サービスの成長戦略、マーケティング、組織拡大を実践ベースで支援。</p>
                 </div>
             </div>
             <div class="expertise-item">
                 <div class="expertise-num">03</div>
                 <div class="expertise-content-block">
-                    <h4>EC・プラットフォーム戦略</h4>
-                    <p>EC・マーケットプレイス・プラットフォーム事業の成長戦略を支援。</p>
+                    <h4 class="expertise-title">EC・プラットフォーム戦略</h4>
+                    <p class="expertise-desc">EC・マーケットプレイス・プラットフォーム事業の成長戦略を支援。</p>
                 </div>
             </div>
             <div class="expertise-item">
                 <div class="expertise-num">04</div>
                 <div class="expertise-content-block">
-                    <h4>DX・AI活用</h4>
-                    <p>AI・DXを活用した新規事業や既存事業の変革を支援。</p>
+                    <h4 class="expertise-title">DX・AI活用</h4>
+                    <p class="expertise-desc">AI・DXを活用した新規事業や既存事業の変革を支援。</p>
                 </div>
             </div>
             <div class="expertise-item">
                 <div class="expertise-num">05</div>
                 <div class="expertise-content-block">
-                    <h4>M&A・PMI</h4>
-                    <p>買収戦略からPMIまで実務経験を踏まえて支援。</p>
+                    <h4 class="expertise-title">M&A・PMI</h4>
+                    <p class="expertise-desc">買収戦略からPMIまで実務経験を踏まえて支援。</p>
                 </div>
             </div>
             <div class="expertise-item">
                 <div class="expertise-num">06</div>
                 <div class="expertise-content-block">
-                    <h4>スタートアップ経営</h4>
-                    <p>創業・資金調達・事業成長・EXITまで幅広く対応。</p>
+                    <h4 class="expertise-title">スタートアップ経営</h4>
+                    <p class="expertise-desc">創業・資金調達・事業成長・EXITまで幅広く対応。</p>
                 </div>
             </div>
             <div class="expertise-item">
                 <div class="expertise-num">07</div>
                 <div class="expertise-content-block">
-                    <h4>投資・VC</h4>
-                    <p>スタートアップ投資、事業評価、投資判断を支援。</p>
+                    <h4 class="expertise-title">投資・VC</h4>
+                    <p class="expertise-desc">スタートアップ投資、事業評価、投資判断を支援。</p>
                 </div>
             </div>
             <div class="expertise-item">
                 <div class="expertise-num">08</div>
                 <div class="expertise-content-block">
-                    <h4>経営戦略</h4>
-                    <p>経営戦略・中長期戦略・事業ポートフォリオ設計を支援。</p>
+                    <h4 class="expertise-title">経営戦略</h4>
+                    <p class="expertise-desc">経営戦略・中長期戦略・事業ポートフォリオ設計を支援。</p>
                 </div>
             </div>
             <div class="expertise-item">
                 <div class="expertise-num">09</div>
                 <div class="expertise-content-block">
-                    <h4>アライアンス</h4>
-                    <p>企業提携・資本提携・業務提携の推進を支援。</p>
+                    <h4 class="expertise-title">アライアンス</h4>
+                    <p class="expertise-desc">企業提携・資本提携・業務提携の推進を支援。</p>
                 </div>
             </div>
             <div class="expertise-item">
                 <div class="expertise-num">10</div>
                 <div class="expertise-content-block">
-                    <h4>経営・組織改革</h4>
-                    <p>経営体制・組織づくり・経営チーム構築を支援。</p>
+                    <h4 class="expertise-title">経営・組織改革</h4>
+                    <p class="expertise-desc">経営体制・組織づくり・経営チーム構築を支援。</p>
                 </div>
             </div>
         </div>

@@ -143,7 +143,7 @@
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (変更禁止：基本構造・余白思想のホールド)
+         * ② CONTENTS SECTION (変更禁止)
          * ----------------------------------------- */
         .container {
             max-width: 1100px; 
@@ -195,19 +195,19 @@
         .essay-body p:last-child { margin-bottom: 0; }
 
         /* -----------------------------------------
-         * 🚨 ③ 専門領域 SECTION (【UI変更①】PC版2カラム、縦スクロールを抑える設計。HTML追加のみで無制限に拡張可能)
+         * ③ 専門領域 SECTION (変更禁止：PC2カラム／スマホ1カラム自動スタック設計)
          * ----------------------------------------- */
         .expertise-grid-2col {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* PC環境：左右5件ずつ程度並ぶ美しい2カラム */
-            gap: 20px 40px; /* 高さをグッと抑えるコンパクトな上下余白設計 */
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px 30px; 
         }
         
         .expertise-item {
             display: grid;
-            grid-template-columns: 45px 1fr; /* ナンバリングと本文テキストの完璧な対比 */
+            grid-template-columns: 45px 1fr; 
             align-items: flex-start;
-            border-left: 2px solid var(--accent); /* 美しい左側のアクセントラインを完全に継承 */
+            border-left: 2px solid var(--accent); 
             padding: 2px 0 2px 12px;
             transition: var(--transition);
         }
@@ -216,7 +216,6 @@
             border-left-color: #fff;
         }
 
-        /* 01〜 連番アクセント（現在の高品位なデザインを踏襲） */
         .expertise-num {
             font-family: var(--font-eng);
             color: rgba(107, 143, 168, 0.5);
@@ -243,8 +242,7 @@
         }
 
         /* -----------------------------------------
-         * 🚨 ④ 可能業務 SECTION / ⑤ メディア・活動実績 SECTION
-         * （更新性が高く、枠のない洗練された横並びテキストスレート形式を流用・同期）
+         * ④ 可能業務 SECTION / ⑤ メディア・活動実績 SECTION (変更禁止：構造・レイアウト思想を完全踏襲)
          * ----------------------------------------- */
         .media-segment {
             display: flex;
@@ -276,15 +274,15 @@
 
         .media-chip-pool {
             display: flex;
-            flex-wrap: wrap; /* PC・スマホ双方で自然に美しく折り返す自動設計 */
+            flex-wrap: wrap; /* 横並び＋自動折り返し表示を完全維持 */
             gap: 10px 12px;  
         }
 
-        /* 高級ホテルやハイエンド誌のサインのようなミニマルテキストデザイン（枠線・背景なし） */
+        /* 高級ホテルやハイエンド誌のサインのようなミニマルテキストデザイン（ホバーアニメーションもそのまま維持） */
         .media-signature-text {
             font-family: var(--font-serif);
             font-size: 13.5px;
-            color: #cbd5e1; /* 馴染みつつもしっかり読める高品位スレート */
+            color: #cbd5e1; 
             background: transparent;
             border: none;
             padding: 0;
@@ -379,7 +377,6 @@
                 white-space: nowrap;
             }
 
-            /* 【修正①要件】スマホ環境では「1カラム表示」へ変更し、徹底的な読みやすさを最優先 */
             .expertise-grid-2col {
                 grid-template-columns: 1fr; 
                 gap: 20px 0;
@@ -388,7 +385,7 @@
                 padding-left: 12px;
             }
 
-            /* 可能業務・実績スレート：スマホ環境における自然な縦積み変換 */
+            /* スマホ環境における自然な縦積み変換・自動折り返し */
             .media-row-layout {
                 grid-template-columns: 1fr;
                 gap: 12px;
@@ -511,7 +508,7 @@
                     <p>経営体制・組織づくり・経営チーム構築を支援。</p>
                 </div>
             </div>
-            </div>
+        </div>
     </div></section>
 
     <section class="sec-padding"><div class="container">
@@ -522,7 +519,7 @@
                     <div class="media-label-ja">可能業務</div>
                 </div>
                 <div class="media-chip-pool">
-                    <span class="media-signature-text">社外取締役 ／ 顧問・経営アドバイザー ／ 新規事業アドバイザー ／ 事業戦略レビュー ／ 経営ディスカッション ／ M&A戦略 ／ 資本政策 ／ IPO ／ 講演 ／ イベント登壇 ／ 経営合宿参加</span>
+                    <span class="media-signature-text">社外取締役 ／ 顧問・経営アドバイザー ／ 経営戦略 ／ 新規事業立ち上げ ／ 事業グロース ／ M&A・事業提携 ／ スタートアップ投資 ／ 講演·イベント登壇 ／ 経営合宿参加</span>
                 </div>
             </div>
         </div>

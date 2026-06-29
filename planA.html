@@ -170,7 +170,7 @@
             white-space: nowrap;
         }
 
-        /* 略歴 (変更禁止) */
+        /* 略歴 */
         .essay-body {
             font-family: var(--font-serif);
             font-size: 15.5px;
@@ -194,9 +194,7 @@
         }
         .essay-body p:last-child { margin-bottom: 0; }
 
-        /* -----------------------------------------
-         * ③ 専門領域 SECTION (PC表示：変更禁止。左右5件の美しい高拡張レイアウト)
-         * ----------------------------------------- */
+        /* 専門領域 */
         .expertise-grid-2col {
             display: grid;
             grid-template-columns: repeat(2, 1fr); 
@@ -241,9 +239,7 @@
             text-align: justify;
         }
 
-        /* -----------------------------------------
-         * ④ 対応可能業務 SECTION / ⑤ メディア・活動実績 SECTION (PC表示：変更禁止)
-         * ----------------------------------------- */
+        /* 対応可能業務 / メディア・活動実績 */
         .media-segment {
             display: flex;
             flex-direction: column;
@@ -253,7 +249,7 @@
 
         .media-row-layout {
             display: grid;
-            grid-template-columns: 200px 1fr; 
+            grid-template-columns: 200px 1fr; /* 左カラム：カテゴリ名、右カラム：テキストスレート */
             align-items: flex-start;
             gap: 30px;
         }
@@ -299,7 +295,7 @@
         }
 
         /* -----------------------------------------
-         * ⑥ CTA AREA (変更禁止)
+         * ⑤ CTA AREA (変更禁止)
          * ----------------------------------------- */
         .contact-area {
             text-align: center;
@@ -350,11 +346,15 @@
         }
 
         /* -----------------------------------------
-         * RESPONSIVE (【スマホ表示のみ調整】可読性を完全維持したままスクロール量を15〜20%削減)
+         * RESPONSIVE (【主要4セクションすべてのスマホ余白思想・リズムを15〜20%圧縮で完全同期】)
          * ----------------------------------------- */
         @media (max-width: 850px) {
             .container { padding: 0 24px; }
-            .sec-padding { padding: 28px 0; }
+            
+            /* 🚨【主要全セクション同期】上下のセクションパディングを「40px」から「24px」へ、一律で約20%引き締め最適化 */
+            .sec-padding { 
+                padding: 24px 0; 
+            }
             
             /* スマホ版ヒーロー設定：完成形（75vh / center 10%）を絶対に維持 */
             .hero-fullscreen {
@@ -373,45 +373,65 @@
             .hero-name-ja { font-size: 42px; }
             .hero-tagline { font-size: 12.5px; }
             
+            /* 🚨【主要全セクション同期】タイトルと本文の間隔を「24px」から「14px」へ一律圧縮し、縦長感をカット */
             .sec-title-mini { 
                 font-size: 20px; 
-                margin-bottom: 16px; 
+                margin-bottom: 14px; 
                 flex-wrap: nowrap; 
                 white-space: nowrap;
             }
 
-            /* 🚨【スマホ調整】カード自体の上下の詰まり感（gap・padding）と行間・文字間を極限までチューニング */
-            .expertise-grid-2col {
-                grid-template-columns: 1fr; /* 1カラム表示のホールド */
-                gap: 12px 0; /* カード同士の間隔を20pxから12pxへ最適化 */
+            /* 🚨【主要全セクション同期】略歴セクション：現職肩書きの下マージン、および本文行間を最適にチューニング */
+            .essay-current-title {
+                margin-bottom: 10px;
             }
-            .expertise-item {
-                padding: 0 0 0 10px; /* 上下paddingを排除し、左余白を12pxから10pxへ微細引き締め */
+            .essay-body {
+                font-size: 14px;
+                line-height: 1.55; /* 可読性を担保した最高値に凝縮 */
             }
-            .expertise-title {
-                margin-bottom: 2px; /* タイトルと説明文の隙間を4pxから2pxへわずかに凝縮 */
-            }
-            .expertise-desc {
-                line-height: 1.45; /* 本文の行間（line-height）を1.6から1.45へスタイリッシュに圧縮 */
+            .essay-body p {
+                margin-bottom: 10px;
             }
 
-            /* 各コンテンツのスマートフォン縦積みレイアウト */
+            /* 専門領域セクション（前回の最適化バランスをホールド） */
+            .expertise-grid-2col {
+                grid-template-columns: 1fr; 
+                gap: 12px 0; 
+            }
+            .expertise-item {
+                padding: 0 0 0 10px; 
+            }
+            .expertise-title {
+                margin-bottom: 2px; 
+            }
+            .expertise-desc {
+                line-height: 1.45; 
+            }
+
+            /* 🚨【主要全セクション同期】対応可能業務 / 実績スレート：各項目間の余白と、折り返し・縦積みリズムをスマートに連動 */
             .media-row-layout {
                 grid-template-columns: 1fr;
-                gap: 12px;
+                gap: 10px; /* 12pxから10pxへ圧縮 */
             }
             .media-row-layout.no-label {
                 grid-template-columns: 1fr;
                 gap: 0;
             }
+            .media-label-group {
+                padding-left: 10px; /* 専門領域の10pxと調和 */
+            }
+            .media-label-ja {
+                font-size: 13.5px;
+            }
             .media-segment {
-                gap: 22px;
+                gap: 18px; /* カテゴリ間の隙間を22pxから18pxへ15%凝縮 */
             }
             .media-chip-pool {
-                gap: 8px 10px;
+                gap: 6px 10px;
             }
             .media-signature-text {
                 font-size: 12.5px;
+                line-height: 1.5; /* 行間を1.8から1.5へスリム化 */
                 padding: 0;
             }
         }

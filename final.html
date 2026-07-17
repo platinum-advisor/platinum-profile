@@ -4,181 +4,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>小澤 隆生 | Takao Ozawa Official Portfolio</title>
+    <!-- Figma指定フォントの読み込み -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@400;500;700&family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
     <style>
         /* -----------------------------------------
-         * DESIGN TOKENS (磨き上げられたディープネイビー基調)
+         * DESIGN TOKENS (Figma指定値を厳密に定義)
          * ----------------------------------------- */
         :root {
-            --bg: #242528; /* Figma指定背景カラー */
+            --bg: #242528; /* 背景色 */
             --card: #0f1523; 
-            --accent: #5080AD; /* Figma指定メインBlue */
+            --accent: #5080AD; /* メインカラー / ボタンカラー */
             --accent-dim: rgba(80, 128, 173, 0.15);
             --border: rgba(203, 213, 225, 0.08); 
-            --main-text: #FFFFFF; /* Figma指定テキスト */
-            --sub-text: #B4C6D4; /* Figma指定サブBlueGray */
-            --text-muted: #64748b;
-            --font-serif: "Noto Serif JP", 'Shippori Mincho', serif; /* 指定フォント優先 */
-            --font-eng: "Marcellus", 'Playfair Display', serif; /* 指定フォント優先 */
-            --font-sans: 'Noto Sans JP', sans-serif;
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --main-text: #FFFFFF; /* メインテキスト */
+            --sub-text: #B4C6D4; /* サブテキスト / サブカラー */
+            --font-serif: "Noto Serif JP", serif; /* 日本語 */
+            --font-num: "Marcellus", serif; /* 専門領域01〜10の数字 */
+            --transition: all 0.3s ease;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
-            background: var(--bg); 
+            background-color: var(--bg); 
             color: var(--main-text); 
             font-family: var(--font-serif); 
-            line-height: 1.8; 
-            letter-spacing: 0.03em;
-            font-feature-settings: "palt";
+            font-weight: 500; /* 基本ウェイト：Medium(500) */
+            line-height: 1.8; /* 行間文章部分：1.8 */
+            letter-spacing: 0.03em; /* 文字間文章部分：0.03em */
+            font-feature-settings: "palt"; /* palt設定 */
             -webkit-font-smoothing: antialiased; 
         }
 
         /* -----------------------------------------
-         * ① HERO SECTION (planA.htmlの構造を完全維持し、比率・パスをFigma最適化)
+         * ■ TOP メインビジュアル (Figma Absolute 座標・配置をSP/PCで完全同期)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
             width: 100%;
-            height: 85vh; 
+            height: 610px; /* SP全体高さ：610px */
             overflow: hidden;
+            background-color: var(--bg);
         }
 
-        .hero-bg-container {
+        /* SP青背景エリア */
+        .hero-bg-blue-sp {
             position: absolute;
-            inset: 0;
-            overflow: hidden;
-        }
-
-        /* ■1. 小澤隆生画像：Figma指示の正式パスをimgタグに完全適用 */
-        .hero-bg-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
-            position: absolute;
-            top: 0;
-            left: 0;
-            object-position: center 25%; 
+            top: 442px; /* 位置: Y442 */
+            left: 0;    /* 位置: X0 */
+            width: 375px; /* サイズ: W375 */
+            height: 166px; /* サイズ: H166 */
+            background-color: var(--accent);
             z-index: 1;
         }
 
-        /* 背景タイポグラフィ */
-        .hero-large-backprint {
+        .hero-img-container {
             position: absolute;
-            bottom: -5vh;
-            left: 50%;
-            transform: translateX(-50%);
-            font-family: var(--font-eng);
-            font-size: 15vw;
-            font-weight: 700;
-            color: rgba(248, 250, 252, 0.02);
-            letter-spacing: 0.05em;
+            top: 0;    /* 位置: X0 Y0 */
+            left: 0;
+            width: 375px; /* サイズ: W375 H442 */
+            height: 442px;
+            overflow: hidden;
             z-index: 2;
-            pointer-events: none;
-            line-height: 1;
+        }
+
+        .hero-bg-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 表示方法: cover */
+            object-position: center top; /* SPトリミング：人物中央バストアップ */
         }
 
         .hero-overlay-content {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: 3;
-            background: linear-gradient(to bottom, rgba(36, 37, 40, 0.1) 0%, rgba(36, 37, 40, 0.4) 50%, rgba(36, 37, 40, 0.95) 100%);
-            display: flex;
-            align-items: flex-end; 
-            padding-bottom: 8vh;
         }
 
-        .hero-certified-badge {
+        /* スマホ大フレーム配置 */
+        .hero-text-wrapper {
             position: absolute;
-            top: 40px;
-            left: 40px;
-            font-family: var(--font-sans);
-            font-size: 9px;
-            color: var(--sub-text);
-            border: 1px solid var(--border);
-            padding: 4px 14px;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            background: rgba(36, 37, 40, 0.6);
-            backdrop-filter: blur(12px);
-            font-weight: 400;
-            z-index: 4;
-            border-radius: 100px;
+            top: 428px; /* 位置: X30 Y428 */
+            left: 30px;
+            width: 315px; /* サイズ: W315 H150 */
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Gap: 20px */
         }
 
-        .hero-overlay-meta {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-        
-        .hero-name-row {
-            display: flex;
-            align-items: baseline;
-            gap: 20px;
-            margin-bottom: 14px;
-        }
         .hero-name-ja {
             font-family: var(--font-serif);
-            font-size: 56px;
-            font-weight: 600; /* コンテンツタイトル：600 */
-            color: #fff;
-            line-height: 1.0; /* タイトル行間：1.0 */
-            letter-spacing: 0.08em;
-            text-shadow: 0 4px 20px rgba(36, 37, 40, 0.5);
-            white-space: nowrap; /* 名前改行禁止 */
+            font-size: 56px; /* サイズ: 56px */
+            line-height: 56px; /* Line-height: 56px */
+            font-weight: 500; /* Weight: Medium */
+            color: #FFFFFF;
+            width: 315px; /* サイズ: W315 H56 */
+            white-space: nowrap; /* 改行禁止 */
         }
-        .hero-tagline {
-            font-family: var(--font-serif);
-            font-size: 14px;
-            color: var(--sub-text);
-            max-width: 700px;
-            line-height: 1.7;
-            letter-spacing: 0.03em;
+
+        /* スマホ中フレーム */
+        .hero-info-frame {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Gap: 10px */
+            width: 291px; /* サイズ: W291 H74 */
+        }
+
+        .hero-badge-text {
+            font-size: 16px; /* Font-size: 16px */
+            line-height: 18px; /* Line-height: 18px */
+            color: #FFFFFF;
+            font-weight: 500; /* Medium */
+            width: 291px; /* サイズ: W291 H18 */
+        }
+
+        .hero-divider-line {
+            width: 291px; /* 幅: 291px */
+            height: 1px; /* 線を再現する極薄ハイト */
+            background-color: #FFFFFF;
+        }
+
+        .hero-profile-summary {
+            font-size: 12px; /* Font-size: 12px */
+            line-height: 18px; /* Line-height: 18px */
+            color: #FFFFFF;
+            font-weight: 500; /* Medium */
+            width: 291px; /* サイズ: W291 H36 */
         }
 
         /* -----------------------------------------
-         * ② CONTENTS SECTION (基本構造・余白思想の完全維持)
+         * ■ レイアウト・共通余白システム
          * ----------------------------------------- */
-        .container {
-            max-width: 1000px; /* コンテンツ最大幅PC: 1000px */
+        .site-main-container {
+            width: 100%;
+            padding: 0 30px; /* 左右余白 SP：30px */
             margin: 0 auto;
-            padding: 0; /* PC版左右余白auto、コンテナ自体の幅で外枠制御 */
         }
         
         .sec-padding {
-            padding: 70px 0; /* PCセクション上下余白: 70px */
+            padding: 36px 0; /* 各セクション上下余白 SP：36px */
         }
 
-        /* ■6. 青矢印：各大項目のタイトル左側に擬似要素で images/arrow-blue.svg を完全配置 */
+        /* 大項目青矢印を画像（SVG）にて美しく完全再現 */
         .sec-title-mini {
             font-family: var(--font-serif);
-            font-size: 22px; /* PCタイトル: 22px */
-            letter-spacing: 0.1em;
+            font-size: 18px; /* 文字サイズ SP コンテンツタイトル：18px */
+            line-height: 1.0; /* 行間 タイトル系：1.0 */
+            font-weight: 600; /* フォントウェイト コンテンツタイトル等：SemiBold */
             color: var(--accent);
-            margin-bottom: 28px; /* PC見出しと本文間: 28px */
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
+            margin-bottom: 25px; /* 見出しと本文間 SP：25px */
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-weight: 600; /* コンテンツタイトル：600 */
+            gap: 8px;
             white-space: nowrap;
         }
         
         .sec-title-mini::before {
             content: "";
             display: inline-block;
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             background-image: url('images/arrow-blue.svg'); /* 青矢印指定パス */
             background-size: contain;
             background-repeat: no-repeat;
@@ -188,77 +174,68 @@
         /* 略歴 */
         .essay-body {
             font-family: var(--font-serif);
-            font-size: 14px; /* PC本文: 14px */
+            font-size: 14px; /* 文字サイズ SP 本文：14px */
             color: var(--main-text); 
             text-align: justify;
-            width: 58%; /* 🚨【重要】画像下の「略歴」コンテンツ幅をTOP画像幅(58%)と完全一致 */
-            margin-left: 0;
             line-height: 1.8;
         }
         .essay-current-title {
             display: block;
-            font-size: 22px; /* PC中見出し: 22px */
-            font-weight: 600; 
+            font-size: 16px; /* 文字サイズ SP 中見出し：16px */
+            font-weight: 600; /* SemiBold */
             color: var(--main-text); 
-            margin-bottom: 16px; 
-            letter-spacing: 0.05em;
+            margin-bottom: 14px;
         }
         .essay-body p {
             margin-bottom: 14px;
-            text-indent: 0.5em;
         }
         .essay-body p:last-child { margin-bottom: 0; }
 
         /* -----------------------------------------
-         * ③ 専門領域 SECTION (2カラム・インデックス設計を完全ホールド)
+         * ■ 専門領域 SECTION (PC2列 / SP1列、カード設定高さ同期)
          * ----------------------------------------- */
         .expertise-grid-2col {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 16px 15px; /* PCカード間：横15px、縦16px */
+            grid-template-columns: 1fr; /* 専門領域 SP：1カラム */
+            gap: 20px; /* カード間 SP：20px */
         }
         
         .expertise-item {
             display: grid;
-            grid-template-columns: 45px 1fr; 
+            grid-template-columns: 35px 1fr; 
             align-items: flex-start;
             border-left: 2px solid var(--accent); 
             padding: 2px 0 2px 12px;
-            transition: var(--transition);
-        }
-        
-        .expertise-item:hover {
-            border-left-color: #fff;
+            height: auto; /* カード設定 SP：テキスト量に応じて高さ可変 */
         }
 
         .expertise-num {
-            font-family: var(--font-eng);
-            color: var(--accent);
-            font-size: 16px; /* PC数字: 16px */
-            line-height: 16px;
-            font-weight: 400;
-            width: 23px; /* PC数字幅 */
+            font-family: var(--font-num); /* 数字フォント：Marcellus */
+            color: var(--accent); /* Color: #5080AD */
+            font-size: 14px; /* SPサイズ: 14px */
+            line-height: 14px; /* Line-height: 14px */
+            font-weight: 400; /* Weight: Regular */
+            width: 20px; /* Width: 20px */
         }
 
         .expertise-title {
             font-family: var(--font-serif);
-            font-size: 22px; /* PC中見出し: 22px */
-            color: #fff;
+            font-size: 16px; /* 文字サイズ SP 中見出し：16px */
+            color: var(--main-text);
             margin-bottom: 4px;
-            font-weight: 600;
-            letter-spacing: 0.02em;
+            font-weight: 600; /* SemiBold */
         }
 
         .expertise-desc {
             font-family: var(--font-serif);
-            font-size: 14px; /* PC本文: 14px */
+            font-size: 14px; /* 文字サイズ SP 本文：14px */
             color: var(--sub-text);
             line-height: 1.8;
             text-align: justify;
         }
 
         /* -----------------------------------------
-         * ④ 対応可能業務 SECTION / ⑤ メディア・活動実績 SECTION
+         * ■ 対応可能業務 SECTION / ■ メディア・活動実績 SECTION
          * ----------------------------------------- */
         .media-segment {
             display: flex;
@@ -269,13 +246,13 @@
 
         .media-row-layout {
             display: grid;
-            grid-template-columns: 200px 1fr; 
-            align-items: flex-start;
-            gap: 30px;
+            grid-template-columns: 1fr; /* メディア・活動実績 SP：1カラム */
+            gap: 10px;
         }
 
         .media-row-layout.no-label {
             grid-template-columns: 1fr;
+            gap: 0;
         }
 
         .media-label-group {
@@ -285,11 +262,11 @@
 
         .media-label-ja {
             font-family: var(--font-serif);
-            font-size: 22px; /* PC中見出し: 22px */
+            font-size: 16px; /* 文字サイズ SP 中見出し：16px */
             color: var(--main-text);
-            font-weight: 600;
-            letter-spacing: 0.02em;
+            font-weight: 600; /* SemiBold */
             line-height: 1.4;
+            white-space: nowrap; /* 不自然な途中改行の防止 */
         }
 
         .media-chip-pool {
@@ -298,294 +275,317 @@
             gap: 10px 12px;  
         }
 
-        /* ■3. 対応可能業務：各単語タグが不自然な位置で途中改行されるバグを完全解消 */
+        /* 🚨【対応可能業務タグ】Figma指定サイズによる完全復活 */
+        .media-signature-tag {
+            font-family: var(--font-serif);
+            font-size: 14px; /* SP 本文：14px */
+            color: var(--bg); /* 内包テキストのコントラスト確保 */
+            background-color: var(--sub-text); /* カラー：BlueGray (#B4C6D4) */
+            width: 100px; /* サイズ: W100 H34 */
+            height: 34px;
+            padding: 15px 10px; /* Padding: 縦15px 横10px */
+            border-radius: 18px; /* Border-radius: 18px */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center; /* 配置: 中央 */
+            white-space: nowrap;
+        }
+
         .media-signature-text {
             font-family: var(--font-serif);
-            font-size: 14px; /* PC本文: 14px */
+            font-size: 14px; /* 文字サイズ SP 本文：14px */
             color: var(--sub-text); 
             background: transparent;
             border: none;
             padding: 0;
-            border-radius: 0;
-            letter-spacing: 0.02em;
-            transition: var(--transition);
-            white-space: nowrap; /* 🚨 単語内改行を禁止 */
-        }
-
-        .media-signature-text:hover {
-            color: #fff;
+            letter-spacing: 0.03em;
         }
 
         /* -----------------------------------------
-         * ⑤ 問い合わせエリア (Figmaに準じた1行自然改行＆完全中央配置の追求)
+         * ■ 問い合わせエリア (Figma完全中央・横並び配置に調整)
          * ----------------------------------------- */
         .contact-area {
             text-align: center;
-            padding: 70px 0 100px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 28px;
+            padding: 36px 0 60px; /* 各セクション上下余白 SP：36px */
+            gap: 25px;
         }
         
-        /* ■4. 問い合わせ説明文：「す。」だけの次行ハミ出し改行を最大幅制御で解消 */
         .cta-notice-text {
-            font-family: var(--font-serif);
-            font-size: 14px; /* PC説明文: 14px */
+            font-family: var(--font-serif); /* Noto Serif JP Regular */
+            font-size: 12px; /* 文字サイズ SP 本文：12px */
             color: var(--sub-text);
-            letter-spacing: 0.05em;
-            width: 558px; /* 🚨 Figma指定の正確なテキストエリア幅 */
-            max-width: 100%;
             line-height: 1.8;
+            width: 273px; /* サイズ: W273 H34 */
+            height: 34px;
             margin: 0 auto;
-            text-align: center; /* 説明文中央配置 */
+            text-align: center; /* 配置: 中央 */
         }
         
-        /* ■5. 問い合わせボタン：要素・テキスト・白矢印を完璧なインラインフレックスで横並び中央配置 */
+        .cta-btn-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* 問い合わせボタン（SP） */
         .cta-btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center; /* ボタン・文字中央配置 */
-            background-color: var(--accent); /* ボタンカラー: #5080AD */
-            color: #fff;
-            border: 1px solid var(--accent);
-            width: 300px; /* PC幅: 300px */
-            height: 66px; /* PC高さ: 66px */
-            padding: 0 24px;
-            border-radius: 34px; /* PC角丸: 34px */
+            justify-content: center;
+            background-color: var(--accent); /* 背景: #5080AD */
+            color: #FFFFFF;
+            width: 273px; /* サイズ: W273 H58 */
+            height: 58px;
+            padding: 20px 20px; /* Padding: 縦20px 横20px */
+            border-radius: 29px; /* Border-radius: 29px */
             font-family: var(--font-serif);
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
             text-decoration: none;
             letter-spacing: 0.03em;
             transition: var(--transition);
-            gap: 10px; /* 文字と白矢印の間のFigma最適ギャップ */
+            gap: 10px; /* 文字と矢印の適切な間隔 */
         }
         
-        /* 疑似要素を利用して白矢印画像を文字の右側へ自然に固定出力 */
+        /* 白矢印アイコンのSVG適用配置 */
         .cta-btn::after {
             content: "";
             display: inline-block;
             width: 16px;
             height: 16px;
-            background-image: url('images/arrow-white.svg'); /* 白矢印指定パス */
+            background-image: url('images/arrow-white.svg'); /* 白矢印指定相対パス */
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
             transition: var(--transition);
         }
 
+        /* ボタンホバー仕様反映 */
         .cta-btn:hover {
-            background: #FFFFFF; /* ホバー時背景：#FFFFFF */
-            color: var(--accent); /* ホバー時文字：#5080AD */
-            border-color: #FFFFFF;
+            background-color: #FFFFFF; /* 背景: #FFFFFF */
+            color: #5080AD; /* 文字: #5080AD */
         }
-        
         .cta-btn:hover::after {
-            /* 白矢印画像をホバー時にメインBlue(#5080AD)へ美しくCSS動的色反転 */
+            /* 矢印アイコン: #5080AD (ホバー時に白矢印をメインカラーへ動的色反転) */
             filter: invert(53%) sepia(21%) saturate(1142%) hue-rotate(172deg) brightness(89%) contrast(83%);
         }
 
         footer {
             text-align: center;
             font-family: var(--font-serif);
-            font-size: 10px;
-            color: var(--text-muted);
+            font-size: 12px;
+            color: var(--sub-text);
             padding: 40px 0;
             border-top: 1px solid rgba(255,255,255,0.02);
-            letter-spacing: 0.1em;
         }
 
-        /* -----------------------------------------
-         * RESPONSIVE (スマホ表示：Figma指示の値を最優先反映)
-         * ----------------------------------------- */
+        /* =========================================================================
+           ■ PC版表示用レスポンシブクエリ (ブレークポイント: 768px以上)
+           ========================================================================= */
         @media (min-width: 768px) {
-            /* ■2. TOP（PC）：左右比率 テキスト42%：画像58% の完全再現構造 */
+            
+            /* ■ PC: TOP メインビジュアル (左右2カラム比率：テキスト42% / 画像58%を厳密再現) */
             .hero-fullscreen {
+                height: 800px; /* 高さ：PC 800px */
                 display: flex;
                 flex-direction: row;
             }
-            .hero-bg-container {
-                position: absolute;
+
+            /* 青背景エリア PC仕様 */
+            .hero-bg-blue-sp {
+                top: 0;    /* 位置: X0 Y0 */
+                left: 0;
+                width: 42%; /* 表示比率 テキストエリア：42% (Figma指定W500基準に最適化) */
+                max-width: 500px; /* サイズ: W500 H800 */
+                height: 800px;
+                background-color: var(--accent);
+                z-index: 1;
+            }
+
+            /* 顔画像エリア PC仕様 */
+            .hero-img-container {
                 top: 0;
-                left: 42%; /* left: 42% */
-                width: 58%; /* width: 58% */
-                height: 100%;
+                left: 42%; /* 青背景の直後 */
+                width: 58%; /* 表示比率 画像エリア：58% (Figma指定W700基準に最適化) */
+                max-width: 700px; /* サイズ: W700 H800 */
+                height: 800px;
+                position: absolute;
+                z-index: 2;
             }
-            .hero-overlay-content {
-                background: transparent; /* 重なりグラデーションの最適化 */
+            
+            /* ヒーロー画像がPC仕様通り最大化されるよう強制上書き */
+            .hero-fullscreen .hero-img-container {
+                left: 500px; /* 位置: X500 Y0 */
+                width: 700px; /* サイズ: W700 H800 */
+                position: absolute;
             }
-            /* 左側テキストエリアに敷くFigma指定の青背景面を再現 */
+            
             .hero-fullscreen::before {
                 content: "";
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: 42%;
-                height: 100%;
+                width: 500px; /* 位置: X0 Y0、サイズ: W500 H800 の補完 */
+                height: 800px;
                 background-color: var(--accent);
-                z-index: 2;
+                z-index: 1;
             }
-            .hero-overlay-meta {
-                position: absolute;
-                top: 407px; /* Figma座標 Y407px */
-                left: 71px; /* Figma座標 X71px */
-                width: 469px; /* width: 469px */
-                z-index: 5;
-                padding: 0;
-            }
-            .hero-name-ja {
-                font-size: 110px; /* font-size: 110px */
-                line-height: 110px; /* line-height: 110px */
-                margin-bottom: 40px; /* 下部情報フレーム(Y557px)への架け橋距離マージン */
-            }
-            .hero-info-frame {
-                width: 469px; /* width: 469px */
-                height: 107px; /* height: 107px */
-                gap: 13px; /* gap: 13px */
-            }
-            .hero-info-frame .badge-text {
-                font-size: 18px; /* font-size: 18px */
-                line-height: 27px; /* line-height: 27px */
-            }
-            .hero-info-frame .divider-line {
-                width: 469px; /* width: 469px */
-            }
-            .hero-tagline {
-                font-size: 15px; /* font-size: 15px */
-                line-height: 27px; /* line-height: 27px */
-                letter-spacing: 0.05em; /* 5% */
-            }
-        }
 
-        @media (max-width: 767px) {
-            .container { padding: 0 30px; } /* SP左右余白：30px */
-            .sec-padding { padding: 36px 0; } /* SPセクション上下余白：36px */
-            
-            /* スマホ版ヒーロー設定：Figma指定サイズをホールド */
-            .hero-fullscreen {
-                height: 610px; /* 全体高さ：610px */
-            }
-            .hero-bg-container {
-                height: 442px; /* width：375px、height：442px */
-            }
-            .hero-bg-img {
-                object-position: center top; 
-            }
-            /* スマホ版青背景エリアの再現 */
-            .hero-fullscreen::after {
-                content: "";
+            /* PC TOPテキスト大枠座標系展開 */
+            .hero-text-wrapper {
                 position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 166px; /* width：375px、height：166px、背景：#5080AD */
-                background-color: var(--accent);
-                z-index: 2;
+                top: 407px; /* 位置: X71 Y407 */
+                left: 71px;
+                width: 469px; /* サイズ: W469 H110 */
+                gap: 0; /* マージン制御のためリセット */
             }
-            .hero-overlay-content {
-                background: transparent;
+
+            .hero-name-ja {
+                font-size: 110px; /* サイズ: 56px -> PC: 110px */
+                line-height: 110px; /* Line-height: 110px */
+                width: 469px; /* サイズ: W469 H110 */
+                margin-bottom: 40px; /* 下部情報フレーム(Y557)との精密な差分距離設計 (557 - (407 + 110) = 40px) */
             }
-            .hero-overlay-meta { 
-                position: absolute;
-                top: 428px; /* タイトルエリア位置 Y:428px */
-                left: 30px; /* タイトルエリア位置 X:30px */
-                width: 315px; /* width：315px */
-                padding: 0;
-                z-index: 5;
-                gap: 20px; /* gap：20px */
-            }
-            .hero-name-ja { 
-                font-size: 56px; /* font-size：56px */
-                line-height: 56px; /* line-height：56px */
-            }
+
+            /* 中フレーム PC仕様 */
             .hero-info-frame {
-                width: 291px; /* width：291px */
-                height: 74px; /* height：74px */
-                gap: 10px; /* gap：10px */
+                position: relative;
+                width: 469px; /* サイズ: W469 H107 */
+                height: 107px;
+                gap: 13px; /* Gap: 13px */
             }
-            .hero-info-frame .badge-text {
-                font-size: 16px; /* font-size：16px */
-                line-height: 18px; /* line-height：18px */
+
+            .hero-badge-text {
+                font-size: 18px; /* Font-size: 18px */
+                line-height: 27px; /* Line-height: 27px */
+                width: 469px; /* Width: 469px */
             }
-            .hero-info-frame .divider-line {
-                width: 291px; /* width：291px */
+
+            .hero-divider-line {
+                width: 469px; /* 幅: 469px */
             }
-            .hero-tagline { 
-                font-size: 12px; /* font-size：12px */
-                line-height: 18px; /* line-height：18px */
+
+            .hero-profile-summary {
+                font-size: 15px; /* Font-size: 15px */
+                line-height: 27px; /* Line-height: 27px */
+                letter-spacing: 0.05em; /* Letter-spacing: 5% */
+                width: 469px; /* Width: 469px */
             }
-            
-            .sec-title-mini { 
-                font-size: 18px; /* SPコンテンツタイトル：18px */
-                margin-bottom: 25px; /* SP見出しと本文間：25px */
+
+            /* ■ PC: レイアウト・余白・システム定義 */
+            .site-main-container {
+                max-width: 1000px; /* コンテンツ最大幅 PC：1000px */
+                padding: 0; /* 左右余白 PC：auto のためパディングをクリア */
             }
+
+            .sec-padding {
+                padding: 70px 0; /* 各セクション上下余白 PC：70px */
+            }
+
+            .sec-title-mini {
+                font-size: 22px; /* 文字サイズ PC コンテンツタイトル：22px */
+                margin-bottom: 28px; /* 見出しと本文間 PC：28px */
+                gap: 10px;
+            }
+
             .sec-title-mini::before {
-                width: 14px;
-                height: 14px;
+                width: 16px;
+                height: 16px;
             }
 
             .essay-body {
-                width: 100%; /* スマホは1列にフィット */
-                font-size: 14px; /* SP本文：14px */
+                font-size: 14px; /* 文字サイズ PC 本文：14px */
+                width: 700px; /* 🚨【Figma整合】画像エリアの幅(W700)とその下に続く略歴コンテンツの幅バランスを完全一致 */
+                max-width: 100%;
             }
+
             .essay-current-title {
-                font-size: 16px; /* SP中見出し：16px */
+                font-size: 22px; /* 文字サイズ PC 中見出し：22px */
+                margin-bottom: 16px;
             }
 
-            /* 専門領域セクション */
+            /* ■ PC: 専門領域 (2列配置のホールド、同一行カード高さ固定同期) */
             .expertise-grid-2col {
-                grid-template-columns: 1fr; /* SP：1列配置 */
-                gap: 20px; /* SPカード間：20px */
-            }
-            .expertise-num {
-                font-size: 14px; /* SP数字：14px */
-                line-height: 14px; /* line-height：14px */
-                width: 20px; /* width：20px */
-            }
-            .expertise-title {
-                font-size: 16px; /* SP中見出し：16px */
-            }
-            .expertise-desc {
-                font-size: 14px; /* SP本文：14px */
+                grid-template-columns: repeat(2, 1fr); /* 専門領域 PC：2カラム */
+                gap: 16px 15px; /* カード間 PC：横15px、縦16px */
             }
 
-            /* 対応可能業務 / 実績スレート */
-            .media-row-layout {
-                grid-template-columns: 1fr;
-                gap: 10px;
+            .expertise-item {
+                padding: 2px 0 2px 12px;
+                height: 120px; /* カード設定 PC：高さ固定 (Figma指定内の平均値にアジャスト) */
             }
+
+            .expertise-num {
+                width: 23px; /* Width: 23px */
+                font-size: 16px; /* PCサイズ: 16px */
+                line-height: 16px; /* Line-height: 16px */
+            }
+
+            .expertise-title {
+                font-size: 22px; /* 文字サイズ PC 中見出し：22px */
+                margin-bottom: 6px;
+            }
+
+            .expertise-desc {
+                font-size: 14px; /* 文字サイズ PC 本文：14px */
+            }
+
+            /* PC: 対応可能業務 / メディア・活動実績 */
+            .media-segment {
+                gap: 24px;
+            }
+
+            .media-row-layout {
+                grid-template-columns: 200px 1fr; /* メディア・活動実績 PC：2カラム */
+                gap: 30px;
+                align-items: baseline;
+            }
+
             .media-row-layout.no-label {
                 grid-template-columns: 1fr;
                 gap: 0;
             }
+
             .media-label-ja {
-                font-size: 16px; /* SP中見出し：16px */
-            }
-            .media-segment {
-                gap: 22px;
-            }
-            .media-chip-pool {
-                gap: 8px 10px;
-            }
-            .media-signature-text {
-                font-size: 14px; /* SP本文：14px */
+                font-size: 22px; /* 文字サイズ PC 中見出し：22px */
             }
 
-            /* 問い合わせエリア */
+            /* 対応可能業務タグ PCサイズ */
+            .media-signature-tag {
+                width: 120px; /* サイズ: W120 H40 */
+                height: 40px;
+                padding: 20px 12px; /* Padding: 縦20px 横12px */
+                border-radius: 20px; /* Border-radius: 20px */
+                font-size: 14px; /* PC 本文：14px */
+            }
+
+            .media-signature-text {
+                font-size: 14px; /* 文字サイズ PC 本文：14px */
+            }
+
+            /* PC: 問い合わせエリア */
             .contact-area {
-                padding: 36px 0 60px; /* SPセクション上下余白: 36px */
-                gap: 25px; /* gap: 25px */
+                padding: 70px 0 100px;
+                gap: 28px;
             }
+            
             .cta-notice-text {
-                width: 273px; /* SP幅：273px */
-                font-size: 12px; /* SP説明文：12px */
+                position: relative; /* 位置: X321 Y2146 相当枠内中央 */
+                width: 558px; /* サイズ: W558 H20 */
+                height: 20px;
+                font-size: 14px; /* 文字サイズ PC 本文：14px */
             }
+            
+            /* 問い合わせボタン PCサイズ */
             .cta-btn {
-                width: 273px; /* SP幅：273px */
-                height: 58px; /* height：58px */
-                padding: 20px 20px; /* padding：20px 20px */
-                border-radius: 29px; /* border-radius：29px */
+                position: relative; /* 位置: X450 Y2198 相当枠内中央 */
+                width: 300px; /* サイズ: W300 H66 */
+                height: 66px;
+                padding: 0 24px; /* Padding: 横24px (縦指定なし) */
+                border-radius: 34px; /* Border-radius: 34px */
             }
         }
     </style>
@@ -594,23 +594,20 @@
 
     <!-- ① HERO SECTION -->
     <section class="hero-fullscreen">
-        <div class="hero-bg-container">
-            <!-- ■1. 小澤隆生画像：指定パス画像を正常にimgタグで描画（非表示設定一切排除） -->
-            <img src="images/ozawa_takao.jpeg" alt="小澤隆生" class="hero-bg-img">
+        <div class="hero-bg-blue-sp"></div>
+        <div class="hero-img-container">
+            <!-- ヒーロー画像：ozawa.jpeg を配置、表示方法cover指定 -->
+            <img src="images/ozawa.jpeg" alt="小澤隆生" class="hero-bg-img">
         </div>
-        <div class="hero-large-backprint">OZAWA TAKAO</div>
-        
-        <span class="hero-certified-badge">顧問バンク認定 プラチナ顧問</span>
         
         <div class="hero-overlay-content">
-            <div class="hero-overlay-meta">
-                <div class="hero-name-row">
-                    <h1 class="hero-name-ja">小澤 隆生</h1>
-                </div>
+            <div class="hero-text-wrapper">
+                <h1 class="hero-name-ja">小澤 隆生</h1>
+                <!-- Figma準拠の下部情報フレーム（SP/PC可変） -->
                 <div class="hero-info-frame">
-                    <p class="badge-text">顧問バンク認定 プラチナ顧問</p>
-                    <div class="badge-text divider-line"></div>
-                    <p class="hero-desc-text hero-tagline">
+                    <p class="hero-badge-text">顧問バンク認定 プラチナ顧問</p>
+                    <div class="hero-divider-line"></div>
+                    <p class="hero-profile-summary">
                         連続起業家 / プレイングエンジェル / 元ヤフー代表取締役社長CEO / Boost Capital 代表取締役
                     </p>
                 </div>
@@ -618,8 +615,10 @@
         </div>
     </section>
 
-    <div class="site-main-container container">
-        <!-- ② 略歴 (大項目左側に青矢印を表示、コンテンツ幅を上部画像とシンクロ) -->
+    <!-- メインコンテンツレイアウト領域 -->
+    <div class="site-main-container">
+        
+        <!-- ② 略歴 (大項目タイトル左側に青矢印自動表示、テキスト幅をPC版画像幅W700に同期) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">略歴</h2>
             <div class="essay-body">
@@ -630,7 +629,7 @@
             </div>
         </section>
 
-        <!-- ③ 専門領域 -->
+        <!-- ③ 専門領域 (PC: 2カラム高さ固定 / SP: 1カラム高さ可変) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">専門領域</h2>
             <div class="expertise-grid-2col">
@@ -717,37 +716,31 @@
             </div>
         </section>
 
-        <!-- ④ 対応可能業務 (単語内途中改行の完全排除化) -->
+        <!-- ④ 対応可能業務 (Figma指定サイズによる復元タグUI) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">対応可能業務</h2>
             <div class="media-segment">
                 <div class="media-row-layout no-label">
                     <div class="media-chip-pool">
-                        <span class="media-signature-text">社外取締役</span>
-                        <span class="media-signature-text">／</span>
-                        <span class="media-signature-text">顧問・経営アドバイザー</span>
-                        <span class="media-signature-text">／</span>
-                        <span class="media-signature-text">講演・イベント登壇</span>
-                        <span class="media-signature-text">／</span>
-                        <span class="media-signature-text">経営合宿参加</span>
+                        <span class="media-signature-tag">社外取締役</span>
+                        <span class="media-signature-tag">顧問・経営アドバイザー</span>
+                        <span class="media-signature-tag">講演・イベント登壇</span>
+                        <span class="media-signature-tag">経営合宿参加</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ⑤ メディア・活動実績 -->
+        <!-- ⑤ メディア・活動実績 (PC: 2カラム / SP: 1カラム) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">メディア・活動実績</h2>
-            
             <div class="media-segment">
                 <div class="media-row-layout">
                     <div class="media-label-group">
                         <div class="media-label-ja">著書</div>
                     </div>
                     <div class="media-chip-pool">
-                        <span class="media-signature-text">凡人の起業論</span>
-                        <span class="media-signature-text">／</span>
-                        <span class="media-signature-text">起業の地図</span>
+                        <span class="media-signature-text">凡人の起業論 ／ 起業の地図</span>
                     </div>
                 </div>
 
@@ -756,15 +749,7 @@
                         <div class="media-label-ja">メディア掲載・出演</div>
                     </div>
                     <div class="media-chip-pool">
-                        <span class="media-signature-text">NewsPicks</span>
-                        <span class="media-signature-text">／</span>
-                        <span class="media-signature-text">PIVOT</span>
-                        <span class="media-signature-text">／</span>
-                        <span class="media-signature-text">日経ビジネス</span>
-                        <span class="media-signature-text">／</span>
-                        <span class="media-signature-text">東洋経済</span>
-                        <span class="media-signature-text">／</span>
-                        <span class="media-signature-text">ReHacQ</span>
+                        <span class="media-signature-text">NewsPicks ／ PIVOT ／ 日経ビジネス ／ 東洋経済 ／ ReHacQ</span>
                     </div>
                 </div>
 
@@ -773,13 +758,7 @@
                         <div class="media-label-ja">登壇・活動実績</div>
                     </div>
                     <div class="media-chip-pool">
-                        <span class="media-signature-text">IVS</span>
-                        <span class="media-signature-text">／</span>
-                        <span class="media-signature-text">ICCサミット</span>
-                        <span class="media-signature-text">／</span>
-                        <span class="media-signature-text">大学講演</span>
-                        <span class="media-signature-text">／</span>
-                        <span class="media-signature-text">業界カンファレンス</span>
+                        <span class="media-signature-text">IVS ／ ICCサミット ／ 大学講演 ／ 業界カンファレンス</span>
                     </div>
                 </div>
             </div>

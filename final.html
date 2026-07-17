@@ -10,16 +10,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
     <style>
         /* -----------------------------------------
-         * DESIGN TOKENS (Figma指定値を厳密に定義)
+         * 既存デザイン仕様 & 共通スタイル設定
          * ----------------------------------------- */
         :root {
             --bg: #242528; /* 背景色 */
             --card: #0f1523; 
             --accent: #5080AD; /* メインカラー / ボタンカラー */
-            --accent-dim: rgba(80, 128, 173, 0.15);
             --border: rgba(203, 213, 225, 0.08); 
-            --main-text: #FFFFFF; /* メインテキスト */
-            --sub-text: #B4C6D4; /* サブテキスト / サブカラー */
+            --main-text: #FFFFFF; /* メイン文字 */
+            --sub-text: #B4C6D4; /* サブ文字 */
             --font-serif: "Noto Serif JP", serif; /* 日本語 */
             --font-num: "Marcellus", serif; /* 専門領域01〜10の数字 */
             --transition: all 0.3s ease;
@@ -30,20 +29,20 @@
             background-color: var(--bg); 
             color: var(--main-text); 
             font-family: var(--font-serif); 
-            font-weight: 500; /* 基本ウェイト：Medium(500) */
-            line-height: 1.8; /* 行間文章部分：1.8 */
-            letter-spacing: 0.03em; /* 文字間文章部分：0.03em */
-            font-feature-settings: "palt"; /* palt設定 */
+            font-weight: 500; /* 基本：Medium */
+            line-height: 1.8; /* 文章 line-height: 1.8 */
+            letter-spacing: 0.03em; /* 文章 letter-spacing: 0.03em */
+            font-feature-settings: "palt"; /* font-feature-settings: "palt" */
             -webkit-font-smoothing: antialiased; 
         }
 
         /* -----------------------------------------
-         * ■ TOP メインビジュアル (Figma Absolute 座標・配置をSP/PCで完全同期)
+         * ■1,2,9. TOP メインビジュアル (Figma Absolute 座標の厳格再現)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
             width: 100%;
-            height: 610px; /* SP全体高さ：610px */
+            height: 610px; /* SP：青背景含めて610px */
             overflow: hidden;
             background-color: var(--bg);
         }
@@ -51,29 +50,31 @@
         /* SP青背景エリア */
         .hero-bg-blue-sp {
             position: absolute;
-            top: 442px; /* 位置: Y442 */
-            left: 0;    /* 位置: X0 */
-            width: 375px; /* サイズ: W375 */
-            height: 166px; /* サイズ: H166 */
+            top: 442px; /* Y442 */
+            left: 0;    /* X0 */
+            width: 375px; /* W375 */
+            height: 166px; /* H166 */
             background-color: var(--accent);
             z-index: 1;
         }
 
+        /* 顔画像コンテナ */
         .hero-img-container {
             position: absolute;
-            top: 0;    /* 位置: X0 Y0 */
+            top: 0;    /* X0 Y0 */
             left: 0;
-            width: 375px; /* サイズ: W375 H442 */
-            height: 442px;
+            width: 375px; /* W375 */
+            height: 442px; /* H442 */
             overflow: hidden;
             z-index: 2;
         }
 
+        /* ■1. 小澤隆生画像表示 (正常な相対パスでのimg描写) */
         .hero-bg-img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* 表示方法: cover */
-            object-position: center top; /* SPトリミング：人物中央バストアップ */
+            object-fit: cover; /* object-fit: cover */
+            object-position: center 25%; /* SP時：人物中央バストアップ調整 */
         }
 
         .hero-overlay-content {
@@ -85,21 +86,25 @@
         /* スマホ大フレーム配置 */
         .hero-text-wrapper {
             position: absolute;
-            top: 428px; /* 位置: X30 Y428 */
+            top: 428px; /* X30 Y428 */
             left: 30px;
-            width: 315px; /* サイズ: W315 H150 */
+            width: 315px; /* W315 H150 */
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Gap: 20px */
+            gap: 20px; /* Gap：20px */
         }
 
+        /* ■9. 小澤隆生の文字をグラデーション化 (PC/SP共通) */
         .hero-name-ja {
             font-family: var(--font-serif);
-            font-size: 56px; /* サイズ: 56px */
-            line-height: 56px; /* Line-height: 56px */
-            font-weight: 500; /* Weight: Medium */
-            color: #FFFFFF;
-            width: 315px; /* サイズ: W315 H56 */
+            font-size: 56px; /* font-size: 56px */
+            line-height: 56px; /* line-height: 56px */
+            font-weight: 500; /* font-weight: Medium */
+            background: linear-gradient(90deg, #FFFFFF 6%, #C0BEC5 27%, #FFFFFF 51%, #C0BEC5 75%, #FFFFFF 99%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* 文字自体にグラデーションを適用 */
+            -webkit-text-fill-color: transparent;
             white-space: nowrap; /* 改行禁止 */
         }
 
@@ -107,82 +112,81 @@
         .hero-info-frame {
             display: flex;
             flex-direction: column;
-            gap: 10px; /* Gap: 10px */
-            width: 291px; /* サイズ: W291 H74 */
+            gap: 10px; /* Gap：10px */
+            width: 291px; /* W291 H74 */
         }
 
         .hero-badge-text {
-            font-size: 16px; /* Font-size: 16px */
-            line-height: 18px; /* Line-height: 18px */
+            font-size: 16px; /* font-size: 16px */
+            line-height: 18px; /* line-height: 18px */
             color: #FFFFFF;
-            font-weight: 500; /* Medium */
-            width: 291px; /* サイズ: W291 H18 */
+            font-weight: 500;
         }
 
         .hero-divider-line {
-            width: 291px; /* 幅: 291px */
-            height: 1px; /* 線を再現する極薄ハイト */
+            width: 291px;
+            height: 1px;
             background-color: #FFFFFF;
         }
 
         .hero-profile-summary {
-            font-size: 12px; /* Font-size: 12px */
-            line-height: 18px; /* Line-height: 18px */
+            font-size: 12px; /* font-size: 12px */
+            line-height: 18px; /* line-height: 18px */
             color: #FFFFFF;
-            font-weight: 500; /* Medium */
-            width: 291px; /* サイズ: W291 H36 */
+            font-weight: 500;
         }
 
         /* -----------------------------------------
-         * ■ レイアウト・共通余白システム
+         * ■ レイアウト・共通マージンシステム
          * ----------------------------------------- */
         .site-main-container {
             width: 100%;
-            padding: 0 30px; /* 左右余白 SP：30px */
+            padding: 0 30px; /* SP：左右余白 30px */
             margin: 0 auto;
         }
         
         .sec-padding {
-            padding: 36px 0; /* 各セクション上下余白 SP：36px */
+            padding: 36px 0; /* SP：セクション上下余白 36px */
         }
 
-        /* 大項目青矢印を画像（SVG）にて美しく完全再現 */
+        /* ■8. 青い矢印アイコン追加 (セクションタイトル左側) */
         .sec-title-mini {
             font-family: var(--font-serif);
-            font-size: 18px; /* 文字サイズ SP コンテンツタイトル：18px */
-            line-height: 1.0; /* 行間 タイトル系：1.0 */
-            font-weight: 600; /* フォントウェイト コンテンツタイトル等：SemiBold */
+            font-size: 18px; /* SP コンテンツタイトル：18px */
+            line-height: 1.0; /* タイトル line-height: 1.0 */
+            font-weight: 600; /* タイトル：Semibold(600) */
             color: var(--accent);
-            margin-bottom: 25px; /* 見出しと本文間 SP：25px */
+            margin-bottom: 25px; /* SP 見出しと本文間：25px */
             display: flex;
             align-items: center;
             gap: 8px;
             white-space: nowrap;
         }
         
+        /* インライン画質の劣化を防ぐ高精度SVGマークアップ */
         .sec-title-mini::before {
             content: "";
             display: inline-block;
             width: 14px;
             height: 14px;
-            background-image: url('images/arrow-blue.svg'); /* 青矢印指定パス */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235080AD'%3E%3Cpath d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'/%3E%3C/svg%3E");
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
         }
 
-        /* 略歴 */
+        /* ■3. 略歴本文カラー修正 (#B4C6D4への変更) */
         .essay-body {
             font-family: var(--font-serif);
-            font-size: 14px; /* 文字サイズ SP 本文：14px */
-            color: var(--main-text); 
+            font-size: 14px; /* SP 本文：14px */
+            color: var(--sub-text); /* 🚨 変更後：#B4C6D4 */
             text-align: justify;
             line-height: 1.8;
         }
         .essay-current-title {
             display: block;
-            font-size: 16px; /* 文字サイズ SP 中見出し：16px */
-            font-weight: 600; /* SemiBold */
+            font-size: 16px; /* SP 中見出し：16px */
+            font-weight: 600; /* Semibold */
             color: var(--main-text); 
             margin-bottom: 14px;
         }
@@ -192,7 +196,7 @@
         .essay-body p:last-child { margin-bottom: 0; }
 
         /* -----------------------------------------
-         * ■ 専門領域 SECTION (PC2列 / SP1列、カード設定高さ同期)
+         * ■4. 専門領域 SECTION (説明文の途中改行防止ロジック)
          * ----------------------------------------- */
         .expertise-grid-2col {
             display: grid;
@@ -206,36 +210,38 @@
             align-items: flex-start;
             border-left: 2px solid var(--accent); 
             padding: 2px 0 2px 12px;
-            height: auto; /* カード設定 SP：テキスト量に応じて高さ可変 */
+            height: auto; /* カード設定 SP：高さ可変 */
         }
 
         .expertise-num {
-            font-family: var(--font-num); /* 数字フォント：Marcellus */
-            color: var(--accent); /* Color: #5080AD */
-            font-size: 14px; /* SPサイズ: 14px */
-            line-height: 14px; /* Line-height: 14px */
-            font-weight: 400; /* Weight: Regular */
-            width: 20px; /* Width: 20px */
+            font-family: var(--font-num); /* 数字：Marcellus */
+            color: var(--accent); 
+            font-size: 14px; /* SP：サイズ 14px */
+            line-height: 14px; /* SPーラインハイト 14px */
+            font-weight: 400; /* Marcellus：Regular(400) */
+            width: 20px; /* SP：Width 20px */
         }
 
         .expertise-title {
             font-family: var(--font-serif);
-            font-size: 16px; /* 文字サイズ SP 中見出し：16px */
+            font-size: 16px; /* SP 中見出し：16px */
             color: var(--main-text);
             margin-bottom: 4px;
-            font-weight: 600; /* SemiBold */
+            font-weight: 600; /* Semibold */
         }
 
+        /* 各項目説明文の改行防止を反映 */
         .expertise-desc {
             font-family: var(--font-serif);
-            font-size: 14px; /* 文字サイズ SP 本文：14px */
+            font-size: 14px; /* SP 本文：14px */
             color: var(--sub-text);
             line-height: 1.8;
             text-align: justify;
+            white-space: nowrap; /* 🚨 説明文は可能な限り1行表示・途中改行禁止 */
         }
 
         /* -----------------------------------------
-         * ■ 対応可能業務 SECTION / ■ メディア・活動実績 SECTION
+         * ■5. 対応可能業務 SECTION (PC版タグサイズ自動調整)
          * ----------------------------------------- */
         .media-segment {
             display: flex;
@@ -246,7 +252,7 @@
 
         .media-row-layout {
             display: grid;
-            grid-template-columns: 1fr; /* メディア・活動実績 SP：1カラム */
+            grid-template-columns: 1fr; /* メディア実績 SP：1カラム */
             gap: 10px;
         }
 
@@ -262,11 +268,10 @@
 
         .media-label-ja {
             font-family: var(--font-serif);
-            font-size: 16px; /* 文字サイズ SP 中見出し：16px */
+            font-size: 16px; /* SP 中見出し：16px */
             color: var(--main-text);
-            font-weight: 600; /* SemiBold */
+            font-weight: 600; /* Semibold */
             line-height: 1.4;
-            white-space: nowrap; /* 不自然な途中改行の防止 */
         }
 
         .media-chip-pool {
@@ -275,53 +280,54 @@
             gap: 10px 12px;  
         }
 
-        /* 🚨【対応可能業務タグ】Figma指定サイズによる完全復活 */
+        /* 対応可能業務タグスタイル（流用コンポーネント） */
         .media-signature-tag {
             font-family: var(--font-serif);
-            font-size: 14px; /* SP 本文：14px */
-            color: var(--bg); /* 内包テキストのコントラスト確保 */
-            background-color: var(--sub-text); /* カラー：BlueGray (#B4C6D4) */
-            width: 100px; /* サイズ: W100 H34 */
+            font-size: 14px;
+            color: var(--bg);
+            background-color: var(--sub-text); /* 背景：#B4C6D4 */
+            width: 100px; /* SPデフォルト */
             height: 34px;
-            padding: 15px 10px; /* Padding: 縦15px 横10px */
-            border-radius: 18px; /* Border-radius: 18px */
+            padding: 15px 10px; /* SP：縦15px 横10px */
+            border-radius: 18px; /* SP：18px */
             display: inline-flex;
             align-items: center;
-            justify-content: center; /* 配置: 中央 */
+            justify-content: center;
             white-space: nowrap;
         }
 
         .media-signature-text {
             font-family: var(--font-serif);
-            font-size: 14px; /* 文字サイズ SP 本文：14px */
+            font-size: 14px; /* SP 本文：14px */
             color: var(--sub-text); 
             background: transparent;
             border: none;
             padding: 0;
-            letter-spacing: 0.03em;
         }
 
         /* -----------------------------------------
-         * ■ 問い合わせエリア (Figma完全中央・横並び配置に調整)
+         * ■6,7,8. 問い合わせエリア ＆ ボタン完全中央配置
          * ----------------------------------------- */
         .contact-area {
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 36px 0 60px; /* 各セクション上下余白 SP：36px */
+            padding: 36px 0; /* SP：セクション上下余白 36px */
             gap: 25px;
         }
         
+        /* ■6. 説明文の改行修正 (文章全体を常時1行表示) */
         .cta-notice-text {
-            font-family: var(--font-serif); /* Noto Serif JP Regular */
-            font-size: 12px; /* 文字サイズ SP 本文：12px */
+            font-family: var(--font-serif); 
+            font-size: 12px; /* SP 説明文：12px */
             color: var(--sub-text);
             line-height: 1.8;
-            width: 273px; /* サイズ: W273 H34 */
+            width: 273px; /* SP：W273 H34 */
             height: 34px;
             margin: 0 auto;
-            text-align: center; /* 配置: 中央 */
+            text-align: center; 
+            white-space: nowrap; /* 🚨 文章全体が1行で表示されるように設定 */
         }
         
         .cta-btn-container {
@@ -330,47 +336,47 @@
             width: 100%;
         }
 
-        /* 問い合わせボタン（SP） */
+        /* ■7. 問い合わせ文字位置の完全中央配置 */
         .cta-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--accent); /* 背景: #5080AD */
+            display: flex; /* 🚨 修正：display:flex */
+            align-items: center; /* 🚨 修正：align-items:center */
+            justify-content: center; /* 🚨 修正：justify-content:center */
+            background-color: var(--accent); /* ボタン：#5080AD */
             color: #FFFFFF;
-            width: 273px; /* サイズ: W273 H58 */
+            width: 273px; /* SP：W273 H58 */
             height: 58px;
-            padding: 20px 20px; /* Padding: 縦20px 横20px */
-            border-radius: 29px; /* Border-radius: 29px */
+            padding: 20px 20px; /* SP：縦20px 横20px */
+            border-radius: 29px; 
             font-family: var(--font-serif);
             font-size: 14px;
             font-weight: 600;
             text-decoration: none;
             letter-spacing: 0.03em;
             transition: var(--transition);
-            gap: 10px; /* 文字と矢印の適切な間隔 */
+            gap: 10px; 
         }
         
-        /* 白矢印アイコンのSVG適用配置 */
+        /* ■8. 問い合わせボタンの矢印アイコン (通常時：白い矢印のSVG) */
         .cta-btn::after {
             content: "";
             display: inline-block;
             width: 16px;
             height: 16px;
-            background-image: url('images/arrow-white.svg'); /* 白矢印指定相対パス */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFFFFF'%3E%3Cpath d='M16.01 11H4v2h12.01v3L20 12l-3.99-4z'/%3E%3C/svg%3E");
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
             transition: var(--transition);
         }
 
-        /* ボタンホバー仕様反映 */
+        /* ホバーインタラクション反映 */
         .cta-btn:hover {
-            background-color: #FFFFFF; /* 背景: #FFFFFF */
-            color: #5080AD; /* 文字: #5080AD */
+            background-color: #FFFFFF; /* ホバー時 背景：#FFFFFF */
+            color: #5080AD; /* ホバー時 文字：#5080AD */
         }
         .cta-btn:hover::after {
-            /* 矢印アイコン: #5080AD (ホバー時に白矢印をメインカラーへ動的色反転) */
-            filter: invert(53%) sepia(21%) saturate(1142%) hue-rotate(172deg) brightness(89%) contrast(83%);
+            /* ■8. ホバー時：青い矢印アイコンのSVGへ動的に切り替え */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235080AD'%3E%3Cpath d='M16.01 11H4v2h12.01v3L20 12l-3.99-4z'/%3E%3C/svg%3E");
         }
 
         footer {
@@ -387,40 +393,32 @@
            ========================================================================= */
         @media (min-width: 768px) {
             
-            /* ■ PC: TOP メインビジュアル (左右2カラム比率：テキスト42% / 画像58%を厳密再現) */
+            /* ■1,2. TOP PC仕様 (比率・配置の厳密アジャスト) */
             .hero-fullscreen {
-                height: 800px; /* 高さ：PC 800px */
+                height: 800px; /* PC高さ：800px */
                 display: flex;
                 flex-direction: row;
             }
 
-            /* 青背景エリア PC仕様 */
+            /* PC青背景エリア */
             .hero-bg-blue-sp {
-                top: 0;    /* 位置: X0 Y0 */
+                top: 0;    /* X0 Y0 */
                 left: 0;
-                width: 42%; /* 表示比率 テキストエリア：42% (Figma指定W500基準に最適化) */
-                max-width: 500px; /* サイズ: W500 H800 */
+                width: 42%; /* TOP PC比率 青背景：42% */
+                max-width: 500px; /* W500 H800 */
                 height: 800px;
                 background-color: var(--accent);
                 z-index: 1;
             }
 
-            /* 顔画像エリア PC仕様 */
+            /* ■1,2. PC版顔画像エリア (Figma指定サイズ W700 H800 / X500 Y0 の展開) */
             .hero-img-container {
                 top: 0;
-                left: 42%; /* 青背景の直後 */
-                width: 58%; /* 表示比率 画像エリア：58% (Figma指定W700基準に最適化) */
-                max-width: 700px; /* サイズ: W700 H800 */
-                height: 800px;
+                left: 500px; /* 位置：X500 Y0 */
+                width: 700px; /* 🚨 修正：width 700px */
+                height: 800px; /* サイズ：H800 */
                 position: absolute;
                 z-index: 2;
-            }
-            
-            /* ヒーロー画像がPC仕様通り最大化されるよう強制上書き */
-            .hero-fullscreen .hero-img-container {
-                left: 500px; /* 位置: X500 Y0 */
-                width: 700px; /* サイズ: W700 H800 */
-                position: absolute;
             }
             
             .hero-fullscreen::before {
@@ -428,57 +426,57 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: 500px; /* 位置: X0 Y0、サイズ: W500 H800 の補完 */
+                width: 500px; /* W500 H800 の補完面生成 */
                 height: 800px;
                 background-color: var(--accent);
                 z-index: 1;
             }
 
-            /* PC TOPテキスト大枠座標系展開 */
+            /* PC TOPテキスト配置詳細の適用 */
             .hero-text-wrapper {
                 position: absolute;
-                top: 407px; /* 位置: X71 Y407 */
+                top: 407px; /* 位置：X71 Y407 */
                 left: 71px;
-                width: 469px; /* サイズ: W469 H110 */
-                gap: 0; /* マージン制御のためリセット */
+                width: 469px; /* サイズ：W469 H110 */
+                gap: 0; 
             }
 
             .hero-name-ja {
-                font-size: 110px; /* サイズ: 56px -> PC: 110px */
-                line-height: 110px; /* Line-height: 110px */
-                width: 469px; /* サイズ: W469 H110 */
-                margin-bottom: 40px; /* 下部情報フレーム(Y557)との精密な差分距離設計 (557 - (407 + 110) = 40px) */
+                font-size: 110px; /* font-size: 110px */
+                line-height: 110px; /* line-height: 110px */
+                width: 469px; /* サイズ：W469 H110 */
+                margin-bottom: 40px; /* 中フレーム(Y557)との精密マージン設計 */
             }
 
             /* 中フレーム PC仕様 */
             .hero-info-frame {
                 position: relative;
-                width: 469px; /* サイズ: W469 H107 */
+                width: 469px; /* サイズ：W469 H107 */
                 height: 107px;
-                gap: 13px; /* Gap: 13px */
+                gap: 13px; /* Gap：13px */
             }
 
             .hero-badge-text {
-                font-size: 18px; /* Font-size: 18px */
-                line-height: 27px; /* Line-height: 27px */
-                width: 469px; /* Width: 469px */
+                font-size: 18px; /* font-size: 18px */
+                line-height: 27px; /* line-height: 27px */
+                width: 469px; 
             }
 
             .hero-divider-line {
-                width: 469px; /* 幅: 469px */
+                width: 469px; /* 幅：469px */
             }
 
             .hero-profile-summary {
-                font-size: 15px; /* Font-size: 15px */
-                line-height: 27px; /* Line-height: 27px */
-                letter-spacing: 0.05em; /* Letter-spacing: 5% */
-                width: 469px; /* Width: 469px */
+                font-size: 15px; /* font-size: 15px */
+                line-height: 27px; /* line-height: 27px */
+                letter-spacing: 0.05em; /* letter-spacing：5% */
+                width: 469px; 
             }
 
-            /* ■ PC: レイアウト・余白・システム定義 */
+            /* ■2. PC: レイアウト・コンテンツ幅システム定義 */
             .site-main-container {
                 max-width: 1000px; /* コンテンツ最大幅 PC：1000px */
-                padding: 0; /* 左右余白 PC：auto のためパディングをクリア */
+                padding: 0; /* 左右余白 PC：auto */
             }
 
             .sec-padding {
@@ -496,9 +494,10 @@
                 height: 16px;
             }
 
+            /* 🚨【修正】画像下の「略歴」コンテンツ幅とTOP画像幅を完全統一 */
             .essay-body {
                 font-size: 14px; /* 文字サイズ PC 本文：14px */
-                width: 700px; /* 🚨【Figma整合】画像エリアの幅(W700)とその下に続く略歴コンテンツの幅バランスを完全一致 */
+                width: 700px; /* 🚨 修正：width:700px で画像幅と統一 */
                 max-width: 100%;
             }
 
@@ -507,7 +506,7 @@
                 margin-bottom: 16px;
             }
 
-            /* ■ PC: 専門領域 (2列配置のホールド、同一行カード高さ固定同期) */
+            /* ■4. PC: 専門領域 (2カラム展開、カード設定高さ固定) */
             .expertise-grid-2col {
                 grid-template-columns: repeat(2, 1fr); /* 専門領域 PC：2カラム */
                 gap: 16px 15px; /* カード間 PC：横15px、縦16px */
@@ -515,13 +514,13 @@
 
             .expertise-item {
                 padding: 2px 0 2px 12px;
-                height: 120px; /* カード設定 PC：高さ固定 (Figma指定内の平均値にアジャスト) */
+                height: 125px; /* 🚨 カード設定 PC：高さ固定 */
             }
 
             .expertise-num {
-                width: 23px; /* Width: 23px */
-                font-size: 16px; /* PCサイズ: 16px */
-                line-height: 16px; /* Line-height: 16px */
+                width: 23px; /* PC：Width 23px */
+                font-size: 16px; /* PC：サイズ 16px */
+                line-height: 16px; /* PC：ラインハイト 16px */
             }
 
             .expertise-title {
@@ -531,6 +530,8 @@
 
             .expertise-desc {
                 font-size: 14px; /* 文字サイズ PC 本文：14px */
+                /* 画面幅不足時のみ自然な折返しを許可するため、PC環境では折り返しをリセット */
+                white-space: normal; 
             }
 
             /* PC: 対応可能業務 / メディア・活動実績 */
@@ -539,7 +540,7 @@
             }
 
             .media-row-layout {
-                grid-template-columns: 200px 1fr; /* メディア・活動実績 PC：2カラム */
+                grid-template-columns: 200px 1fr; /* メディア実績 PC：2カラム */
                 gap: 30px;
                 align-items: baseline;
             }
@@ -553,12 +554,12 @@
                 font-size: 22px; /* 文字サイズ PC 中見出し：22px */
             }
 
-            /* 対応可能業務タグ PCサイズ */
+            /* ■5. PC版対応可能業務タグサイズの枠自動調整化 */
             .media-signature-tag {
-                width: 120px; /* サイズ: W120 H40 */
-                height: 40px;
-                padding: 20px 12px; /* Padding: 縦20px 横12px */
-                border-radius: 20px; /* Border-radius: 20px */
+                width: auto; /* 🚨 修正：固定widthは禁止。width:auto; */
+                height: 40px; /* 高さ：40px */
+                padding: 0 20px; /* 🚨 修正：paddingで余白調整 */
+                border-radius: 20px; /* 角丸：20px */
                 font-size: 14px; /* PC 本文：14px */
             }
 
@@ -573,16 +574,13 @@
             }
             
             .cta-notice-text {
-                position: relative; /* 位置: X321 Y2146 相当枠内中央 */
-                width: 558px; /* サイズ: W558 H20 */
+                width: 558px; /* PC仕様 サイズ: W558 H20 */
                 height: 20px;
                 font-size: 14px; /* 文字サイズ PC 本文：14px */
             }
             
-            /* 問い合わせボタン PCサイズ */
             .cta-btn {
-                position: relative; /* 位置: X450 Y2198 相当枠内中央 */
-                width: 300px; /* サイズ: W300 H66 */
+                width: 300px; /* PC仕様 サイズ: W300 H66 */
                 height: 66px;
                 padding: 0 24px; /* Padding: 横24px (縦指定なし) */
                 border-radius: 34px; /* Border-radius: 34px */
@@ -592,18 +590,18 @@
 </head>
 <body>
 
-    <!-- ① HERO SECTION -->
+    <!-- ① TOP メインビジュアルセクション -->
     <section class="hero-fullscreen">
         <div class="hero-bg-blue-sp"></div>
         <div class="hero-img-container">
-            <!-- ヒーロー画像：ozawa.jpeg を配置、表示方法cover指定 -->
+            <!-- ヒーロー画像：正常な相対パスでのimg描画 -->
             <img src="images/ozawa.jpeg" alt="小澤隆生" class="hero-bg-img">
         </div>
         
         <div class="hero-overlay-content">
             <div class="hero-text-wrapper">
+                <!-- ■9. グラデーションテキスト化された氏名エリア -->
                 <h1 class="hero-name-ja">小澤 隆生</h1>
-                <!-- Figma準拠の下部情報フレーム（SP/PC可変） -->
                 <div class="hero-info-frame">
                     <p class="hero-badge-text">顧問バンク認定 プラチナ顧問</p>
                     <div class="hero-divider-line"></div>
@@ -615,10 +613,10 @@
         </div>
     </section>
 
-    <!-- メインコンテンツレイアウト領域 -->
+    <!-- メインコンテンツコンテナ -->
     <div class="site-main-container">
         
-        <!-- ② 略歴 (大項目タイトル左側に青矢印自動表示、テキスト幅をPC版画像幅W700に同期) -->
+        <!-- ② 略歴セクション (■3. 本文カラーを#B4C6D4へ修正 / ■2. コンテンツ幅をW700へ同期) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">略歴</h2>
             <div class="essay-body">
@@ -629,7 +627,7 @@
             </div>
         </section>
 
-        <!-- ③ 専門領域 (PC: 2カラム高さ固定 / SP: 1カラム高さ可変) -->
+        <!-- ③ 専門領域セクション (■4. 説明文の途中改行禁止制御を内包) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">専門領域</h2>
             <div class="expertise-grid-2col">
@@ -716,7 +714,7 @@
             </div>
         </section>
 
-        <!-- ④ 対応可能業務 (Figma指定サイズによる復元タグUI) -->
+        <!-- ④ 対応可能業務セクション (■5. 文字量に応じた青枠サイズ自動可変ロジックの実装) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">対応可能業務</h2>
             <div class="media-segment">
@@ -731,7 +729,7 @@
             </div>
         </section>
 
-        <!-- ⑤ メディア・活動実績 (PC: 2カラム / SP: 1カラム) -->
+        <!-- ⑤ メディア・活動実績セクション (PC: 2カラム / SP: 1カラム) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">メディア・活動実績</h2>
             <div class="media-segment">
@@ -764,7 +762,7 @@
             </div>
         </section>
 
-        <!-- ⑥ 問い合わせエリア -->
+        <!-- ⑥ 問い合わせエリア (■6. 1行表示制御 / ■7,8. ボタン内文字完全中央＆矢印アセット制御) -->
         <section class="contact-area">
             <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
             <div class="cta-btn-container">

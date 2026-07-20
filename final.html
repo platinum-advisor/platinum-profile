@@ -39,7 +39,7 @@
         }
 
         /* -----------------------------------------
-         * ■1. TOP メインビジュアル (SP表示：維持・変更禁止)
+         * ■ TOP メインビジュアル (SP表示：デザイン・レイアウト・CSS維持)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
@@ -71,7 +71,7 @@
             z-index: 2; 
         }
 
-        /* ヒーロー画像表示設定（比率・配置維持） */
+        /* ヒーロー画像表示設定（比率・配置・トリミング設定維持） */
         .hero-bg-img {
             display: block;
             width: 100%;
@@ -128,7 +128,7 @@
             font-weight: 500;
         }
 
-        /* 白い水平線（SP版：維持） */
+        /* 白い水平線（SP版） */
         .hero-divider-line {
             width: 100%; 
             height: 1px; 
@@ -144,7 +144,7 @@
         }
 
         /* -----------------------------------------
-         * ■ レイアウト・共通余白システム (SP表示：維持・変更禁止)
+         * ■ レイアウト・共通余白システム (SP表示：変更禁止)
          * ----------------------------------------- */
         .site-main-container {
             width: 100%;
@@ -204,7 +204,7 @@
         .essay-body p:last-child { margin-bottom: 0; }
 
         /* -----------------------------------------
-         * ■ 専門領域 SECTION (SP表示：維持・変更禁止)
+         * ■ 専門領域 SECTION (SP表示：変更禁止)
          * ----------------------------------------- */
         .expertise-grid-2col {
             display: grid;
@@ -257,7 +257,7 @@
         }
 
         /* -----------------------------------------
-         * ■ 対応可能業務 SECTION / ■ メディア・活動実績 SECTION (SP表示：維持・変更禁止)
+         * ■ 対応可能業務 SECTION / ■ メディア・活動実績 SECTION (SP表示：変更禁止)
          * ----------------------------------------- */
         .media-segment {
             display: flex;
@@ -481,7 +481,7 @@
                 width: 469px; 
             }
 
-            /* 🚨【修正2】PC表示：白い線の確実な表示（仕様：W469px / H0でボーダー描画 / #FFFFFF / 透明度100% / 中央） */
+            /* PC表示：白い線の確実な表示（仕様：W469px / H0でボーダー描画 / #FFFFFF / 透明度100% / 中央） */
             .hero-divider-line {
                 width: 469px; /* サイズ：W469px */
                 height: 0; /* 高さ：H0 (デザイン指定上の線) */
@@ -500,7 +500,7 @@
 
             /* ■ PC: レイアウト・コンテンツ最大幅1000px定義 */
             .site-main-container {
-                max-width: 1000px; /* コンテンツ最大幅 PC：1000px */
+                max-width: 1000px; 
                 padding: 0; 
             }
 
@@ -536,10 +536,10 @@
                 gap: 16px 15px; /* カード間 PC：横15px、縦16px */
             }
 
-            /* 🚨【修正3】「事業グロース」等の長文が改行せず完璧に収まるよう、PC版カード高さを132pxから140pxへ絶妙に最適化調整 */
+            /* 「事業グロース」等の長文が改行せず完璧に収まるよう、PC版カード高さを140pxに最適化調整 */
             .expertise-item {
                 padding: 2px 0 2px 12px;
-                height: 140px; /* 他の専門領域の配置やデザインを崩さず、内包領域を最適に確保 */
+                height: 140px; 
             }
 
             .expertise-num {
@@ -557,13 +557,13 @@
                 margin-bottom: 6px;
             }
 
-            /* 🚨【修正3】PC表示要件：文章が途中で切れたり、見切れたりせず、改行しない形でカード内に全文を収める制御 */
+            /* PC表示要件：文章が途中で切れたり、見切れたりせず、改行しない形でカード内に全文を収める制御 */
             .expertise-desc {
                 font-size: 14px; 
                 white-space: nowrap; /* 改行しない形にする */
                 overflow: visible; /* 見切れたり、切れたりしないように表示領域を完全に確保 */
                 text-overflow: clip;
-                letter-spacing: -0.02em; /* コンテナ幅へ上品にフィットさせる微調整 */
+                letter-spacing: -0.02em; 
             }
 
             /* PC: 対応可能業務 / メディア・活動実績 */
@@ -609,15 +609,15 @@
                 gap: 28px;
             }
             
-            /* 🚨【修正4】問い合わせ説明文：PC表示時は「white-space: nowrap」により改行を排除し、完全な1行表示にロック。右に寄らず美しい画面中央配置をホールド */
+            /* 問い合わせ説明文：PCでは1行表示・中央配置調整 */
             .cta-notice-text {
-                width: auto; /* 固定幅を排し、1行表示のための可変追従 */
+                width: auto; 
                 max-width: 100%;
                 height: auto;
                 font-size: 14px; 
-                white-space: nowrap; /* 🚨 PCでは1行表示に設定 */
-                text-align: center; /* 🚨 中央配置を維持 */
-                margin: 0 auto; /* 🚨 右寄りにならないよう調整 */
+                white-space: nowrap; /* PCでは1行表示に設定 */
+                text-align: center; /* 中央配置を維持 */
+                margin: 0 auto; /* 右寄りにならないよう調整 */
                 display: block;
             }
             
@@ -632,12 +632,12 @@
 </head>
 <body>
 
-    <!-- ① TOP メインビジュアルセクション (🚨【修正1】正しい画像ファイル名「ozawa_takao.jpeg」へ完全修正) -->
+    <!-- ① TOP メインビジュアルセクション -->
     <section class="hero-fullscreen">
         <div class="hero-bg-blue-sp"></div>
         <div class="hero-img-container">
-            <!-- 🚨【修正1】GitHub Pages環境でもスマホ・PCともに100%確実に画像が表示される正規のパスへ更新 -->
-            <img src="./images/ozawa_takao.jpeg" alt="小澤隆生" class="hero-bg-img">
+            <!-- 🚨【修正】GitHub上の実際の配置（HTMLと同じ階層）に合わせた正しい相対パスへ修正 -->
+            <img src="ozawa_takao.jpeg" alt="小澤隆生" class="hero-bg-img">
         </div>
         
         <div class="hero-overlay-content">
@@ -645,7 +645,6 @@
                 <h1 class="hero-name-ja">小澤 隆生</h1>
                 <div class="hero-info-frame">
                     <p class="hero-badge-text">顧問バンク認定 プラチナ顧問</p>
-                    <!-- 🚨【修正2】Figma仕様（W469px/H0/FFFFFF/100%/中央）をPC表示時にも確実に反映した水平線 -->
                     <div class="hero-divider-line"></div>
                     <p class="hero-profile-summary">
                         連続起業家 / プレイングエンジェル / 元ヤフー代表取締役社長CEO / Boost Capital 代表取締役
@@ -663,13 +662,13 @@
             <h2 class="sec-title-mini">略歴</h2>
             <div class="essay-body">
                 <span class="essay-current-title">Boost Capital 代表取締役</span>
-                <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを設立、楽天へ売却。その後クロコスを創業しヤフーへ売却するなど、起業家としての道を歩む。</p>
-                <p>楽天では楽天野球団の立ち上げ、ヤフーではEC事業の拡大、PayPayの立ち上げ、ZOZO・一休・ASKUL等の大型案件の統括を経て、2022年にヤフー代表取締役社長CEOに就任。</p>
-                <p>2024年にベンチャーキャピタルとPEのハイブリッド機能を持つBoost Capitalを設立。2025年にはAI特化のBoost Consultingを設立。</p>
+                <p>早稲田大学卒業後、SCSKを経て1999年にビズシークを設立、楽天へ売却.その後クロコスを創業しヤフーへ売却するなど、起業家としての道を歩む.</p>
+                <p>楽天では楽天野球団の立ち上げ、ヤフーではEC事業の拡大、PayPayの立ち上げ、ZOZO・一休・ASKUL等の大型案件の統括を経て、2022年にヤフー代表取締役社長CEOに就任.</p>
+                <p>2024年にベンチャーキャピタルとPEのハイブリッド機能を持つBoost Capitalを設立.2025年にはAI特化のBoost Consultingを設立.</p>
             </div>
         </section>
 
-        <!-- ③ 専門領域セクション (🚨【修正3】PC表示時、説明文を改行させず、途切れや見切れ無しでカード内に全文収納) -->
+        <!-- ③ 専門領域セクション -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">専門領域</h2>
             <div class="expertise-grid-2col">
@@ -678,7 +677,7 @@
                     <div class="expertise-num">01</div>
                     <div class="expertise-content-block">
                         <h4 class="expertise-title">新規事業開発</h4>
-                        <p class="expertise-desc">市場分析から事業立ち上げ、事業化まで一貫して支援。</p>
+                        <p class="expertise-desc">市場分析から事業立ち上げ、事業化まで一貫して支援.</p>
                     </div>
                 </div>
                 <!-- 02 -->
@@ -686,7 +685,7 @@
                     <div class="expertise-num">02</div>
                     <div class="expertise-content-block">
                         <h4 class="expertise-title">事業グロース</h4>
-                        <p class="expertise-desc">大規模サービスの成長戦略、マーケティング、組織拡大を実践ベースで支援。</p>
+                        <p class="expertise-desc">大規模サービスの成長戦略、マーケティング、組織拡大を実践ベースで支援.</p>
                     </div>
                 </div>
                 <!-- 03 -->
@@ -694,7 +693,7 @@
                     <div class="expertise-num">03</div>
                     <div class="expertise-content-block">
                         <h4 class="expertise-title">EC・プラットフォーム戦略</h4>
-                        <p class="expertise-desc">EC・マーケットプレイス・プラットフォーム事業の成長戦略を支援。</p>
+                        <p class="expertise-desc">EC・マーケットプレイス・プラットフォーム事業の成長戦略を支援.</p>
                     </div>
                 </div>
                 <!-- 04 -->
@@ -702,7 +701,7 @@
                     <div class="expertise-num">04</div>
                     <div class="expertise-content-block">
                         <h4 class="expertise-title">DX・AI活用</h4>
-                        <p class="expertise-desc">AI・DXを活用した新規事業や既存事業の変革を支援。</p>
+                        <p class="expertise-desc">AI・DXを活用した新規事業や既存事業の変革を支援.</p>
                     </div>
                 </div>
                 <!-- 05 -->
@@ -710,7 +709,7 @@
                     <div class="expertise-num">05</div>
                     <div class="expertise-content-block">
                         <h4 class="expertise-title">M&A・PMI</h4>
-                        <p class="expertise-desc">買収戦略からPMIまで実務経験を踏まえて支援。</p>
+                        <p class="expertise-desc">買収戦略からPMIまで実務経験を踏まえて支援.</p>
                     </div>
                 </div>
                 <!-- 06 -->
@@ -718,7 +717,7 @@
                     <div class="expertise-num">06</div>
                     <div class="expertise-content-block">
                         <h4 class="expertise-title">スタートアップ経営</h4>
-                        <p class="expertise-desc">創業・資金調達・事業成長・EXITまで幅広く対応。</p>
+                        <p class="expertise-desc">創業・資金調達·事業成長・EXITまで幅広く対応.</p>
                     </div>
                 </div>
                 <!-- 07 -->
@@ -726,7 +725,7 @@
                     <div class="expertise-num">07</div>
                     <div class="expertise-content-block">
                         <h4 class="expertise-title">投資・VC</h4>
-                        <p class="expertise-desc">スタートアップ投資、事業評価、投資判断を支援。</p>
+                        <p class="expertise-desc">スタートアップ投資、事業評価、投資判断を支援.</p>
                     </div>
                 </div>
                 <!-- 08 -->
@@ -734,7 +733,7 @@
                     <div class="expertise-num">08</div>
                     <div class="expertise-content-block">
                         <h4 class="expertise-title">経営戦略</h4>
-                        <p class="expertise-desc">経営戦略・中長期戦略・事業ポートフォリオ設計を支援。</p>
+                        <p class="expertise-desc">経営戦略・中長期戦略・事業ポートフォリオ設計を支援.</p>
                     </div>
                 </div>
                 <!-- 09 -->
@@ -742,7 +741,7 @@
                     <div class="expertise-num">09</div>
                     <div class="expertise-content-block">
                         <h4 class="expertise-title">アライアンス</h4>
-                        <p class="expertise-desc">企業提携・資本提携・業務提携の推進を支援。</p>
+                        <p class="expertise-desc">企業提携・資本提携・業務提携の推進を支援.</p>
                     </div>
                 </div>
                 <!-- 10 -->
@@ -750,7 +749,7 @@
                     <div class="expertise-num">10</div>
                     <div class="expertise-content-block">
                         <h4 class="expertise-title">経営・組織改革</h4>
-                        <p class="expertise-desc">経営体制・組織づくり・経営チーム構築を支援。</p>
+                        <p class="expertise-desc">経営体制・組織づくり・経営チーム構築を支援.</p>
                     </div>
                 </div>
             </div>
@@ -804,7 +803,7 @@
             </div>
         </section>
 
-        <!-- ⑥ 問い合わせエリア (🚨【修正4】PC環境で右に寄らず、美しい1行表示＆画面中央配置に上書きロックした説明文) -->
+        <!-- ⑥ 問い合わせエリア -->
         <section class="contact-area">
             <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
             <div class="cta-btn-container">

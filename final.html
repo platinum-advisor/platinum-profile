@@ -39,7 +39,7 @@
         }
 
         /* -----------------------------------------
-         * ■ TOP メインビジュアル (SP表示：デザイン・レイアウト・CSS維持)
+         * ■ TOP メインビジュアル (変更禁止)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
@@ -154,7 +154,7 @@
         }
         
         .sec-padding {
-            padding: 36px 0; /* SP：セクション上下余白 36px */
+            padding: 36px 0; /* SP：セクション上下余白 36px（維持） */
         }
 
         /* 大項目タイトル（青矢印表示維持） */
@@ -164,7 +164,7 @@
             line-height: 1.0; 
             font-weight: 600; 
             color: var(--accent);
-            margin-bottom: 25px; /* SP 見出しと本文間：25px */
+            margin-bottom: 25px; /* SP 見出しと本文間：25px（維持） */
             display: flex;
             align-items: center;
             gap: 8px;
@@ -204,7 +204,7 @@
         .essay-body p:last-child { margin-bottom: 0; }
 
         /* -----------------------------------------
-         * ■ 専門領域 SECTION (SP表示：変更禁止)
+         * ■ 専門領域 SECTION
          * ----------------------------------------- */
         .expertise-grid-2col {
             display: grid;
@@ -213,12 +213,13 @@
             width: 100%;
         }
         
+        /* 🚨【修正①②】.expertise-item の border-left を削除、不要な左余白（padding）を詰めてコンパクト化 */
         .expertise-item {
             display: grid;
-            grid-template-columns: 35px 1fr; 
+            grid-template-columns: 30px 1fr; /* 35pxから30pxへ変更し左余白をさらにタイトに調整 */
             align-items: flex-start;
-            border-left: 2px solid var(--accent); 
-            padding: 2px 0 2px 12px;
+            border-left: none; /* 🚨 青い縦線を削除 */
+            padding: 2px 0; /* 左余白 12px を完全に排してコンパクト化 */
             height: auto; 
             overflow: hidden; 
         }
@@ -415,12 +416,12 @@
                 z-index: 1;
             }
 
-            /* 🚨【修正②】PC版画像コンテナの横幅・配置設定：Figma指定位置の右側領域いっぱいにフィットさせる記述 */
+            /* PC版画像コンテナの横幅・配置設定：右側領域いっぱいにフィット */
             .hero-img-container {
                 top: 0;
                 left: 500px; 
-                width: calc(100vw - 500px); /* 🚨 右側いっぱいまで100%表示拡張し、余白を完全に作らない設計 */
-                min-width: 700px; /* 最小幅としてFigma指定値を保証 */
+                width: calc(100vw - 500px); 
+                min-width: 700px; 
                 height: 800px; 
                 position: absolute;
                 z-index: 2;
@@ -428,7 +429,7 @@
             
             .hero-fullscreen .hero-img-container {
                 left: 500px; 
-                width: calc(100vw - 500px); /* 🚨 右側いっぱいまで完全にフィットさせて余白を作らない */
+                width: calc(100vw - 500px); 
                 min-width: 700px;
                 position: absolute;
             }
@@ -469,19 +470,13 @@
                 gap: 13px; 
             }
 
-            .hero-badge-text {
-                font-size: 18px; 
-                line-height: 27px; 
-                width: 469px; 
-            }
-
-            /* PC表示：白い線の確実な表示（仕様：W469px / H0でボーダー描画 / #FFFFFF / 透明度100% / 中央） */
+            /* PC表示：白い線の確実な表示 */
             .hero-divider-line {
-                width: 469px; /* サイズ：W469px */
-                height: 0; /* 高さ：H0 (デザイン指定上の線) */
-                border-top: 1px solid #FFFFFF; /* カラー：FFFFFF / 透明度：100% */
+                width: 469px; 
+                height: 0; 
+                border-top: 1px solid #FFFFFF; 
                 display: block;
-                margin: 0 auto; /* 位置：中央配置 */
+                margin: 0 auto; 
                 opacity: 1;
             }
 
@@ -498,13 +493,15 @@
                 padding: 0; 
             }
 
+            /* 🚨【修正③】各 section の上下paddingを「70px」から「54px」へ適度に小さく圧縮し、Figmaの美しさに近似化 */
             .sec-padding {
-                padding: 70px 0; /* 各セクション上下余白 PC：70px */
+                padding: 54px 0; 
             }
 
+            /* 🚨【修正③】見出しと本文のmargin-bottomを「28px」から「20px」へ小さくアジャスト */
             .sec-title-mini {
                 font-size: 22px; /* 文字サイズ PC コンテンツタイトル：22px */
-                margin-bottom: 28px; /* 見出しと本文間 PC：28px */
+                margin-bottom: 20px; 
                 gap: 10px;
             }
 
@@ -530,11 +527,12 @@
                 gap: 16px 15px; /* カード間 PC：横15px、縦16px */
             }
 
-            /* 🚨【修正③】事業グロースの1行表示対応：高さを従来の140pxに維持したまま、grid内部の横方向への表示可能領域を拡張最適化 */
+            /* 🚨【修正①②④】border-leftを排し、不要な左paddingを0にして情報密度を向上。高さを140pxから124pxへ最適にタイト化 */
             .expertise-item {
-                padding: 2px 0 2px 12px;
-                height: 140px; 
-                grid-template-columns: 30px 1fr; /* 🚨 ナンバリング幅をスマートに引き締めて、説明文の1行可包幅を極限まで拡大 */
+                border-left: none; /* 🚨 青い縦線を削除 */
+                padding: 2px 0; /* 🚨 左右余白・位置を極限まで詰めて情報密度を向上 */
+                height: 124px; 
+                grid-template-columns: 24px 1fr; /* ナンバリングとタイトルの距離をさらに詰める(30pxから24pxへ) */
             }
 
             .expertise-num {
@@ -547,17 +545,19 @@
                 width: 100%;
             }
 
+            /* タイトル位置の最適化（マージン引き締め） */
             .expertise-title {
                 font-size: 22px; 
-                margin-bottom: 6px;
+                margin-bottom: 2px; /* 6pxから2pxへ凝縮 */
             }
 
-            /* 🚨【修正③】PC版「専門領域」の事業グロース：1行ですべて表示・途中見切れや不自然な改行を完全防止する絶妙なアジャスト */
+            /* PC表示要件：改行しない形でカード内に全文を収める制御 */
             .expertise-desc {
-                font-size: 13px; /* 🚨 文字サイズをわずかにスマート化 */
-                white-space: nowrap; /* 🚨 改行もせず、1行ですべて表示 */
-                overflow: visible; /* 見切れないよう可視化 */
-                letter-spacing: -0.04em; /* 🚨 letter-spacingを精密に引き締め、他カードのデザインや高さを完全に崩さず1行収納 */
+                font-size: 14px; 
+                white-space: nowrap; 
+                overflow: visible; 
+                text-overflow: clip;
+                letter-spacing: -0.02em; 
             }
 
             /* PC: 対応可能業務 / メディア・活動実績 */
@@ -597,13 +597,12 @@
                 font-size: 14px; 
             }
 
-            /* PC: 問い合わせエリア */
+            /* 🚨【修正③】お問い合わせ周りも連動して上下空間をバランスよく詰まりすぎない程度に圧縮 */
             .contact-area {
-                padding: 70px 0 100px;
-                gap: 28px;
+                padding: 54px 0 80px; /* 70px 0 100px から圧縮 */
+                gap: 24px; /* 28pxから凝縮 */
             }
             
-            /* 問い合わせ説明文：PCでは1行表示・中央配置調整 */
             .cta-notice-text {
                 width: auto; 
                 max-width: 100%;
@@ -626,11 +625,10 @@
 </head>
 <body>
 
-    <!-- ① TOP メインビジュアルセクション -->
+    <!-- ① TOP メインビジュアルセクション (画像および基本構造の維持) -->
     <section class="hero-fullscreen">
         <div class="hero-bg-blue-sp"></div>
         <div class="hero-img-container">
-            <!-- GitHub上の実際の配置（HTMLと同じ階層）に合わせた正しい相対パス -->
             <img src="ozawa_takao.jpeg" alt="小澤隆生" class="hero-bg-img">
         </div>
         
@@ -651,7 +649,7 @@
     <!-- メインコンテンツコンテナ -->
     <div class="site-main-container">
         
-        <!-- ② 略歴セクション (🚨【修正①】日本語文章の末尾を「.」から「。」へ完全一括修正) -->
+        <!-- ② 略歴セクション (PC表示のみ余白圧縮同期) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">略歴</h2>
             <div class="essay-body">
@@ -662,7 +660,7 @@
             </div>
         </section>
 
-        <!-- ③ 専門領域セクション (🚨【修正①】すべての文章末尾を「。」へ修正 ＆ 【修正③】「事業グロース」説明文を改行なし1行で全文完全表示) -->
+        <!-- ③ 専門領域セクション (🚨【修正①②④】数字左側の青い縦線borderを削除し、左右余白とタイトル・説明文位置を引き締めコンパクト化) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">専門領域</h2>
             <div class="expertise-grid-2col">
@@ -764,7 +762,7 @@
             </div>
         </section>
 
-        <!-- ⑤ メディア・活動実績セクション (🚨【修正①】日本語文章の末尾をすべて「。」へ修正) -->
+        <!-- ⑤ メディア・活動実績セクション -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">メディア・活動実績</h2>
             <div class="media-segment">
@@ -797,7 +795,7 @@
             </div>
         </section>
 
-        <!-- ⑥ 問い合わせエリア (🚨【修正①】日本語文章の末尾を「。」へ修正) -->
+        <!-- ⑥ 問い合わせエリア (PC表示時のみ適度に垂直間隔を圧縮) -->
         <section class="contact-area">
             <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
             <div class="cta-btn-container">

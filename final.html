@@ -493,15 +493,15 @@
                 padding: 0; 
             }
 
-            /* 🚨【修正①】全セクションの上下余白を「約50px」に統一し、Figmaの引き締まったレイアウトへ完全同調 */
+            /* 🚨【修正】PC版のセクション上下padding・セクション間の余白を、スマホ版と100%同じルール「36px 0」へ同期展開 */
             .sec-padding {
-                padding: 50px 0; 
+                padding: 36px 0; 
             }
 
-            /* 🚨【修正①】見出し下のmarginを一律「20px」に圧縮・統一し、不要な上下のばらつきを排除 */
+            /* 🚨【修正】見出しと本文のmargin-bottomも、スマホ版と同じ比率・密度である「25px」へ完全連動 */
             .sec-title-mini {
                 font-size: 22px; /* 文字サイズ PC コンテンツタイトル：22px */
-                margin-bottom: 20px; 
+                margin-bottom: 25px; 
                 gap: 10px;
             }
 
@@ -560,7 +560,6 @@
             /* PC: 対応可能業務 / メディア・活動実績 */
             .media-segment {
                 gap: 24px;
-                /* 🚨【修正②】対応可能業務タイトルからタグ（プール）までの余白を最適に詰めるアジャスト */
                 margin-top: 0; 
             }
 
@@ -597,9 +596,9 @@
                 font-size: 14px; 
             }
 
-            /* 🚨【修正①】お問い合わせエリア：他の全セクションと完璧に同一ルール（上下50px）で余白感を綺麗に統一 */
+            /* 🚨【修正】お問い合わせエリアの上下paddingも、スマホ版の共通余白ルールに完全に則り「36px 0」に圧縮展開 */
             .contact-area {
-                padding: 50px 0; 
+                padding: 36px 0; 
                 gap: 24px; 
             }
             
@@ -626,7 +625,7 @@
 </head>
 <body>
 
-    <!-- ① TOP メインビジュアルセクション (変更禁止) -->
+    <!-- ① TOP メインビジュアルセクション (変更なし) -->
     <section class="hero-fullscreen">
         <div class="hero-bg-blue-sp"></div>
         <div class="hero-img-container">
@@ -650,7 +649,7 @@
     <!-- メインコンテンツコンテナ -->
     <div class="site-main-container">
         
-        <!-- ② 略歴セクション (上下50px、見出し下20pxに統一最適化) -->
+        <!-- ② 略歴セクション (🚨【修正】PC上下余白およびセクション間をスマホ同様の36px・見出し下25pxに圧縮連動) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">略歴</h2>
             <div class="essay-body">
@@ -661,7 +660,7 @@
             </div>
         </section>
 
-        <!-- ③ 専門領域セクション (上下50px、見出し下20pxに統一最適化) -->
+        <!-- ③ 専門領域セクション (🚨【修正】PC上下余白およびセクション間をスマホ同様の36px・見出し下25pxに圧縮連動) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">専門領域</h2>
             <div class="expertise-grid-2col">
@@ -748,7 +747,7 @@
             </div>
         </section>
 
-        <!-- ④ 対応可能業務セクション (🚨【修正②】専門領域の終了から本セクション開始までの余白を他と完璧に均整化。タイトルからタグへの余白も緊密圧縮) -->
+        <!-- ④ 対応可能業務セクション (🚨【修正】PC上下余白およびセクション間をスマホ同様の36px・見出し下25pxに圧縮連動) -->
         <section class="sec-padding">
             <h2 class="section-title sec-title-mini">対応可能業務</h2>
             <div class="media-segment">
@@ -763,7 +762,7 @@
             </div>
         </section>
 
-        <!-- ⑤ メディア・活動実績セクション (上下50px、見出し下20pxに統一最適化) -->
+        <!-- ⑤ メディア・活動実績セクション (🚨【修正】PC上下余白およびセクション間をスマホ同様の36px・見出し下25pxに圧縮連動) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">メディア・活動実績</h2>
             <div class="media-segment">
@@ -796,7 +795,7 @@
             </div>
         </section>
 
-        <!-- ⑥ 問い合わせエリア (🚨【修正①】お問い合わせも独立させず一連の「上下50px」共通ルールに完全統率) -->
+        <!-- ⑥ 問い合わせエリア (🚨【修正】お問い合わせエリアもスマホ同様の上下36pxへ共通ルール統率化) -->
         <section class="contact-area">
             <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
             <div class="cta-btn-container">

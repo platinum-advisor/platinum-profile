@@ -39,7 +39,7 @@
         }
 
         /* -----------------------------------------
-         * ■ TOP メインビジュアル (スマホ版：一切変更なし)
+         * ■ TOP メインビジュアル (スマホ版：完全固定・変更禁止)
          * ----------------------------------------- */
         .hero-fullscreen {
             position: relative;
@@ -71,7 +71,7 @@
             z-index: 2; 
         }
 
-        /* ヒーロー画像表示設定（SP版挙動・トリミング設定維持） */
+        /* ヒーロー画像表示設定（SP版挙動・トリミング設定完全維持） */
         .hero-bg-img {
             display: block;
             width: 100%;
@@ -144,7 +144,7 @@
         }
 
         /* -----------------------------------------
-         * ■ レイアウト・共通余白システム (SP表示：一切変更なし)
+         * ■ レイアウト・共通余白システム (SP表示：完全固定・変更禁止)
          * ----------------------------------------- */
         .site-main-container {
             width: 100%;
@@ -204,7 +204,7 @@
         .essay-body p:last-child { margin-bottom: 0; }
 
         /* -----------------------------------------
-         * ■ 専門領域 SECTION (SP表示：一切変更なし)
+         * ■ 専門領域 SECTION (SP表示：完全固定・変更禁止)
          * ----------------------------------------- */
         .expertise-grid-2col {
             display: grid;
@@ -257,7 +257,7 @@
         }
 
         /* -----------------------------------------
-         * ■ 対応可能業務 SECTION / ■ メディア・活動実績 SECTION (SP表示：一切変更なし)
+         * ■ 対応可能業務 SECTION / ■ メディア・活動実績 SECTION (SP表示：完全固定・変更禁止)
          * ----------------------------------------- */
         .media-segment {
             display: flex;
@@ -497,9 +497,10 @@
             }
 
             /* ■ PC: レイアウト・全大項目共通1080px基準コンテナ */
+            /* 🚨【修正③】左右のセーフティ余白（padding）を設定し、900px前後でも窮屈に見えないよう自動調整 */
             .site-main-container {
                 max-width: 1080px; 
-                padding: 0; 
+                padding: 0 40px; 
             }
 
             /* セクション上下padding */
@@ -519,9 +520,10 @@
                 height: 16px;
             }
 
+            /* 🚨【修正②】略歴テキスト幅を100%へ変更（max-width:100%は維持） */
             .essay-body {
                 font-size: 14px; 
-                width: 700px; 
+                width: 100%; 
                 max-width: 100%;
             }
 
@@ -533,16 +535,15 @@
             /* ■ PC: 専門領域 2カラム設定 */
             .expertise-grid-2col {
                 grid-template-columns: repeat(2, minmax(0, 1fr)); 
-                gap: 12px 30px; /* 🚨 行間（縦方向ギャップ）を16pxから12pxへ引き締め */
+                gap: 12px 30px; 
                 margin-left: 0;
                 margin-right: 0;
                 width: 100%; 
             }
 
-            /* 🚨【修正①】専門領域の各項目の高さを124pxから「68px」へと大幅にコンパクト化 */
             .expertise-item {
                 padding: 0;
-                height: 68px; /* 高さをスマートに引き締め、スクロール量を大幅削減 */
+                height: auto; 
                 display: grid;
                 grid-template-columns: 32px 1fr; 
                 align-items: flex-start;
@@ -561,20 +562,21 @@
 
             .expertise-title {
                 font-size: 22px; 
-                margin-bottom: 0; /* 🚨 タイトル下の無駄なマージンを排除 */
+                margin-bottom: 0; 
                 line-height: 1.2;
             }
 
+            /* 🚨【修正①】専門領域の説明文を改行可能な設定へ変更 */
             .expertise-desc {
                 font-size: 14px; 
                 letter-spacing: 0.03em; 
-                line-height: 1.5; /* 🚨 コンパクトな項目高に合わせたジャストな行間 */
-                white-space: nowrap; 
+                line-height: 1.5; 
+                white-space: normal; 
                 overflow: visible; 
                 text-overflow: clip;
             }
 
-            /* 🚨【修正②】「専門領域」と「対応可能業務」の間の余白を「略歴〜専門領域」間と完全に同じ見た目に統一 */
+            /* PC: 対応可能業務 / メディア・活動実績 */
             .media-segment {
                 gap: 24px;
                 margin-top: 0; 
@@ -637,6 +639,72 @@
                 border-radius: 34px; 
             }
         }
+
+        /* =========================================================================
+           🚨【修正④⑤】768px〜1024px 中間PC画面幅用レスポンシブ補正
+           ========================================================================= */
+        @media (min-width: 768px) and (max-width: 1024px) {
+
+            .hero-fullscreen {
+                height: 700px;
+            }
+
+            /* 青背景と画像表示領域のバランス調整（比率化） */
+            .hero-bg-blue-sp {
+                width: 44%;
+                height: 700px;
+            }
+
+            .hero-img-container {
+                left: 44%;
+                width: 56%;
+                min-width: 0;
+                height: 700px;
+            }
+
+            .hero-fullscreen .hero-img-container {
+                left: 44%;
+                width: 56%;
+                min-width: 0;
+            }
+
+            /* 顔が切れず自然な構図に収まるようトリミング（center 22%）調整 */
+            .hero-bg-img {
+                object-position: center 22%; 
+            }
+
+            /* テキスト位置・サイズ調整（900px前後用） */
+            .hero-text-wrapper {
+                top: 360px;
+                left: 40px;
+                width: calc(100vw - 80px);
+            }
+
+            .hero-name-ja {
+                font-size: 78px;
+                line-height: 78px;
+                width: auto;
+                margin-bottom: 25px;
+            }
+
+            .hero-info-frame {
+                width: 100%;
+            }
+
+            .hero-divider-line {
+                width: 100%;
+            }
+
+            .hero-profile-summary {
+                width: 100%;
+            }
+
+            /* 中間幅におけるコンテンツ左右の適切な余白調整 */
+            .site-main-container {
+                padding: 0 32px; 
+            }
+
+        }
     </style>
 </head>
 <body>
@@ -662,10 +730,10 @@
         </div>
     </section>
 
-    <!-- 全大項目が共通の1080pxコンテナ内に整列する単一メインコンテンツ構造 -->
+    <!-- 全大項目が共通のコンテナ内に整列するメインコンテンツ構造 -->
     <div class="site-main-container">
 
-        <!-- ② 略歴セクション -->
+        <!-- ② 略歴セクション (略歴幅100%化適用) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">略歴</h2>
             <div class="essay-body">
@@ -676,7 +744,7 @@
             </div>
         </section>
 
-        <!-- ③ 専門領域セクション (🚨【修正①】項目の高さを68pxへコンパクト化＆スクロール量を最適化) -->
+        <!-- ③ 専門領域セクション (説明文の改行化適用) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">専門領域</h2>
             <div class="expertise-grid-2col">
@@ -763,7 +831,7 @@
             </div>
         </section>
 
-        <!-- ④ 対応可能業務セクション (🚨【修正②】専門領域からのセクション間引き締めで略歴〜専門領域間と完全統一) -->
+        <!-- ④ 対応可能業務セクション -->
         <section class="sec-padding">
             <h2 class="section-title sec-title-mini">対応可能業務</h2>
             <div class="media-segment">
@@ -828,6 +896,3 @@
 
 </body>
 </html>
-
-
-

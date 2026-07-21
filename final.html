@@ -493,12 +493,11 @@
                 padding: 0; 
             }
 
-            /* 🚨【修正】PC版のセクション上下padding・セクション間の余白を、スマホ版と100%同じルール「36px 0」へ同期展開 */
+            /* セクション上下padding（スマホ版と同等） */
             .sec-padding {
                 padding: 36px 0; 
             }
 
-            /* 🚨【修正】見出しと本文のmargin-bottomも、スマホ版と同じ比率・密度である「25px」へ完全連動 */
             .sec-title-mini {
                 font-size: 22px; /* 文字サイズ PC コンテンツタイトル：22px */
                 margin-bottom: 25px; 
@@ -527,14 +526,15 @@
                 gap: 16px 15px; 
             }
 
+            /* 🚨【修正】数字カラムを20pxに絞り、右側テキスト描画領域を極限まで拡大 */
             .expertise-item {
-                padding: 2px 0 2px 12px;
+                padding: 2px 0;
                 height: 124px; 
-                grid-template-columns: 24px 1fr; 
+                grid-template-columns: 20px 1fr; 
             }
 
             .expertise-num {
-                width: 20px; 
+                width: 18px; 
                 font-size: 16px; 
                 line-height: 16px; 
             }
@@ -548,13 +548,13 @@
                 margin-bottom: 2px; 
             }
 
-            /* PC表示要件：改行しない形でカード内に全文を収める制御 */
+            /* 🚨【修正】「02 事業グロース」含め39文字の長文テキストが途中で切れず1行で「支援。」まで収まるよう微調整 */
             .expertise-desc {
-                font-size: 14px; 
+                font-size: 12.5px; /* テキストサイズをほんのわずかに引き締め */
                 white-space: nowrap; 
                 overflow: visible; 
                 text-overflow: clip;
-                letter-spacing: -0.02em; 
+                letter-spacing: -0.03em; /* トラッキングを絶妙に詰めて1行で完全フィッティング */
             }
 
             /* PC: 対応可能業務 / メディア・活動実績 */
@@ -596,7 +596,7 @@
                 font-size: 14px; 
             }
 
-            /* 🚨【修正】お問い合わせエリアの上下paddingも、スマホ版の共通余白ルールに完全に則り「36px 0」に圧縮展開 */
+            /* お問い合わせエリア */
             .contact-area {
                 padding: 36px 0; 
                 gap: 24px; 
@@ -625,7 +625,7 @@
 </head>
 <body>
 
-    <!-- ① TOP メインビジュアルセクション (変更なし) -->
+    <!-- ① TOP メインビジュアルセクション -->
     <section class="hero-fullscreen">
         <div class="hero-bg-blue-sp"></div>
         <div class="hero-img-container">
@@ -649,7 +649,7 @@
     <!-- メインコンテンツコンテナ -->
     <div class="site-main-container">
         
-        <!-- ② 略歴セクション (🚨【修正】PC上下余白およびセクション間をスマホ同様の36px・見出し下25pxに圧縮連動) -->
+        <!-- ② 略歴セクション -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">略歴</h2>
             <div class="essay-body">
@@ -660,7 +660,7 @@
             </div>
         </section>
 
-        <!-- ③ 専門領域セクション (🚨【修正】PC上下余白およびセクション間をスマホ同様の36px・見出し下25pxに圧縮連動) -->
+        <!-- ③ 専門領域セクション (🚨【修正】PC表示時「02 事業グロース」の説明文が末尾の「支援。」まで1行で途切れず綺麗に収まるよう微調整) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">専門領域</h2>
             <div class="expertise-grid-2col">
@@ -747,7 +747,7 @@
             </div>
         </section>
 
-        <!-- ④ 対応可能業務セクション (🚨【修正】PC上下余白およびセクション間をスマホ同様の36px・見出し下25pxに圧縮連動) -->
+        <!-- ④ 対応可能業務セクション -->
         <section class="sec-padding">
             <h2 class="section-title sec-title-mini">対応可能業務</h2>
             <div class="media-segment">
@@ -762,7 +762,7 @@
             </div>
         </section>
 
-        <!-- ⑤ メディア・活動実績セクション (🚨【修正】PC上下余白およびセクション間をスマホ同様の36px・見出し下25pxに圧縮連動) -->
+        <!-- ⑤ メディア・活動実績セクション -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">メディア・活動実績</h2>
             <div class="media-segment">
@@ -795,7 +795,7 @@
             </div>
         </section>
 
-        <!-- ⑥ 問い合わせエリア (🚨【修正】お問い合わせエリアもスマホ同様の上下36pxへ共通ルール統率化) -->
+        <!-- ⑥ 問い合わせエリア -->
         <section class="contact-area">
             <p class="cta-notice-text">本プロフィールに関する面談調整・案件のご相談は専用窓口にて受付を行っております。</p>
             <div class="cta-btn-container">

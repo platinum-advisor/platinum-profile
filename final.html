@@ -206,12 +206,6 @@
         /* -----------------------------------------
          * ■ 専門領域 SECTION (SP表示：一切変更なし)
          * ----------------------------------------- */
-        .expertise-container {
-            width: 100%;
-            padding: 0 30px;
-            margin: 0 auto;
-        }
-
         .expertise-grid-2col {
             display: grid;
             grid-template-columns: 1fr; /* 専門領域 SP：1カラム */
@@ -401,6 +395,15 @@
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235080AD'%3E%3Cpath d='M16.01 11H4v2h12.01v3L20 12l-3.99-4z'/%3E%3C/svg%3E");
         }
 
+        footer {
+            text-align: center;
+            font-family: var(--font-serif);
+            font-size: 12px;
+            color: var(--sub-text);
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.02);
+        }
+
         /* =========================================================================
            ■ PC版表示用レスポンシブクエリ (ブレークポイント: 768px以上)
            ========================================================================= */
@@ -493,7 +496,7 @@
                 width: 469px; 
             }
 
-            /* ■ PC: レイアウト・コンテンツ最大幅1000px定義（他セクション用） */
+            /* ■ PC: レイアウト・全大項目共通1000px基準コンテナ */
             .site-main-container {
                 max-width: 1000px; 
                 padding: 0; 
@@ -504,8 +507,9 @@
                 padding: 36px 0; 
             }
 
+            /* 🚨 全大項目見出し：1000pxコンテナ内で左位置を完全統一 */
             .sec-title-mini {
-                font-size: 22px; /* コンテンツタイトル：22px（維持） */
+                font-size: 22px; /* コンテンツタイトル：22px */
                 margin-bottom: 25px; 
                 gap: 10px;
             }
@@ -516,31 +520,26 @@
             }
 
             .essay-body {
-                font-size: 14px; /* 本文：14px（維持） */
+                font-size: 14px; 
                 width: 700px; 
                 max-width: 100%;
             }
 
             .essay-current-title {
-                font-size: 22px; /* 中見出し：22px（維持） */
+                font-size: 22px; 
                 margin-bottom: 16px;
             }
 
-            /* 🚨【修正①】専門領域セクション専用ラッパー：表示幅を約1120pxに安全拡張 */
-            .expertise-container {
-                max-width: 1120px;
-                padding: 0;
-                margin: 0 auto;
-            }
-
-            /* 🚨【修正②】grid-template-columns: repeat(2, minmax(0, 1fr)); に設定 */
+            /* 🚨【修正】見出しは1000px内に留めたまま、2カラムのカード領域のみ必要最小限（左右各-50px）だけスマートに拡張 */
             .expertise-grid-2col {
                 grid-template-columns: repeat(2, minmax(0, 1fr)); 
                 gap: 16px 30px; 
-                width: 100%;
+                margin-left: -50px;
+                margin-right: -50px;
+                width: calc(100% + 100px); /* カードエリア全体幅: 1100px */
             }
 
-            /* 🚨【修正③】grid-template-columns: 32px 1fr; に設定し、数字とタイトル被りを完全防ぐ */
+            /* 数字（01〜10）とタイトルの重ね防止 */
             .expertise-item {
                 padding: 2px 0;
                 height: 124px; 
@@ -561,11 +560,11 @@
             }
 
             .expertise-title {
-                font-size: 22px; /* 中見出し：22px（維持） */
+                font-size: 22px; 
                 margin-bottom: 2px; 
             }
 
-            /* 🚨【修正④⑤】14px, 0.03em, 1.7を100%維持し、「事業グロース」含め1行全文表示を実現 */
+            /* 🚨 14px・0.03em・1.7を100%維持し、「事業グロース」含め1行表示を完全に維持 */
             .expertise-desc {
                 font-size: 14px; /* 🚨 本文14px維持 */
                 letter-spacing: 0.03em; /* 🚨 文字間0.03em維持 */
@@ -597,7 +596,7 @@
             }
 
             .media-label-ja {
-                font-size: 22px; /* 中見出し：22px（維持） */
+                font-size: 22px; 
             }
 
             /* 対応可能業務タグ PCサイズ */
@@ -611,7 +610,7 @@
             }
 
             .media-signature-text {
-                font-size: 14px; /* 本文：14px（維持） */
+                font-size: 14px; 
             }
 
             /* お問い合わせエリア */
@@ -620,7 +619,6 @@
                 gap: 24px; 
             }
 
-            /* 問い合わせ説明文：PCでは1行表示・中央配置調整 */
             .cta-notice-text {
                 width: auto; 
                 max-width: 100%;
@@ -664,7 +662,7 @@
         </div>
     </section>
 
-    <!-- メインコンテンツコンテナ（1000px） -->
+    <!-- 🚨 全大項目が共通の1000pxコンテナ内に整列する単一メインコンテンツ構造 -->
     <div class="site-main-container">
 
         <!-- ② 略歴セクション -->
@@ -678,12 +676,7 @@
             </div>
         </section>
 
-    </div>
-
-    <!-- 🚨【修正①】専門領域セクション専用ラッパー（PC時のみ1120pxへ拡張） -->
-    <div class="expertise-container">
-
-        <!-- ③ 専門領域セクション -->
+        <!-- ③ 専門領域セクション (🚨 見出し「専門領域」は1000px枠内で完全整列し、カード領域のみ左右へスマート拡張) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">専門領域</h2>
             <div class="expertise-grid-2col">
@@ -769,11 +762,6 @@
                 </div>
             </div>
         </section>
-
-    </div>
-
-    <!-- メインコンテンツコンテナ（1000px） -->
-    <div class="site-main-container">
 
         <!-- ④ 対応可能業務セクション -->
         <section class="sec-padding">

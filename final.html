@@ -497,7 +497,6 @@
             }
 
             /* ■ PC: レイアウト・全大項目共通1080px基準コンテナ */
-            /* 🚨【修正③】左右のセーフティ余白（padding）を設定し、900px前後でも窮屈に見えないよう自動調整 */
             .site-main-container {
                 max-width: 1080px; 
                 padding: 0 40px; 
@@ -520,7 +519,6 @@
                 height: 16px;
             }
 
-            /* 🚨【修正②】略歴テキスト幅を100%へ変更（max-width:100%は維持） */
             .essay-body {
                 font-size: 14px; 
                 width: 100%; 
@@ -566,7 +564,6 @@
                 line-height: 1.2;
             }
 
-            /* 🚨【修正①】専門領域の説明文を改行可能な設定へ変更 */
             .expertise-desc {
                 font-size: 14px; 
                 letter-spacing: 0.03em; 
@@ -641,7 +638,7 @@
         }
 
         /* =========================================================================
-           🚨【修正④⑤】768px〜1024px 中間PC画面幅用レスポンシブ補正
+           🚨【修正①】768px〜1024px 中間PC画面幅用レスポンシブ補正
            ========================================================================= */
         @media (min-width: 768px) and (max-width: 1024px) {
 
@@ -687,8 +684,9 @@
                 margin-bottom: 25px;
             }
 
+            /* 🚨 1024px未満時のプロフィール文エリア幅を48%へ調整 */
             .hero-info-frame {
-                width: 100%;
+                width: 48%;
             }
 
             .hero-divider-line {
@@ -733,7 +731,7 @@
     <!-- 全大項目が共通のコンテナ内に整列するメインコンテンツ構造 -->
     <div class="site-main-container">
 
-        <!-- ② 略歴セクション (略歴幅100%化適用) -->
+        <!-- ② 略歴セクション -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">略歴</h2>
             <div class="essay-body">
@@ -744,7 +742,7 @@
             </div>
         </section>
 
-        <!-- ③ 専門領域セクション (説明文の改行化適用) -->
+        <!-- ③ 専門領域セクション -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">専門領域</h2>
             <div class="expertise-grid-2col">

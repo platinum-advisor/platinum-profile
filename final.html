@@ -493,7 +493,7 @@
                 padding: 0; 
             }
 
-            /* セクション上下padding（スマホ版と同等） */
+            /* セクション上下padding */
             .sec-padding {
                 padding: 36px 0; 
             }
@@ -520,18 +520,21 @@
                 margin-bottom: 16px;
             }
 
-            /* ■ PC: 専門領域 (2カラム展開) */
+            /* ■ PC: 専門領域 (セクションのみ横幅を拡張し「02 事業グロース」説明文を見切れず1行表示) */
             .expertise-grid-2col {
                 grid-template-columns: repeat(2, 1fr); 
-                gap: 16px 16px; /* 横ギャップを16pxに最適化 */
+                gap: 16px 40px; 
+                margin-left: -90px;
+                margin-right: -90px;
+                width: calc(100% + 180px); /* 1180px相当の表示領域を確保 */
             }
 
-            /* 🚨【修正】数字（01〜10）専用幅を26px確保し、タイトル・コンテンツとの重なりを100%解消 */
+            /* 数字（01〜10）とタイトルが重ならないよう安全幅28pxを確保 */
             .expertise-item {
                 padding: 2px 0;
                 height: 124px; 
                 display: grid;
-                grid-template-columns: 26px 1fr; /* 数字領域26px、本文1frで完全分離 */
+                grid-template-columns: 28px 1fr; 
                 align-items: flex-start;
             }
 
@@ -551,13 +554,13 @@
                 margin-bottom: 2px; 
             }
 
-            /* 🚨【修正】文字サイズ（14px）を維持したまま、「02 事業グロース」含め39文字全文が「支援。」まで確実に1行表示 */
+            /* 🚨【文字サイズ14px・指定文字間0.03em維持】カード領域の拡張により「支援。」まで完璧に1行表示 */
             .expertise-desc {
                 font-size: 14px; /* 🚨 デザイナー指定：14px（絶対維持） */
                 white-space: nowrap; 
                 overflow: visible; 
                 text-overflow: clip;
-                letter-spacing: 0.03em; /* 文章の指定文字間 0.03em をそのまま維持 */
+                letter-spacing: 0.03em; /* 🚨 デザイナー指定文章文字間：0.03em（絶対維持） */
             }
 
             /* PC: 対応可能業務 / メディア・活動実績 */
@@ -663,7 +666,7 @@
             </div>
         </section>
 
-        <!-- ③ 専門領域セクション (🚨【修正完了】数字とタイトルが絶対に被らず、文字サイズ指定を100%維持したまま「事業グロース」説明文も1行全文表示) -->
+        <!-- ③ 専門領域セクション (🚨 PC表示「02 事業グロース」説明文を見切れず1行全文表示するよう専用領域を拡張) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">専門領域</h2>
             <div class="expertise-grid-2col">

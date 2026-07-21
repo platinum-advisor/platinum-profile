@@ -519,9 +519,10 @@
                 height: 16px;
             }
 
+            /* 🚨【修正②】略歴テキスト幅を100%へ拡張（max-width:100%維持） */
             .essay-body {
                 font-size: 14px; 
-                width: 700px; 
+                width: 100%; 
                 max-width: 100%;
             }
 
@@ -533,16 +534,15 @@
             /* ■ PC: 専門領域 2カラム設定 */
             .expertise-grid-2col {
                 grid-template-columns: repeat(2, minmax(0, 1fr)); 
-                gap: 12px 30px; /* 🚨 行間（縦方向ギャップ）を16pxから12pxへ引き締め */
+                gap: 12px 30px; 
                 margin-left: 0;
                 margin-right: 0;
                 width: 100%; 
             }
 
-            /* 🚨【修正①】専門領域の各項目の高さを124pxから「68px」へと大幅にコンパクト化 */
             .expertise-item {
                 padding: 0;
-                height: 68px; /* 高さをスマートに引き締め、スクロール量を大幅削減 */
+                height: auto; /* 🚨 自然な改行を許容するため高さを可変に調整 */
                 display: grid;
                 grid-template-columns: 32px 1fr; 
                 align-items: flex-start;
@@ -561,20 +561,21 @@
 
             .expertise-title {
                 font-size: 22px; 
-                margin-bottom: 0; /* 🚨 タイトル下の無駄なマージンを排除 */
+                margin-bottom: 0; 
                 line-height: 1.2;
             }
 
+            /* 🚨【修正①】white-space: nowrap を撤廃し、画面幅縮小時でも見切れず自然に改行可能な設定に変更 */
             .expertise-desc {
                 font-size: 14px; 
                 letter-spacing: 0.03em; 
-                line-height: 1.5; /* 🚨 コンパクトな項目高に合わせたジャストな行間 */
-                white-space: nowrap; 
+                line-height: 1.5; 
+                white-space: normal; 
                 overflow: visible; 
                 text-overflow: clip;
             }
 
-            /* 🚨【修正②】「専門領域」と「対応可能業務」の間の余白を「略歴〜専門領域」間と完全に同じ見た目に統一 */
+            /* PC: 対応可能業務 / メディア・活動実績 */
             .media-segment {
                 gap: 24px;
                 margin-top: 0; 
@@ -665,7 +666,7 @@
     <!-- 全大項目が共通の1080pxコンテナ内に整列する単一メインコンテンツ構造 -->
     <div class="site-main-container">
 
-        <!-- ② 略歴セクション -->
+        <!-- ② 略歴セクション (🚨【修正②】.essay-body の幅を 100% に変更) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">略歴</h2>
             <div class="essay-body">
@@ -676,7 +677,7 @@
             </div>
         </section>
 
-        <!-- ③ 専門領域セクション (🚨【修正①】項目の高さを68pxへコンパクト化＆スクロール量を最適化) -->
+        <!-- ③ 専門領域セクション (🚨【修正①】.expertise-desc の改行を可能へ変更) -->
         <section class="sec-padding">
             <h2 class="sec-title-mini">専門領域</h2>
             <div class="expertise-grid-2col">
@@ -763,7 +764,7 @@
             </div>
         </section>
 
-        <!-- ④ 対応可能業務セクション (🚨【修正②】専門領域からのセクション間引き締めで略歴〜専門領域間と完全統一) -->
+        <!-- ④ 対応可能業務セクション -->
         <section class="sec-padding">
             <h2 class="section-title sec-title-mini">対応可能業務</h2>
             <div class="media-segment">
